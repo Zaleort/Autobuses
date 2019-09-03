@@ -1,0 +1,490 @@
+{
+    "nucleos": {
+        "n1": {
+            "name": "ADRA"
+        },
+        "n2": {
+            "name": "AEROPUERTO"
+        },
+        "n3": {
+            "name": "AGUADULCE"
+        },
+        "n4": {
+            "name": "AGUAMARGA"
+        },
+        "n5": {
+            "name": "ALCAUDIQUE"
+        },
+        "n6": {
+            "name": "ALMERIA"
+        },
+        "n7": {
+            "name": "ALMERIMAR"
+        },
+        "n8": {
+            "name": "ATOCHARES"
+        },
+        "n9": {
+            "name": "BAHÍA ALTA"
+        },
+        "n10": {
+            "name": "BAHÍA ALTA"
+        },
+        "n11": {
+            "name": "BALANEGRA"
+        },
+        "n12": {
+            "name": "BALERMA"
+        },
+        "n13": {
+            "name": "BALSA SECA"
+        },
+        "n14": {
+            "name": "BARRIO ARCHILLA"
+        },
+        "n15": {
+            "name": "BARRIO DE LOS OJEDAS"
+        },
+        "n16": {
+            "name": "BARRIO SAN FRANCISCO"
+        },
+        "n17": {
+            "name": "BARRIO SAN VICENTE"
+        },
+        "n18": {
+            "name": "BELLAVISTA"
+        },
+        "n19": {
+            "name": "BENAHADUX"
+        },
+        "n20": {
+            "name": "BENEJÍ"
+        },
+        "n21": {
+            "name": "BERJA"
+        },
+        "n22": {
+            "name": "BOCA DE LOS FRAILES"
+        },
+        "n23": {
+            "name": "CABO DE GATA"
+        },
+        "n24": {
+            "name": "CALA CARBÓN"
+        },
+        "n25": {
+            "name": "CAMPAMENTO"
+        },
+        "n26": {
+            "name": "CAMPOHERMOSO"
+        },
+        "n27": {
+            "name": "CAÑADA SEBASTIANA"
+        },
+        "n28": {
+            "name": "CARTABONA"
+        },
+        "n29": {
+            "name": "CASAS DEL NAZARENO"
+        },
+        "n30": {
+            "name": "CASTELL DEL REY"
+        },
+        "n31": {
+            "name": "CELÍN"
+        },
+        "n32": {
+            "name": "CENTRO COMERCIAL VIAPARK"
+        },
+        "n33": {
+            "name": "CERCADO"
+        },
+        "n34": {
+            "name": "CORTIJO DE LA JUANA"
+        },
+        "n35": {
+            "name": "CORTIJO DE LOS CAZADORES"
+        },
+        "n36": {
+            "name": "CORTIJO DEL HERRERO"
+        },
+        "n37": {
+            "name": "CORTIJO LOS NIETOS"
+        },
+        "n38": {
+            "name": "CORTIJO SANTA RITA"
+        },
+        "n39": {
+            "name": "CORTIJO SORIA"
+        },
+        "n40": {
+            "name": "CORTIJOS DE MARÍN"
+        },
+        "n41": {
+            "name": "CRUCE AGUA AMARGA"
+        },
+        "n42": {
+            "name": "CRUCE ARGAMASÓN"
+        },
+        "n43": {
+            "name": "CRUCE LOS ALBARICOQUES"
+        },
+        "n44": {
+            "name": "CRUCE LOS PELAOS"
+        },
+        "n45": {
+            "name": "CUATRO HIGUERAS"
+        },
+        "n46": {
+            "name": "CUATRO VIENTOS"
+        },
+        "n47": {
+            "name": "CUEVAS DE LOS MEDINAS"
+        },
+        "n48": {
+            "name": "DALIAS"
+        },
+        "n49": {
+            "name": "EL ABRIOJAL"
+        },
+        "n50": {
+            "name": "EL ALQUIAN"
+        },
+        "n51": {
+            "name": "EL BARRANQUETE"
+        },
+        "n52": {
+            "name": "EL CANAL"
+        },
+        "n53": {
+            "name": "EL CANALILLO"
+        },
+        "n54": {
+            "name": "EL CAÑUELO"
+        },
+        "n55": {
+            "name": "EL CHUCHE"
+        },
+        "n56": {
+            "name": "EL EJIDO"
+        },
+        "n57": {
+            "name": "EL MAMÍ"
+        },
+        "n58": {
+            "name": "EL PALMER"
+        },
+        "n59": {
+            "name": "EL PARADOR"
+        },
+        "n60": {
+            "name": "EL POTRO"
+        },
+        "n61": {
+            "name": "EL POZUELO"
+        },
+        "n62": {
+            "name": "EL PUCHE"
+        },
+        "n63": {
+            "name": "EL RONCALILLO"
+        },
+        "n64": {
+            "name": "EL SOLANILLO"
+        },
+        "n65": {
+            "name": "EL TOYO"
+        },
+        "n66": {
+            "name": "EL VISO"
+        },
+        "n67": {
+            "name": "ENIX"
+        },
+        "n68": {
+            "name": "ESTACIÓN DE SERVICIO EL 21"
+        },
+        "n69": {
+            "name": "ESTACIÓN DE SERVICIO HOTEL BALISA"
+        },
+        "n70": {
+            "name": "EUROPOOL"
+        },
+        "n71": {
+            "name": "FELIX"
+        },
+        "n72": {
+            "name": "FERNÁN PÉREZ"
+        },
+        "n73": {
+            "name": "FUENSANTA"
+        },
+        "n74": {
+            "name": "GÁDOR"
+        },
+        "n75": {
+            "name": "GUAINOS BAJOS"
+        },
+        "n76": {
+            "name": "GUARDIAS VIEJAS"
+        },
+        "n77": {
+            "name": "HOSPITAL DE PONIENTE"
+        },
+        "n78": {
+            "name": "HUERCAL DE ALMERIA"
+        },
+        "n79": {
+            "name": "IES PORTOCARRERO"
+        },
+        "n80": {
+            "name": "ISLETA DEL MORO"
+        },
+        "n81": {
+            "name": "LA ALCAZABA"
+        },
+        "n82": {
+            "name": "LA ALQUERÍA"
+        },
+        "n83": {
+            "name": "LA CAÑADA"
+        },
+        "n84": {
+            "name": "LA CURVA"
+        },
+        "n85": {
+            "name": "LA ENVÍA"
+        },
+        "n86": {
+            "name": "LA FABRIQUILLA"
+        },
+        "n87": {
+            "name": "LA FOCA"
+        },
+        "n88": {
+            "name": "LA GANGOSA"
+        },
+        "n89": {
+            "name": "LA GARROFA"
+        },
+        "n90": {
+            "name": "LA JUAIDA"
+        },
+        "n91": {
+            "name": "LA LOMILLA"
+        },
+        "n92": {
+            "name": "LA MOJONERA"
+        },
+        "n93": {
+            "name": "LA MOLINA"
+        },
+        "n94": {
+            "name": "LANCE DE LA VIRGEN"
+        },
+        "n95": {
+            "name": "LAS CABAÑUELAS"
+        },
+        "n96": {
+            "name": "LAS HORTICHUELAS"
+        },
+        "n97": {
+            "name": "LAS MARINAS"
+        },
+        "n98": {
+            "name": "LAS NEGRAS"
+        },
+        "n99": {
+            "name": "LAS NORIAS DE DAZA"
+        },
+        "n100": {
+            "name": "LAS PALMERAS"
+        },
+        "n101": {
+            "name": "LAS PALMERILLAS"
+        },
+        "n102": {
+            "name": "LAS SALINAS"
+        },
+        "n103": {
+            "name": "LLANOS DE VÍCAR"
+        },
+        "n104": {
+            "name": "LOS ALBARICOQUES"
+        },
+        "n105": {
+            "name": "LOS ESCULLOS"
+        },
+        "n106": {
+            "name": "LOS ESPECIEROS"
+        },
+        "n107": {
+            "name": "LOS GRILLOS"
+        },
+        "n108": {
+            "name": "LOS MANDARINOS"
+        },
+        "n109": {
+            "name": "LOS MILLARES"
+        },
+        "n110": {
+            "name": "LOS PARTIDORES"
+        },
+        "n111": {
+            "name": "LOS PINOS"
+        },
+        "n112": {
+            "name": "MATAGORDA"
+        },
+        "n113": {
+            "name": "MIRADOR DEL MEDITERRÁNEO"
+        },
+        "n114": {
+            "name": "NÍJAR"
+        },
+        "n115": {
+            "name": "PAMPANICO"
+        },
+        "n116": {
+            "name": "PARAJE CHUMBO"
+        },
+        "n117": {
+            "name": "PARAJE JALVO"
+        },
+        "n118": {
+            "name": "PECHINA"
+        },
+        "n119": {
+            "name": "PITA"
+        },
+        "n120": {
+            "name": "PLAYA BARRONAL"
+        },
+        "n121": {
+            "name": "PLAYA LOS GENOVESES"
+        },
+        "n122": {
+            "name": "PLAYA MÓNSUL"
+        },
+        "n123": {
+            "name": "PLAYA SERENA"
+        },
+        "n124": {
+            "name": "POLÍGONO INDUSTRIAL LA CEPA"
+        },
+        "n125": {
+            "name": "POLÍGONO INDUSTRIAL LA REDONDA"
+        },
+        "n126": {
+            "name": "POLÍGONO INDUSTRIAL LAS SALINAS"
+        },
+        "n127": {
+            "name": "POLÍGONO INDUSTRIAL SAN RAFAEL"
+        },
+        "n128": {
+            "name": "POZO DE LOS FRAILES"
+        },
+        "n129": {
+            "name": "POZO SAN JOSÉ"
+        },
+        "n130": {
+            "name": "PUEBLA DE VÍCAR"
+        },
+        "n131": {
+            "name": "PUEBLO BLANCO"
+        },
+        "n132": {
+            "name": "PUENTE DEL RIO"
+        },
+        "n133": {
+            "name": "PUJAIRE"
+        },
+        "n134": {
+            "name": "PUJAIRE"
+        },
+        "n135": {
+            "name": "RAMBLA LECHUGA"
+        },
+        "n136": {
+            "name": "RAMBLA MORALES"
+        },
+        "n137": {
+            "name": "RETAMAR"
+        },
+        "n138": {
+            "name": "RÍO CHICO"
+        },
+        "n139": {
+            "name": "RIOJA"
+        },
+        "n140": {
+            "name": "RODALQUILAR"
+        },
+        "n141": {
+            "name": "ROQUETAS DE MAR"
+        },
+        "n142": {
+            "name": "RUESCAS"
+        },
+        "n143": {
+            "name": "RUESCAS"
+        },
+        "n144": {
+            "name": "SAN AGUSTÍN"
+        },
+        "n145": {
+            "name": "SAN ISIDRO"
+        },
+        "n146": {
+            "name": "SAN JOSÉ"
+        },
+        "n147": {
+            "name": "SAN NICOLÁS"
+        },
+        "n148": {
+            "name": "SAN ROQUE"
+        },
+        "n149": {
+            "name": "SANTA FE DE MONDÚJAR"
+        },
+        "n150": {
+            "name": "SANTA MARIA DEL ÁGUILA"
+        },
+        "n151": {
+            "name": "URBANIZACIÓN ROQUETAS DE MAR"
+        },
+        "n153": {
+            "name": "VENTA COSARIO"
+        },
+        "n154": {
+            "name": "VENTA DE VARGAS"
+        },
+        "n155": {
+            "name": "VENTA DEL POBRE"
+        },
+        "n156": {
+            "name": "VENTA DEL VISO"
+        },
+        "n157": {
+            "name": "VENTA GASPAR"
+        },
+        "n158": {
+            "name": "VENTA NUEVA"
+        },
+        "n159": {
+            "name": "VENTA TARAMBANA"
+        },
+        "n160": {
+            "name": "VIATOR"
+        },
+        "n161": {
+            "name": "VICAR"
+        },
+        "n162": {
+            "name": "VILLA INÉS"
+        },
+        "n163": {
+            "name": "VISTABELLA"
+        }
+    }
+}
