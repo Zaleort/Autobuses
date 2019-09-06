@@ -6,14 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LineasComponent } from './lineas/lineas.component';
 import { LineaInfoComponent } from './linea-info/linea-info.component';
-import { MunicipiosComponent } from './municipios/municipios.component';
+import { NucleosComponent } from './nucleos/nucleos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineasComponent,
     LineaInfoComponent,
-    MunicipiosComponent
+    NucleosComponent
   ],
   imports: [
     BrowserModule,
