@@ -487,8 +487,455 @@
             "name": "VISTABELLA"
         }
     },
+    "paradas": {
+        "p0": {
+            "name": "ESTACIÓN INTERMODAL"
+        },
+        "p1": {
+            "name": "ALMERÍA - LOS MOLINOS"
+        },
+        "p2": {
+            "name": "EL MAMÍ - REPSOL"
+        },
+        "p3": {
+            "name": "RESIDENCIA ASISTIDA"
+        },
+        "p4": {
+            "name": "HAZA TABLEAR"
+        },
+        "p5": {
+            "name": "VENTA GASPAR - CENTRO"
+        },
+        "p6": {
+            "name": "BELLAVISTA"
+        },
+        "p7": {
+            "name": "BARRIO SAN VICENTE"
+        },
+        "p8": {
+            "name": "EL ALQUIÁN - INSTITUTO"
+        },
+        "p9": {
+            "name": "ALMERÍA - BOLA AZUL"
+        },
+        "p10": {
+            "name": "POL. IND. LA CEPA"
+        },
+        "p11": {
+            "name": "HUÉRCAL - LA FOCA"
+        },
+        "p12": {
+            "name": "HUÉRCAL - LOS PINOS"
+        },
+        "p13": {
+            "name": "EL POTRO"
+        },
+        "p14": {
+            "name": "EL CHUCHE"
+        },
+        "p15": {
+            "name": "BENAHADUX - CAJAMAR"
+        },
+        "p16": {
+            "name": "GÁDOR - PUEBLO"
+        },
+        "p17": {
+            "name": "ALMERÍA - SANIDAD"
+        },
+        "p18": {
+            "name": "ALMERÍA - CRUZ ROJA"
+        },
+        "p19": {
+            "name": "ALMERÍA - JUAN ROJAS"
+        },
+        "p20": {
+            "name": "C.C. TORRECÁRDENAS"
+        },
+        "p21": {
+            "name": "MIRADOR DEL MEDITERRÁNEO"
+        },
+        "p22": {
+            "name": "POL. IND. SAN RAFAEL"
+        },
+        "p23": {
+            "name": "HUÉRCAL - VILLA INES"
+        },
+        "p24": {
+            "name": "HUÉRCAL - FUENSANTA"
+        },
+        "p25": {
+            "name": "HUÉRCAL - CERCADO"
+        },
+        "p26": {
+            "name": "ESTACIÓN HUÉRCAL"
+        },
+        "p27": {
+            "name": "VIATOR - ROTONDA"
+        },
+        "p28": {
+            "name": "LOS MANDARINOS"
+        },
+        "p29": {
+            "name": "LOS ESPECIEROS"
+        },
+        "p30": {
+            "name": "PECHINA"
+        },
+        "p31": {
+            "name": "CAMPAMENTO"
+        },
+        "p32": {
+            "name": "VIATOR - VIRGEN DEL CARMEN"
+        },
+        "p33": {
+            "name": "ALMERÍA - PARQUE GENERALIFE"
+        },
+        "p34": {
+            "name": "ALMERÍA - MANUEL AZAÑA"
+        },
+        "p35": {
+            "name": "ESTADIO MEDITERRÁNEO"
+        },
+        "p36": {
+            "name": "HOSPITAL EL TOYO"
+        },
+        "p37": {
+            "name": "VENTA DEL POBRE"
+        },
+        "p38": {
+            "name": "AGUA AMARGA"
+        },
+        "p39": {
+            "name": "UNIVERSIDAD"
+        },
+        "p40": {
+            "name": "LA CAÑADA - IGLESIA"
+        },
+        "p41": {
+            "name": "IES PORTOCARRERO"
+        },
+        "p42": {
+            "name": "EL ALQUIÁN - CENTRO"
+        },
+        "p43": {
+            "name": "EST. SERVICIO EL 21"
+        },
+        "p44": {
+            "name": "EL VISO - PUEBLO"
+        },
+        "p45": {
+            "name": "LOS GRILLOS"
+        },
+        "p46": {
+            "name": "BALSA SECA"
+        },
+        "p47": {
+            "name": "SAN ISIDRO - CENTRO"
+        },
+        "p48": {
+            "name": "CAMPOHERMOSO - CENTRO"
+        },
+        "p49": {
+            "name": "PUEBLO BLANCO"
+        },
+        "p50": {
+            "name": "ATOCHARES"
+        },
+        "p51": {
+            "name": "VISTABELLA - ALONDRA"
+        },
+        "p52": {
+            "name": "NÍJAR - CENTRO"
+        },
+        "p53": {
+            "name": "S. MARÍA DEL ÁGUILA"
+        },
+        "p54": {
+            "name": "ESTACION EL EJIDO"
+        },
+        "p55": {
+            "name": "HOSPITAL DE PONIENTE"
+        },
+        "p56": {
+            "name": "PAMPANICO ALTO"
+        },
+        "p57": {
+            "name": "DALÍAS - CENTRO"
+        },
+        "p58": {
+            "name": "CELÍN"
+        },
+        "p59": {
+            "name": "ESTACIÓN BERJA"
+        },
+        "p60": {
+            "name": "RETAMAR - CENTRO VECINAL"
+        },
+        "p61": {
+            "name": "RAMBLA MORALES"
+        },
+        "p62": {
+            "name": "RUESCAS - CRTA. SAN JOSÉ"
+        },
+        "p63": {
+            "name": "PUJAIRE"
+        },
+        "p64": {
+            "name": "CABO DE GATA - PUEBLO"
+        },
+        "p65": {
+            "name": "LAS SALINAS"
+        },
+        "p66": {
+            "name": "LA FABRIQUILLA"
+        },
+        "p67": {
+            "name": "BARRANQUETE"
+        },
+        "p68": {
+            "name": "LOS ALBARICOQUES"
+        },
+        "p69": {
+            "name": "BOCA DE LOS FRAILES"
+        },
+        "p70": {
+            "name": "POZO DE LOS FRAILES"
+        },
+        "p71": {
+            "name": "SAN JOSE"
+        },
+        "p72": {
+            "name": "ISLETA DEL MORO"
+        },
+        "p73": {
+            "name": "FUENTE DE LOS PECES"
+        },
+        "p74": {
+            "name": "ALMERÍA - PESCADERÍA"
+        },
+        "p75": {
+            "name": "CAMPING LA GARROFA"
+        },
+        "p76": {
+            "name": "AGUADULCE - PUERTO"
+        },
+        "p77": {
+            "name": "AGUADULCE - APARTHOTEL"
+        },
+        "p78": {
+            "name": "AGUADULCE - VENTA VITORINO"
+        },
+        "p79": {
+            "name": "CC VIAPARK"
+        },
+        "p80": {
+            "name": "EL PARADOR - PARRALES"
+        },
+        "p81": {
+            "name": "ROQUETAS - KARTING"
+        },
+        "p82": {
+            "name": "BARRIO SAN FRANCISCO"
+        },
+        "p83": {
+            "name": "ROQUETAS - HORTAMAR"
+        },
+        "p84": {
+            "name": "CC GRAN PLAZA"
+        },
+        "p85": {
+            "name": "ESTACIÓN ROQUETAS"
+        },
+        "p86": {
+            "name": "ROQUETAS - CENTRO"
+        },
+        "p87": {
+            "name": "ROQUETAS - PUERTO"
+        },
+        "p88": {
+            "name": "URBA - PLAZA COLÓN"
+        },
+        "p89": {
+            "name": "URBA - MERCADONA"
+        },
+        "p90": {
+            "name": "LAS MARINAS"
+        },
+        "p91": {
+            "name": "PLAYA SERENA - PASEO GOLF"
+        },
+        "p92": {
+            "name": "HOTEL GOLF TRINIDAD"
+        },
+        "p93": {
+            "name": "URBA - EL MINARETE"
+        },
+        "p94": {
+            "name": "URBA - HOTEL SABINAL"
+        },
+        "p95": {
+            "name": "PLAZA JUAN DE LA COSA"
+        },
+        "p96": {
+            "name": "URBA - MARIANO HERNÁNDEZ"
+        },
+        "p97": {
+            "name": "ALMERÍA - PUERTO"
+        },
+        "p98": {
+            "name": "ESTACIÓN ADRA"
+        },
+        "p99": {
+            "name": "ADRA - PUENTE DEL RÍO"
+        },
+        "p100": {
+            "name": "RIO CHICO"
+        },
+        "p101": {
+            "name": "BERJA - SAN ROQUE"
+        },
+        "p102": {
+            "name": "LOS MILLARES"
+        },
+        "p103": {
+            "name": "SANTA FE DE MONDÚJAR"
+        },
+        "p104": {
+            "name": "EL PARADOR"
+        },
+        "p105": {
+            "name": "LA GANGOSA - AV. PRADO"
+        },
+        "p106": {
+            "name": "LAS CABAÑUELAS - GOYA"
+        },
+        "p107": {
+            "name": "VENTA GUTIERREZ"
+        },
+        "p108": {
+            "name": "PUEBLA DE VICAR"
+        },
+        "p109": {
+            "name": "VENTA DEL VISO"
+        },
+        "p110": {
+            "name": "POL. LA REDONDA - VI"
+        },
+        "p111": {
+            "name": "FERNÁN PEREZ"
+        },
+        "p112": {
+            "name": "HORTICHUELAS"
+        },
+        "p113": {
+            "name": "LAS NEGRAS"
+        },
+        "p114": {
+            "name": "RODALQUILAR"
+        },
+        "p115": {
+            "name": "ROQUETAS - CASABLANCA"
+        },
+        "p116": {
+            "name": "ROQUETAS - INSTITUTOS"
+        },
+        "p117": {
+            "name": "ROQUETAS - SENÉS"
+        },
+        "p118": {
+            "name": "CORTIJOS MARÍN - C. MURCIA"
+        },
+        "p119": {
+            "name": "LA LOMILLA"
+        },
+        "p120": {
+            "name": "LA MOJONERA - AYUNTAMIENTO"
+        },
+        "p121": {
+            "name": "LA MOLINA"
+        },
+        "p122": {
+            "name": "LAS NORIAS - COLORÍN"
+        },
+        "p123": {
+            "name": "BENAHADUX - GASOLINERA"
+        },
+        "p124": {
+            "name": "RIOJA - PARQUE MAYORES"
+        },
+        "p125": {
+            "name": "EL ABRIOJAL"
+        },
+        "p126": {
+            "name": "EL SOLANILLO"
+        },
+        "p127": {
+            "name": "SAN AGUSTÍN - CAJAMAR"
+        },
+        "p128": {
+            "name": "ALMERIMAR - MERCADONA"
+        },
+        "p129": {
+            "name": "MATAGORDA - NÍSPERO"
+        },
+        "p130": {
+            "name": "GUARDIAS VIEJAS - BAÑOS"
+        },
+        "p131": {
+            "name": "BALERMA - ROQUEO"
+        },
+        "p132": {
+            "name": "BALANEGRA - BUENA VISTA"
+        },
+        "p133": {
+            "name": "ADRA - VENTA NUEVA"
+        },
+        "p134": {
+            "name": "ADRA - LA CURVA"
+        },
+        "p135": {
+            "name": "LLANOS DE VÍCAR"
+        },
+        "p136": {
+            "name": "GUAINOS BAJOS"
+        },
+        "p137": {
+            "name": "BARRIO ARCHILLA"
+        },
+        "p138": {
+            "name": "CAÑADA SEBASTIANA"
+        },
+        "p139": {
+            "name": "VENTA GUTIÉRREZ"
+        },
+        "p140": {
+            "name": "PUEBLA DE VÍCAR"
+        },
+        "p141": {
+            "name": "CASTELL DEL REY"
+        },
+        "p142": {
+            "name": "LA ENVIA"
+        },
+        "p143": {
+            "name": "FELIX"
+        },
+        "p144": {
+            "name": "ENIX"
+        },
+        "p145": {
+            "name": "AGUADULCE - P. CONGRESOS"
+        },
+        "p146": {
+            "name": "HOTEL PLAYADULCE"
+        },
+        "p147": {
+            "name": "AGUADULCE - TORDESILLAS"
+        }
+    },
+    "paradasIndex": 148,
     "lineas": {
-        "M-101": {
+        "m101": {
             "name": "M-101",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=1",
             "nucleos": [
@@ -2355,7 +2802,7 @@
                 }
             }
         },
-        "M-102": {
+        "m102": {
             "name": "M-102",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=3",
             "nucleos": [
@@ -4807,7 +5254,7 @@
                 }
             }
         },
-        "M-103": {
+        "m103": {
             "name": "M-103",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=4",
             "nucleos": [
@@ -5342,7 +5789,7 @@
                 }
             }
         },
-        "M-104": {
+        "m104": {
             "name": "M-104",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=5",
             "nucleos": [
@@ -5495,7 +5942,7 @@
                 }
             }
         },
-        "M-105": {
+        "m105": {
             "name": "M-105",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=11",
             "nucleos": [
@@ -6541,7 +6988,7 @@
                 }
             }
         },
-        "M-106": {
+        "m106": {
             "name": "M-106",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=9",
             "nucleos": [
@@ -6674,7 +7121,7 @@
                 }
             }
         },
-        "M-107": {
+        "m107": {
             "name": "M-107",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=51",
             "nucleos": [
@@ -7061,7 +7508,7 @@
                 }
             }
         },
-        "M-201": {
+        "m201": {
             "name": "M-201",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=6",
             "nucleos": [
@@ -7908,7 +8355,7 @@
                 }
             }
         },
-        "M-202": {
+        "m202": {
             "name": "M-202",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=12",
             "nucleos": [
@@ -8851,7 +9298,7 @@
                 }
             }
         },
-        "M-203": {
+        "m203": {
             "name": "M-203",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=13",
             "nucleos": [
@@ -9081,7 +9528,7 @@
                 }
             }
         },
-        "M-211": {
+        "m211": {
             "name": "M-211",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=15",
             "nucleos": [
@@ -10163,7 +10610,7 @@
                 }
             }
         },
-        "M-212": {
+        "m212": {
             "name": "M-212",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=7",
             "nucleos": [
@@ -10870,396 +11317,7 @@
                 }
             }
         },
-        "M-213": {
-            "name": "M-213",
-            "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=10",
-            "nucleos": [
-                "n6",
-                "n65",
-                "n155",
-                "n4"
-            ],
-            "paradas": [
-                "p0",
-                "p33",
-                "p34",
-                "p35",
-                "p36",
-                "p37",
-                "p38"
-            ],
-            "horarios": {
-                "ida": {
-                    "p0": [
-                        {
-                            "hora": "08:15",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "13:15",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:00",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "18:00",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "20:00",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:15",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p33": [
-                        {
-                            "hora": "08:21",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "13:21",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:06",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "18:06",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "20:06",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:21",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p34": [
-                        {
-                            "hora": "08:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "13:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:08",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "18:08",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "20:08",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:23",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p35": [
-                        {
-                            "hora": "08:25",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "13:25",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:10",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "18:10",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "20:10",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:25",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p36": [
-                        {
-                            "hora": "08:40",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "13:40",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:25",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "18:25",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "20:25",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:40",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p37": [
-                        {
-                            "hora": "09:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "14:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "15:08",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "19:08",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "21:08",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "21:23",
-                            "frecuencia": "L-V"
-                        }
-                    ],
-                    "p38": [
-                        {
-                            "hora": "10:03",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "15:03",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "15:48",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "19:48",
-                            "frecuencia": "V"
-                        },
-                        {
-                            "hora": "21:48",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "22:03",
-                            "frecuencia": "L-V"
-                        }
-                    ]
-                },
-                "vuelta": {
-                    "p38": [
-                        {
-                            "hora": "06:45",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "07:30",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "09:45",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "15:00",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "18:00",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "19:20",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p37": [
-                        {
-                            "hora": "07:25",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "08:10",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "10:25",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "15:40",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "18:40",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:00",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p36": [
-                        {
-                            "hora": "08:02",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "08:47",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "11:02",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "16:17",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "19:17",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:37",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p35": [
-                        {
-                            "hora": "08:13",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "08:58",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "11:13",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "16:28",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "19:28",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:48",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p34": [
-                        {
-                            "hora": "08:15",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "09:00",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "11:15",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "16:30",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "19:30",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:50",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p33": [
-                        {
-                            "hora": "08:17",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "09:02",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "11:17",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "16:32",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "19:32",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:52",
-                            "frecuencia": "V"
-                        }
-                    ],
-                    "p0": [
-                        {
-                            "hora": "08:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "09:08",
-                            "frecuencia": "S"
-                        },
-                        {
-                            "hora": "11:23",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "16:38",
-                            "frecuencia": "L-V"
-                        },
-                        {
-                            "hora": "19:38",
-                            "frecuencia": "D"
-                        },
-                        {
-                            "hora": "20:58",
-                            "frecuencia": "V"
-                        }
-                    ]
-                }
-            }
-        },
-        "M-301": {
+        "m301": {
             "name": "M-301",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=17",
             "nucleos": [
@@ -16449,7 +16507,7 @@
                 }
             }
         },
-        "M-320": {
+        "m320": {
             "name": "M-320",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=18",
             "nucleos": [
@@ -16768,7 +16826,7 @@
                 }
             }
         },
-        "M-330": {
+        "m330": {
             "name": "M-330",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=19",
             "nucleos": [
@@ -25384,7 +25442,7 @@
                 }
             }
         },
-        "M-333": {
+        "m333": {
             "name": "M-333",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=21",
             "nucleos": [
@@ -26597,7 +26655,7 @@
                 }
             }
         },
-        "M-334": {
+        "m334": {
             "name": "M-334",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=22",
             "nucleos": [
@@ -27655,7 +27713,7 @@
                 }
             }
         },
-        "M-351": {
+        "m351": {
             "name": "M-351",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=26",
             "nucleos": [
@@ -28040,7 +28098,7 @@
                 }
             }
         },
-        "M-354": {
+        "m354": {
             "name": "M-354",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=29",
             "nucleos": [
@@ -28230,7 +28288,7 @@
                 }
             }
         },
-        "M-370": {
+        "m370": {
             "name": "M-370",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=32",
             "nucleos": [
@@ -30407,7 +30465,7 @@
                 }
             }
         },
-        "M-372": {
+        "m372": {
             "name": "M-372",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=37",
             "nucleos": [
@@ -30519,7 +30577,7 @@
                 }
             }
         },
-        "M-373": {
+        "m373": {
             "name": "M-373",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=38",
             "nucleos": [
@@ -30703,7 +30761,7 @@
                 }
             }
         },
-        "M-374": {
+        "m374": {
             "name": "M-374",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=39",
             "nucleos": [
@@ -30819,7 +30877,7 @@
                 }
             }
         },
-        "M-380": {
+        "m380": {
             "name": "M-380",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=40",
             "nucleos": [
@@ -34484,7 +34542,7 @@
                 }
             }
         },
-        "M-381": {
+        "m381": {
             "name": "M-381",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=41",
             "nucleos": [
@@ -35216,7 +35274,7 @@
                 }
             }
         },
-        "M-383": {
+        "m383": {
             "name": "M-383",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=47",
             "nucleos": [
@@ -35666,7 +35724,7 @@
                 }
             }
         },
-        "M-384": {
+        "m384": {
             "name": "M-384",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=48",
             "nucleos": [
@@ -35758,7 +35816,7 @@
                 }
             }
         },
-        "M-999": {
+        "m999": {
             "name": "M-999",
             "url": "http://siu.ctal.es/es/horarios_lineas_tabla.php?from=1&linea=49",
             "nucleos": [
@@ -38677,452 +38735,5 @@
                 }
             }
         }
-    },
-    "paradas": {
-        "p0": {
-            "name": "ESTACIÓN INTERMODAL"
-        },
-        "p1": {
-            "name": "ALMERÍA - LOS MOLINOS"
-        },
-        "p2": {
-            "name": "EL MAMÍ - REPSOL"
-        },
-        "p3": {
-            "name": "RESIDENCIA ASISTIDA"
-        },
-        "p4": {
-            "name": "HAZA TABLEAR"
-        },
-        "p5": {
-            "name": "VENTA GASPAR - CENTRO"
-        },
-        "p6": {
-            "name": "BELLAVISTA"
-        },
-        "p7": {
-            "name": "BARRIO SAN VICENTE"
-        },
-        "p8": {
-            "name": "EL ALQUIÁN - INSTITUTO"
-        },
-        "p9": {
-            "name": "ALMERÍA - BOLA AZUL"
-        },
-        "p10": {
-            "name": "POL. IND. LA CEPA"
-        },
-        "p11": {
-            "name": "HUÉRCAL - LA FOCA"
-        },
-        "p12": {
-            "name": "HUÉRCAL - LOS PINOS"
-        },
-        "p13": {
-            "name": "EL POTRO"
-        },
-        "p14": {
-            "name": "EL CHUCHE"
-        },
-        "p15": {
-            "name": "BENAHADUX - CAJAMAR"
-        },
-        "p16": {
-            "name": "GÁDOR - PUEBLO"
-        },
-        "p17": {
-            "name": "ALMERÍA - SANIDAD"
-        },
-        "p18": {
-            "name": "ALMERÍA - CRUZ ROJA"
-        },
-        "p19": {
-            "name": "ALMERÍA - JUAN ROJAS"
-        },
-        "p20": {
-            "name": "C.C. TORRECÁRDENAS"
-        },
-        "p21": {
-            "name": "MIRADOR DEL MEDITERRÁNEO"
-        },
-        "p22": {
-            "name": "POL. IND. SAN RAFAEL"
-        },
-        "p23": {
-            "name": "HUÉRCAL - VILLA INES"
-        },
-        "p24": {
-            "name": "HUÉRCAL - FUENSANTA"
-        },
-        "p25": {
-            "name": "HUÉRCAL - CERCADO"
-        },
-        "p26": {
-            "name": "ESTACIÓN HUÉRCAL"
-        },
-        "p27": {
-            "name": "VIATOR - ROTONDA"
-        },
-        "p28": {
-            "name": "LOS MANDARINOS"
-        },
-        "p29": {
-            "name": "LOS ESPECIEROS"
-        },
-        "p30": {
-            "name": "PECHINA"
-        },
-        "p31": {
-            "name": "CAMPAMENTO"
-        },
-        "p32": {
-            "name": "VIATOR - VIRGEN DEL CARMEN"
-        },
-        "p33": {
-            "name": "ALMERÍA - PARQUE GENERALIFE"
-        },
-        "p34": {
-            "name": "ALMERÍA - MANUEL AZAÑA"
-        },
-        "p35": {
-            "name": "ESTADIO MEDITERRÁNEO"
-        },
-        "p36": {
-            "name": "HOSPITAL EL TOYO"
-        },
-        "p37": {
-            "name": "VENTA DEL POBRE"
-        },
-        "p38": {
-            "name": "AGUA AMARGA"
-        },
-        "p39": {
-            "name": "UNIVERSIDAD"
-        },
-        "p40": {
-            "name": "LA CAÑADA - IGLESIA"
-        },
-        "p41": {
-            "name": "IES PORTOCARRERO"
-        },
-        "p42": {
-            "name": "EL ALQUIÁN - CENTRO"
-        },
-        "p43": {
-            "name": "EST. SERVICIO EL 21"
-        },
-        "p44": {
-            "name": "EL VISO - PUEBLO"
-        },
-        "p45": {
-            "name": "LOS GRILLOS"
-        },
-        "p46": {
-            "name": "BALSA SECA"
-        },
-        "p47": {
-            "name": "SAN ISIDRO - CENTRO"
-        },
-        "p48": {
-            "name": "CAMPOHERMOSO - CENTRO"
-        },
-        "p49": {
-            "name": "PUEBLO BLANCO"
-        },
-        "p50": {
-            "name": "ATOCHARES"
-        },
-        "p51": {
-            "name": "VISTABELLA - ALONDRA"
-        },
-        "p52": {
-            "name": "NÍJAR - CENTRO"
-        },
-        "p53": {
-            "name": "S. MARÍA DEL ÁGUILA"
-        },
-        "p54": {
-            "name": "ESTACION EL EJIDO"
-        },
-        "p55": {
-            "name": "HOSPITAL DE PONIENTE"
-        },
-        "p56": {
-            "name": "PAMPANICO ALTO"
-        },
-        "p57": {
-            "name": "DALÍAS - CENTRO"
-        },
-        "p58": {
-            "name": "CELÍN"
-        },
-        "p59": {
-            "name": "ESTACIÓN BERJA"
-        },
-        "p60": {
-            "name": "RETAMAR - CENTRO VECINAL"
-        },
-        "p61": {
-            "name": "RAMBLA MORALES"
-        },
-        "p62": {
-            "name": "RUESCAS - CRTA. SAN JOSÉ"
-        },
-        "p63": {
-            "name": "PUJAIRE"
-        },
-        "p64": {
-            "name": "CABO DE GATA - PUEBLO"
-        },
-        "p65": {
-            "name": "LAS SALINAS"
-        },
-        "p66": {
-            "name": "LA FABRIQUILLA"
-        },
-        "p67": {
-            "name": "BARRANQUETE"
-        },
-        "p68": {
-            "name": "LOS ALBARICOQUES"
-        },
-        "p69": {
-            "name": "BOCA DE LOS FRAILES"
-        },
-        "p70": {
-            "name": "POZO DE LOS FRAILES"
-        },
-        "p71": {
-            "name": "SAN JOSE"
-        },
-        "p72": {
-            "name": "ISLETA DEL MORO"
-        },
-        "p73": {
-            "name": "FUENTE DE LOS PECES"
-        },
-        "p74": {
-            "name": "ALMERÍA - PESCADERÍA"
-        },
-        "p75": {
-            "name": "CAMPING LA GARROFA"
-        },
-        "p76": {
-            "name": "AGUADULCE - PUERTO"
-        },
-        "p77": {
-            "name": "AGUADULCE - APARTHOTEL"
-        },
-        "p78": {
-            "name": "AGUADULCE - VENTA VITORINO"
-        },
-        "p79": {
-            "name": "CC VIAPARK"
-        },
-        "p80": {
-            "name": "EL PARADOR - PARRALES"
-        },
-        "p81": {
-            "name": "ROQUETAS - KARTING"
-        },
-        "p82": {
-            "name": "BARRIO SAN FRANCISCO"
-        },
-        "p83": {
-            "name": "ROQUETAS - HORTAMAR"
-        },
-        "p84": {
-            "name": "CC GRAN PLAZA"
-        },
-        "p85": {
-            "name": "ESTACIÓN ROQUETAS"
-        },
-        "p86": {
-            "name": "ROQUETAS - CENTRO"
-        },
-        "p87": {
-            "name": "ROQUETAS - PUERTO"
-        },
-        "p88": {
-            "name": "URBA - PLAZA COLÓN"
-        },
-        "p89": {
-            "name": "URBA - MERCADONA"
-        },
-        "p90": {
-            "name": "LAS MARINAS"
-        },
-        "p91": {
-            "name": "PLAYA SERENA - PASEO GOLF"
-        },
-        "p92": {
-            "name": "HOTEL GOLF TRINIDAD"
-        },
-        "p93": {
-            "name": "URBA - EL MINARETE"
-        },
-        "p94": {
-            "name": "URBA - HOTEL SABINAL"
-        },
-        "p95": {
-            "name": "PLAZA JUAN DE LA COSA"
-        },
-        "p96": {
-            "name": "URBA - MARIANO HERNÁNDEZ"
-        },
-        "p97": {
-            "name": "ALMERÍA - PUERTO"
-        },
-        "p98": {
-            "name": "ESTACIÓN ADRA"
-        },
-        "p99": {
-            "name": "ADRA - PUENTE DEL RÍO"
-        },
-        "p100": {
-            "name": "RIO CHICO"
-        },
-        "p101": {
-            "name": "BERJA - SAN ROQUE"
-        },
-        "p102": {
-            "name": "LOS MILLARES"
-        },
-        "p103": {
-            "name": "SANTA FE DE MONDÚJAR"
-        },
-        "p104": {
-            "name": "EL PARADOR"
-        },
-        "p105": {
-            "name": "LA GANGOSA - AV. PRADO"
-        },
-        "p106": {
-            "name": "LAS CABAÑUELAS - GOYA"
-        },
-        "p107": {
-            "name": "VENTA GUTIERREZ"
-        },
-        "p108": {
-            "name": "PUEBLA DE VICAR"
-        },
-        "p109": {
-            "name": "VENTA DEL VISO"
-        },
-        "p110": {
-            "name": "POL. LA REDONDA - VI"
-        },
-        "p111": {
-            "name": "FERNÁN PEREZ"
-        },
-        "p112": {
-            "name": "HORTICHUELAS"
-        },
-        "p113": {
-            "name": "LAS NEGRAS"
-        },
-        "p114": {
-            "name": "RODALQUILAR"
-        },
-        "p115": {
-            "name": "ROQUETAS - CASABLANCA"
-        },
-        "p116": {
-            "name": "ROQUETAS - INSTITUTOS"
-        },
-        "p117": {
-            "name": "ROQUETAS - SENÉS"
-        },
-        "p118": {
-            "name": "CORTIJOS MARÍN - C. MURCIA"
-        },
-        "p119": {
-            "name": "LA LOMILLA"
-        },
-        "p120": {
-            "name": "LA MOJONERA - AYUNTAMIENTO"
-        },
-        "p121": {
-            "name": "LA MOLINA"
-        },
-        "p122": {
-            "name": "LAS NORIAS - COLORÍN"
-        },
-        "p123": {
-            "name": "BENAHADUX - GASOLINERA"
-        },
-        "p124": {
-            "name": "RIOJA - PARQUE MAYORES"
-        },
-        "p125": {
-            "name": "EL ABRIOJAL"
-        },
-        "p126": {
-            "name": "EL SOLANILLO"
-        },
-        "p127": {
-            "name": "SAN AGUSTÍN - CAJAMAR"
-        },
-        "p128": {
-            "name": "ALMERIMAR - MERCADONA"
-        },
-        "p129": {
-            "name": "MATAGORDA - NÍSPERO"
-        },
-        "p130": {
-            "name": "GUARDIAS VIEJAS - BAÑOS"
-        },
-        "p131": {
-            "name": "BALERMA - ROQUEO"
-        },
-        "p132": {
-            "name": "BALANEGRA - BUENA VISTA"
-        },
-        "p133": {
-            "name": "ADRA - VENTA NUEVA"
-        },
-        "p134": {
-            "name": "ADRA - LA CURVA"
-        },
-        "p135": {
-            "name": "LLANOS DE VÍCAR"
-        },
-        "p136": {
-            "name": "GUAINOS BAJOS"
-        },
-        "p137": {
-            "name": "BARRIO ARCHILLA"
-        },
-        "p138": {
-            "name": "CAÑADA SEBASTIANA"
-        },
-        "p139": {
-            "name": "VENTA GUTIÉRREZ"
-        },
-        "p140": {
-            "name": "PUEBLA DE VÍCAR"
-        },
-        "p141": {
-            "name": "CASTELL DEL REY"
-        },
-        "p142": {
-            "name": "LA ENVIA"
-        },
-        "p143": {
-            "name": "FELIX"
-        },
-        "p144": {
-            "name": "ENIX"
-        },
-        "p145": {
-            "name": "AGUADULCE - P. CONGRESOS"
-        },
-        "p146": {
-            "name": "HOTEL PLAYADULCE"
-        },
-        "p147": {
-            "name": "AGUADULCE - TORDESILLAS"
-        }
-    },
-    "paradasIndex": 148
+    }
 }

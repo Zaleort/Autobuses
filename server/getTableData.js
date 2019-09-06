@@ -40,6 +40,7 @@ module.exports = {
     },
 
     getAllLineas: function () {
+        console.log('Obteniendo lista de líneas');
         const urlLineas = 'http://siu.ctal.es/es/lineas.php';
     
         request(urlLineas, (error, response, html) => {
@@ -52,7 +53,7 @@ module.exports = {
                 const lineas = bd.lineas || {};
     
                 span.each((i, elem) => {
-                    var name = $(elem).text().trim();
+                    var name = $(elem).text().trim().replace('-', '');
                     var url = $(elem).parent('a').attr('href');
     
                     if (!lineas[name]) {  
@@ -84,6 +85,7 @@ module.exports = {
     },
     
     requestHorarios: async function (id, url, callback) {
+        console.log('Obteniendo información de la tabla de horarios para: ' + id);
         request(url, (error, response, html) => {
             if (error) { throw error; }
     
@@ -92,14 +94,24 @@ module.exports = {
             const ida = $(tablas).get(0);
             const vuelta = $(tablas).get(1);
     
+            console.log('Obteniendo núcleos ida');
             const nucleosIda = this.getNucleosLinea(ida);
+
+            console.log('Obteniendo paradas ida');
             const paradasIda = this.getParadasLinea(ida);
+
+            console.log('Obteniendo horarios ida');
             const horariosIda = this.getHorariosLinea(ida, paradasIda);
     
             if (vuelta) {
                 // Fusiona arrays eliminando duplicados
+                console.log('Obteniendo núcleos vuelta');
                 const nucleosVuelta = this.getNucleosLinea(vuelta);
+
+                console.log('Obteniendo núcleos vuelta');
                 const paradasVuelta = this.getParadasLinea(vuelta);
+
+                console.log('Obteniendo núcleos vuelta');
                 const horariosVuelta = this.getHorariosLinea(vuelta, paradasVuelta);
     
                 bd.lineas[id].nucleos = [...new Set([...nucleosIda, ...nucleosVuelta])];
@@ -134,6 +146,7 @@ module.exports = {
             }
         })
     
+        console.log('Núcleos obtenidos');
         return nucleos;
     },
     
@@ -181,6 +194,8 @@ module.exports = {
     
         bd.paradas = paradas;
         bd.paradasIndex = index;
+
+        console.log('Paradas obtenidas');
         return paradasLinea;
     },
     
@@ -207,7 +222,7 @@ module.exports = {
             }
         })
     
-        console.log(horarios)
+        console.log('Horarios obtenidos');
         return horarios;
     }
 }

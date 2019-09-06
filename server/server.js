@@ -5,11 +5,20 @@ const app = express();
 const bdPath = './bd.json';
 const bd = require(bdPath);
 
-app.get('/', (req, res) => {
+app.use('/api', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
+    console.log('API Call');
+    res.json(bd.lineas);
 });
 
-app.get('/api/lineas', (req, res) => res.json(bd.lineas));
+app.use(express.static('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses'));
+app.get('/api/lineas', (req, res, next) => {
+    console.log('GET Request: Líneas');
+    res.json(bd.lineas);
+});
+
 app.get('/api/lineas/:linea', (req, res) => {
     const id = req.params.linea;
     console.log(id);
@@ -44,5 +53,9 @@ app.get('/api/paradas/:parada', (req, res) => {
 
     res.json(bd.paradas[id]);
 });
+
+app.get('*', (req, res) => {
+    res.sendFile('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses/index.html');
+})
 
 app.listen(3000, () => console.log('Escuchando en el puerto 3000'));
