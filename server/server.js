@@ -2,58 +2,42 @@ const fs = require('fs')
 const scrape = require('./getTableData.js');
 const express = require('express');
 const app = express();
-const bdPath = './bd.json';
-const bd = require(bdPath);
+
+const api = new Map();
+const apiFiles = fs.readdirSync('./api');
+
+for (let file of apiFiles) {
+    const method = require(`./api/${file}`);
+    api.set(method.name, method);
+}
 
 app.use('/api', (req, res, next) => {
+    // Necesario para poder llamar a la API desde el servidor de desarrollo
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
-    console.log('API Call');
-    res.json(bd.lineas);
+    // Separa los diferentes argumentos de la URL
+    const url = req.url.split('/');
+    if (url.length < 2 || url[1] === '') { 
+        res.json({ error: 'URL inválida' })
+        return;
+    }
+
+    // Busca el método de la API, si no existe devuelve un error
+    const method = api.get(url[1]);
+    if (!method) { 
+        res.json({ error: 'La función no existe' })
+        return;
+    }
+
+    const args = url.slice(2);
+    console.log(args);
+
+    // El método devuelve la respuesta al cliente
+    res.json(method.execute(args));
 });
 
 app.use(express.static('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses'));
-app.get('/api/lineas', (req, res, next) => {
-    console.log('GET Request: Líneas');
-    res.json(bd.lineas);
-});
-
-app.get('/api/lineas/:linea', (req, res) => {
-    const id = req.params.linea;
-    console.log(id);
-    if (!bd.lineas[id]) {
-        res.json({ error: 'No existe la línea especificada' });
-        return;
-    }
-
-    res.json(bd.lineas[id]);
-});
-
-app.get('api/nucleos', (req, res) => res.json(bd.nucleos));
-app.get('/api/nucleos/:nucleo', (req, res) => {
-    const id = req.params.nucleo;
-    console.log(id);
-    if (!bd.nucleos[id]) {
-        res.json({ error: 'No existe el núcleo especificado' });
-        return;
-    }
-
-    res.json(bd.lineas[id]);
-});
-
-app.get('api/paradas', (req, res) => res.json(bd.paradas));
-app.get('/api/paradas/:parada', (req, res) => {
-    const id = req.params.parada;
-    console.log(id);
-    if (!bd.paradas[id]) {
-        res.json({ error: 'No existe la parada especificada' });
-        return;
-    }
-
-    res.json(bd.paradas[id]);
-});
-
 app.get('*', (req, res) => {
     res.sendFile('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses/index.html');
 })
