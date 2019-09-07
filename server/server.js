@@ -1,10 +1,11 @@
-const fs = require('fs')
-const scrape = require('./getTableData.js');
+const fs = require('fs');
+const path = require('path');
+const scrape = require(__dirname + '/getTableData.js');
 const express = require('express');
 const app = express();
 
 const api = new Map();
-const apiFiles = fs.readdirSync('./api');
+const apiFiles = fs.readdirSync(__dirname + '/api');
 
 for (let file of apiFiles) {
     const method = require(`./api/${file}`);
@@ -18,28 +19,27 @@ app.use('/api', (req, res, next) => {
 
     // Separa los diferentes argumentos de la URL
     const url = req.url.split('/');
-    if (url.length < 2 || url[1] === '') { 
+    if (url.length < 2 || url[1] === '') {
         res.json({ error: 'URL inválida' })
         return;
     }
 
     // Busca el método de la API, si no existe devuelve un error
     const method = api.get(url[1]);
-    if (!method) { 
+    if (!method) {
         res.json({ error: 'La función no existe' })
         return;
     }
 
     const args = url.slice(2);
-    console.log(args);
 
     // El método devuelve la respuesta al cliente
     res.json(method.execute(args));
 });
 
-app.use(express.static('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses'));
+app.use(express.static(path.resolve(__dirname, '../dist/Autobuses')));
 app.get('*', (req, res) => {
-    res.sendFile('/home/henrique/Documentos/Proyectos/Autobuses/dist/Autobuses/index.html');
+    res.sendFile(path.resolve(__dirname, '../dist/Autobuses/index.html'));
 })
 
 app.listen(3000, () => console.log('Escuchando en el puerto 3000'));
