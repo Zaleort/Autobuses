@@ -8,7 +8,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   fetchApi(url: string) {
-    console.log(url);
     return this.http.get(url);
   }
 }
