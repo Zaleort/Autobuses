@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { LineaInfoComponent } from '../linea-info/linea-info.component';
-import { ApiLineas, ApiError } from '../interfaces/api-responses';
-
+import { ApiLineas, ApiError, ApiNucleos } from '../interfaces/api-responses';
 
 @Component({
   selector: 'app-lineas',
@@ -12,20 +10,55 @@ import { ApiLineas, ApiError } from '../interfaces/api-responses';
 
 export class LineasComponent implements OnInit {
   private lineas: ApiLineas;
+  private nucleos: ApiNucleos;
 
-  constructor(api: ApiService) {
-    api.fetchApi('http://localhost:3000/api/lineas')
-      .subscribe((res: ApiLineas | ApiError) => {
-        if (res.error) {
-          console.log(res.error);
-        } else {
-          this.lineas = res as ApiLineas;
-        }
-      });
+  constructor(private api: ApiService) {}
+
+  getNucleosNames(nucleos: string[]) {
+    if(!nucleos) { return; }
+
+    let nucleosNames: string[] = [];
+
+    nucleos.forEach(nucleo => {
+      nucleosNames.push(this.nucleos[nucleo].name);
+    })
+
+    return nucleosNames;
   }
 
   ngOnInit() {
+    this.api.fetchApi('http://localhost:3000/api/nucleos')
+      .subscribe({
+        next: (res: ApiNucleos | ApiError) => {
+          if (this.api.hasError(res)) {
+            console.error(res.error);
+            return;
+          }
 
+          this.nucleos = res;
+          console.log(this.nucleos);
+        },
+
+        error: (error) => {
+          console.error(error);
+        }
+      });
+
+    this.api.fetchApi('http://localhost:3000/api/lineas')
+      .subscribe({
+        next: (res: ApiLineas | ApiError) => {
+          if (this.api.hasError(res)) {
+            console.error(res.error);
+            return;
+          }
+  
+          this.lineas = res;
+          console.log(this.lineas);
+        },
+  
+        error: (error) => {
+          console.error(error);
+        }
+      });
   }
-
 }

@@ -1,2 +1,2 @@
-<p>lineas works!</p>
-<p *ngFor="let linea of lineas | keyvalue">{{ linea.key }}:{{ linea.value.name }}</p>
+<h2>Líneas</h2>
+<app-linea-card *ngFor="let linea of lineas | keyvalue" [linea]="linea" [nucleos]="getNucleosNames(linea.value.nucleos)"></app-linea-card>

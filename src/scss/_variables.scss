@@ -1,0 +1,42 @@
+// Colors
+$primary: #B8051A;
+$primary-g: #066633;
+
+$text: #333333;
+
+// Media queries
+$mobile: 320px;
+$mobile-l: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$desktop-l: 1400px;
+
+@mixin mobile {
+    @media only screen and (min-width: $mobile) {
+        @content;
+    }
+}
+
+@mixin mobile-l {
+    @media only screen and (min-width: $mobile-l) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (min-width: $tablet) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media only screen and (min-width: $desktop) {
+        @content;
+    }
+}
+
+@mixin desktop-l {
+    @media only screen and (min-width: $desktop-l) {
+        @content;
+    }
+}

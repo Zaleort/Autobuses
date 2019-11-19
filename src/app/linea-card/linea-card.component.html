@@ -1,0 +1,11 @@
+<div class="card linea-card">
+    <a class="linea-card-name" routerLink="/lineas/{{ linea.key }}">
+        Línea {{ linea.value.name }}
+    </a>
+    <div class="linea-card-nucleos" *ngIf="nucleos">
+        <span class="linea-card-nucleos-name">{{ nucleosNames.toLowerCase() }}</span>
+    </div>
+    <div class="linea-card-footer">
+        <span class="paradas">Paradas: {{ linea.value.paradas.length }}</span>
+    </div>
+</div>

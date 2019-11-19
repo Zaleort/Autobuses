@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { LineasComponent } from './lineas/lineas.component';
 import { LineaInfoComponent } from './linea-info/linea-info.component';
 import { NucleosComponent } from './nucleos/nucleos.component';
+import { LineaCardComponent } from './linea-card/linea-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineasComponent,
     LineaInfoComponent,
-    NucleosComponent
+    NucleosComponent,
+    LineaCardComponent
   ],
   imports: [
     BrowserModule,

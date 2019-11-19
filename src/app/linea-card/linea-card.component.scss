@@ -1,0 +1,20 @@
+@import '../../scss/variables';
+
+.linea-card {
+    margin: 12px 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.linea-card-name {
+    display: block;
+    color: $primary;
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.linea-card-nucleos-name {
+    text-transform: capitalize;
+}

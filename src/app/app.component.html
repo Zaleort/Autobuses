@@ -1,9 +1,11 @@
-<header>
-  <h1 routerLink="/">Autobuses</h1>
-  <ul>
-    <li><a routerLink="/nucleos">Núcleos Urbanos</a></li>
-    <li><a routerLink="/lineas">Líneas</a></li>
-  </ul>
+<header class="header">
+  <h1 class="logo" routerLink="/">Autobuses</h1>
+  <nav class="nav">
+    <a class="nav-link" routerLink="/nucleos">Núcleos Urbanos</a>
+    <a class="nav-link" routerLink="/lineas">Líneas</a>
+  </nav>
 </header>
 
-<router-outlet></router-outlet>
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
