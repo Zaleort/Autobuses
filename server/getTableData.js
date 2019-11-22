@@ -1,9 +1,8 @@
 const fs = require('fs');
 const request = require('request-promise');
 const cheerio = require('cheerio');
-
-const bdPath = './bd.json';
-const bd = require(bdPath);
+const mongo = require (__dirname + '/mongo.js');
+const assert = require('assert');
 
 module.exports = {
     getAllNucleos: function () {
@@ -14,27 +13,21 @@ module.exports = {
                 const $ = cheerio.load(html);
                 const nucleos = $('option', '#municipioLineas');
         
-                nucleosObj = bd.nucleos || {};
+                nucleosObj = [];
         
                 nucleos.each((i, elem) => {
-                    const value = 'n' + i;
+                    const _id = 'n' + i;
                     const name = $(elem).text();
         
                     if (name !== 'Todos' && name !== 'Vacio') {
-                        if (!nucleosObj[value]) {
-                            nucleosObj[value] = {};
-                        }
-
-                        nucleosObj[value].name = name.trim();
+                        nucleosObj.push({ _id, name });
                     }
-                })
-
-                bd.nucleos = nucleosObj;
-        
-                fs.writeFile('./server/bd.json', JSON.stringify(bd, null, 4), (err) => {
-                    if (err) throw err;
-                    console.log('Núcleos Urbanos añadidos con éxito');
                 });
+
+                const db = mongo.getDb();
+                db.collection('nucleos').insertMany(nucleosObj, (err, r) => {
+                    assert.equal(null, err);
+                })
             }
         })
     },
@@ -50,43 +43,37 @@ module.exports = {
                     return $(elem).text().startsWith('M-');
                 })
     
-                const lineas = bd.lineas || {};
+                const lineas = [];
     
                 span.each((i, elem) => {
-                    var name = $(elem).text().trim().replace('-', '');
-                    var url = $(elem).parent('a').attr('href');
-    
-                    if (!lineas[name]) {  
-                        lineas[name] = {};
-                    }
-    
-                    lineas[name].name = name;
-                    lineas[name].url = 'http://siu.ctal.es/es/' + url;
+                    var name = $(elem).text().trim();
+                    var _id = name.replace('-', '').toLocaleLowerCase();
+                    var url = 'http://siu.ctal.es/es/' + $(elem).parent('a').attr('href');
+
+                    lineas.push({ _id, name, url })
                 })
-    
-                bd.lineas = lineas;
-    
-                fs.writeFile('./server/bd.json', JSON.stringify(bd, null, 4), (err) => {
-                    if (err) throw err;
+                  
+                const db = mongo.getDb();
+                db.collection('lineas').insertMany(lineas, (err, r) => {
+                    assert.equal(null, err);
                     console.log('Líneas añadidas con éxito');
-                });
+                })
             }
         })
     },
     
-    getLineasTableInfo: async function (callback) {
-        if (!bd.lineas) { return; }
-    
-        for (var key in bd.lineas) {
-            await this.requestHorarios(key, bd.lineas[key].url);
-        }
-
-        callback;
+    getLineasTableInfo: function () {
+        const db = mongo.getDb();
+        db.collection('lineas').find().each((err, linea) => {
+            if (linea === null) { return; } 
+            assert.equal(null, err);
+            this.requestHorarios(linea._id, 'http://siu.ctal.es/es/' + linea.url);
+        });
     },
     
-    requestHorarios: async function (id, url, callback) {
+    requestHorarios: async function (id, url) {
         console.log('Obteniendo información de la tabla de horarios para: ' + id);
-        request(url, (error, response, html) => {
+        request(url, async (error, response, html) => {
             if (error) { throw error; }
     
             const $ = cheerio.load(html);
@@ -95,57 +82,70 @@ module.exports = {
             const vuelta = $(tablas).get(1);
     
             console.log('Obteniendo núcleos ida');
-            const nucleosIda = this.getNucleosLinea(ida);
+            const nucleosIda = await this.getNucleosLinea(ida);
 
             console.log('Obteniendo paradas ida');
-            const paradasIda = this.getParadasLinea(ida);
+            const paradasIda = await this.getParadasLinea(ida);
 
             console.log('Obteniendo horarios ida');
             const horariosIda = this.getHorariosLinea(ida, paradasIda);
+            let nucleos, paradas, horarios;
     
             if (vuelta) {
                 // Fusiona arrays eliminando duplicados
                 console.log('Obteniendo núcleos vuelta');
-                const nucleosVuelta = this.getNucleosLinea(vuelta);
+                const nucleosVuelta = await this.getNucleosLinea(vuelta);
 
-                console.log('Obteniendo núcleos vuelta');
-                const paradasVuelta = this.getParadasLinea(vuelta);
+                console.log('Obteniendo paradas vuelta');
+                const paradasVuelta = await this.getParadasLinea(vuelta);
 
-                console.log('Obteniendo núcleos vuelta');
+                console.log('Obteniendo horarios vuelta');
                 const horariosVuelta = this.getHorariosLinea(vuelta, paradasVuelta);
     
-                bd.lineas[id].nucleos = [...new Set([...nucleosIda, ...nucleosVuelta])];
-                bd.lineas[id].paradas = [...new Set([...paradasIda, ...paradasVuelta])];
-                bd.lineas[id].horarios = { 'ida': horariosIda, 'vuelta': horariosVuelta }
+                nucleos = [...new Set([...nucleosIda, ...nucleosVuelta])];
+                paradas = [...new Set([...paradasIda, ...paradasVuelta])];
+                horarios = { 'ida': horariosIda, 'vuelta': horariosVuelta }
             } else {
-                bd.lineas[id].nucleos = nucleosIda;
-                bd.lineas[id].paradas = paradasIda;
-                bd.lineas[id].horarios = { 'ida': horariosIda }
+                nucleos = nucleosIda;
+                paradas = paradasIda;
+                horarios = { 'ida': horariosIda }
             }
-    
-            fs.writeFile('./server/bd.json', JSON.stringify(bd, null, 4), (err) => {
-                if (err) throw err;
-                console.log('Horarios añadidos con éxito');
-            });
-
-            callback;
+              
+            const db = mongo.getDb();
+            db.collection('lineas').updateOne({ _id: id }, { $set: { nucleos, paradas, horarios }});
         })
     },
     
-    getNucleosLinea: function (tabla) {
+    getNucleosLinea: async function (tabla) {
         const $ = cheerio.load(tabla);
     
         const nucleosTabla = $('th', '#fila1');
         const nucleos = [];
-    
+        const nucleosNames = [];
+
+        const db = mongo.getDb();
         nucleosTabla.each((i, elem) => {
-            for (var key in bd.nucleos) {
-                if (bd.nucleos[key].name === $(elem).text()) {
-                    nucleos.push(key);
-                }
-            }
+            const name = $(elem).text();
+            if (name === 'Frecuencia') { return; }
+            nucleosNames.push(name);
         })
-    
+
+
+        try {
+            for (var i = 0; i < nucleosNames.length; i++) {
+                const doc = await db.collection('nucleos').findOne({ name: nucleosNames[i] });
+
+                if (doc === null) {
+                    console.log(nucleosNames[i]);
+                    continue;
+                }
+
+                nucleos.push(doc._id);
+            }
+        } catch (err) {
+            console.log(err.stack);
+        }
+
         console.log('Núcleos obtenidos');
         return nucleos;
     },
@@ -153,47 +153,45 @@ module.exports = {
     // Como no hay forma de recoger todas las paradas desde una sola URL
     // desde aquí se consigue la información completa de las paradas
     // y las relativas para las líneas
-    getParadasLinea: function (tabla) {
+    getParadasLinea: async function (tabla) {
         const $ = cheerio.load(tabla);
     
         // Generación dinámica de IDs
-        let index = bd.paradasIndex || 0;
+        let _id;
     
         const paradasFila = $('tr').get(1);
         const paradasTabla = $('th', paradasFila);
-    
-        const paradas = bd.paradas || {};
         const paradasLinea = [];
-    
-        paradasTabla.each((i, elem) => {
-            const name = $(elem).text();
-            const zona = $(elem).css('background');
-            let id;
-    
-            if (Object.keys(paradas).length !== 0) {
-                for (var key in paradas) {
-                    if (paradas[key].name === name) {
-                        id = key;
-                        break;
-                    }
+        const paradas = [];
+          
+        const db = mongo.getDb();
+
+        try {
+            const doc = await db.collection('paradas').findOne({ _id: 0 });
+            _id = 'p' + doc.index;
+
+            paradasTabla.each((i, elem) => {
+                const name = $(elem).text();
+                const zona = this.getZona($(elem).css('background'));
+                paradas.push({ name, zona });
+            })
+
+            for (var i = 0; i < paradas.length; i++) {
+                const res = await db.collection('paradas').findOne({ name: paradas[i].name });   
+                if (res != null && res.name) {
+                    paradasLinea.push(res._id);
+                } else {
+                    db.collection('paradas').insertOne({ _id, name: paradas[i].name, zona: paradas[i].zona })
+                    paradasLinea.push(_id);
+
+                    const doc = await db.collection('paradas').findOneAndUpdate({ _id: 0 }, { $inc: { index: 1 } },
+                        { returnOriginal: false });
+                    _id = 'p' + doc.value.index;
                 }
             }
-    
-            if (!id) {
-                id = 'p' + index;
-                index++;
-            }
-    
-            if (!paradas[id]) {
-                paradas[id] = {}
-            }
-    
-            paradas[id].name = name;
-            paradasLinea.push(id);
-        })
-    
-        bd.paradas = paradas;
-        bd.paradasIndex = index;
+        } catch (err) {
+            console.log(err.stack);
+        }
 
         console.log('Paradas obtenidas');
         return paradasLinea;
@@ -224,5 +222,21 @@ module.exports = {
     
         console.log('Horarios obtenidos');
         return horarios;
+    },
+
+    getZona: function (color) {
+        switch (color) {
+            case '#6db0ff': return 'A';
+            case '#aaff85': return 'B';
+            case '#da85ff': return 'C';
+            case '#3cff8e': return 'D';
+            case '#00da64': return 'E';
+            case '#ff150c': return 'F';
+            case '#ff8594': return 'G';
+            case '#da8700': return 'H';
+            case '#ffc124': return 'I';
+            case '#e6f20c': return 'J';
+            default: return '';
+        }
     }
 }

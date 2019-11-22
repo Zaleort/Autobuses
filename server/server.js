@@ -4,8 +4,11 @@ const scrape = require(__dirname + '/getTableData.js');
 const express = require('express');
 const app = express();
 
+const mongo = require(__dirname + '/mongo.js');
 const api = new Map();
 const apiFiles = fs.readdirSync(__dirname + '/api');
+
+mongo.connect();
 
 for (let file of apiFiles) {
     const method = require(`./api/${file}`);
@@ -34,7 +37,9 @@ app.use('/api', (req, res, next) => {
     const args = url.slice(2);
 
     // El método devuelve la respuesta al cliente
-    res.json(method.execute(args));
+    method.execute(args).then( result => {
+        res.json(result);
+    });
 });
 
 app.use(express.static(path.resolve(__dirname, '../dist/Autobuses')));

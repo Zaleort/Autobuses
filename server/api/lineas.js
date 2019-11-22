@@ -1,33 +1,41 @@
-const bdPath = '../bd.json';
-const bd = require(bdPath);
+const mongo = require('../mongo.js');
 
 module.exports = {
     name: 'lineas',
-    execute: function (args) {
+    execute: async function (args) {
         // Petición de todas la líneas desde /api/lineas
         console.log('API Call: Líneas');
+        const db = mongo.getDb();
         if (args.length === 0 || args[0] === '') {
-            const lineas = {};
-
-            for (var l in bd.lineas) {
-                lineas[l] = {
-                    name: bd.lineas[l].name,
-                    nucleos: bd.lineas[l].nucleos,
-                    paradas: bd.lineas[l].paradas,
-                }
+            try {
+                const lineas = await db.collection('lineas').find({}, { projection: { horarios: 0, url: 0 } }).toArray();
+                console.log('API Response: Enviadas todas las líneas');
+                return lineas;
+            } 
+            
+            catch (err) {
+                console.log(err.stack);
+                return { error: 'Ha ocurrido un error al contactar con la base de datos' };
             }
-
-            console.log('API Response: Enviadas todas las líneas')
-            return lineas;
         }
 
         // Petición de una línea concreta desde /api/lineas/:lineas
-        if (!bd.lineas[args[0]]) { 
-            console.warn('API Error: La línea ' + args[0] + ' no existe');
-            return { error: 'La línea no existe' } 
-        }
+        else {
+            try {
+                const linea = await db.collection('lineas').findOne({ _id: args[0] }, { projection: { url: 0 } });
 
-        console.log('API Response: Enviada la línea ' + args[0]);
-        return bd.lineas[args[0]];
+                if(linea === null) {
+                    console.warn('API Error: La línea ' + args[0] + ' no existe');
+                    return { error: 'La línea no existe' } 
+                }
+
+                return linea;
+            }
+
+            catch (err) {
+                console.log(err.stack);
+                return { error: 'Ha ocurrido un error al contactar con la base de datos' };
+            }
+        }
     }
 }
