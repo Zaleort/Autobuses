@@ -1,5 +1,5 @@
 <div class="card linea-card">
-    <a class="linea-card-name" routerLink="/lineas/{{ linea.key }}">
+    <a class="linea-card-name" routerLink="/lineas/{{ linea.value._id }}">
         Línea {{ linea.value.name }}
     </a>
     <div class="linea-card-nucleos" *ngIf="nucleos">

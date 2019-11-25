@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ApiLineas, ApiError, ApiNucleos } from '../interfaces/api-responses';
+import { ApiLinea, ApiError, ApiNucleo } from '../interfaces/api-responses';
 
 @Component({
   selector: 'app-lineas',
@@ -9,8 +9,8 @@ import { ApiLineas, ApiError, ApiNucleos } from '../interfaces/api-responses';
 })
 
 export class LineasComponent implements OnInit {
-  private lineas: ApiLineas;
-  private nucleos: ApiNucleos;
+  private lineas: ApiLinea[];
+  private nucleos: ApiNucleo[];
 
   constructor(private api: ApiService) {}
 
@@ -20,7 +20,8 @@ export class LineasComponent implements OnInit {
     let nucleosNames: string[] = [];
 
     nucleos.forEach(nucleo => {
-      nucleosNames.push(this.nucleos[nucleo].name);
+      const val = this.nucleos.find(n => n._id === nucleo);
+      nucleosNames.push(val.name);
     })
 
     return nucleosNames;
@@ -29,7 +30,7 @@ export class LineasComponent implements OnInit {
   ngOnInit() {
     this.api.fetchApi('http://localhost:3000/api/nucleos')
       .subscribe({
-        next: (res: ApiNucleos | ApiError) => {
+        next: (res: ApiNucleo[] | ApiError) => {
           if (this.api.hasError(res)) {
             console.error(res.error);
             return;
@@ -37,25 +38,25 @@ export class LineasComponent implements OnInit {
 
           this.nucleos = res;
           console.log(this.nucleos);
+
+          this.api.fetchApi('http://localhost:3000/api/lineas')
+          .subscribe({
+            next: (res: ApiLinea[] | ApiError) => {
+              if (this.api.hasError(res)) {
+                console.error(res.error);
+                return;
+              }
+      
+              this.lineas = res;
+              console.log(this.lineas);
+            },
+      
+            error: (error) => {
+              console.error(error);
+            }
+          });
         },
 
-        error: (error) => {
-          console.error(error);
-        }
-      });
-
-    this.api.fetchApi('http://localhost:3000/api/lineas')
-      .subscribe({
-        next: (res: ApiLineas | ApiError) => {
-          if (this.api.hasError(res)) {
-            console.error(res.error);
-            return;
-          }
-  
-          this.lineas = res;
-          console.log(this.lineas);
-        },
-  
         error: (error) => {
           console.error(error);
         }

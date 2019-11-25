@@ -1,1 +1,12 @@
-<p>linea-info works!</p>
+<div *ngIf="isReady">
+    <h1>Línea {{ name }}</h1>
+    <div class="linea-resumen">
+        <span class="nucleos-list">{{ nucleosList }}</span>
+        <span>Número de paradas: {{ paradas.length }}</span>
+        <span>Duración aproximada: {{ duracion }}</span>
+        <span>Número de saltos: {{ saltos }}</span>
+    </div>
+    <div class="tabla-horarios">
+
+    </div>
+</div>

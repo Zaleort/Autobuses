@@ -15,7 +15,10 @@ module.exports = {
 
             console.log('Conectado a la base de datos');
             db = client.db(dbName);
-            return callback(client);
+
+            if (callback !== null && typeof(callback) === 'function') {
+                return callback(client);
+            }
         });
     },
 

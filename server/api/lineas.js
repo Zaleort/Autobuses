@@ -22,13 +22,41 @@ module.exports = {
         // Petición de una línea concreta desde /api/lineas/:lineas
         else {
             try {
-                const linea = await db.collection('lineas').findOne({ _id: args[0] }, { projection: { url: 0 } });
+                const linea = await db.collection('lineas').aggregate([
+                    {
+                        $match: {
+                            _id: args[0]
+                        },
+                    },
+                    {
+                        $project: {
+                            url: 0
+                        }
+                    },
+                    {
+                        $lookup: {
+                            from: 'nucleos',
+                            localField: 'nucleos',
+                            foreignField: '_id',
+                            as: 'nucleosInfo'
+                        },
+                    },
+                    {
+                        $lookup: {
+                            from: 'paradas',
+                            localField: 'paradas',
+                            foreignField: '_id',
+                            as: 'paradasInfo'
+                        }
+                    }
+                ]).next();
 
                 if(linea === null) {
                     console.warn('API Error: La línea ' + args[0] + ' no existe');
                     return { error: 'La línea no existe' } 
                 }
 
+                console.log('Enviada la línea ' + args[0]);
                 return linea;
             }
 

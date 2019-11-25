@@ -1,0 +1,12 @@
+.linea-resumen {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        margin: 3px 0;
+    }
+}
+
+.nucleos-list {
+    text-transform: capitalize;
+}

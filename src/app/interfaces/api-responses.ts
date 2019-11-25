@@ -7,10 +7,13 @@ export interface ApiLineas {
 }
 
 export interface ApiLinea {
+    _id: string;
     name: string;
     nucleos: string[];
     paradas: string[];
     horarios?: ApiHorarios;
+    paradasInfo?: ApiParada[];
+    nucleosInfo?: ApiNucleo[];
 }
 
 export interface ApiHorarios {
@@ -28,6 +31,7 @@ export interface ApiParadas {
 }
 
 export interface ApiParada {
+    _id: string;
     name: string;
     zona?: string;
 }
@@ -37,5 +41,6 @@ export interface ApiNucleos {
 }
 
 export interface ApiNucleo {
+    _id: string;
     name: string;
 }
