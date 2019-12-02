@@ -1,12 +1,40 @@
-<div *ngIf="isReady">
-    <h1>Línea {{ name }}</h1>
+<div class="" *ngIf="isReady">
     <div class="linea-resumen">
-        <span class="nucleos-list">{{ nucleosList }}</span>
-        <span>Número de paradas: {{ paradas.length }}</span>
-        <span>Duración aproximada: {{ duracion }}</span>
-        <span>Número de saltos: {{ saltos }}</span>
+        <h1 class="capitalize">Línea {{ name }} - {{ recorrido }}</h1>
+        <p class="nucleos-list">{{ nucleosList }}</p>
+        <span class="linea-resumen-datos">Paradas: {{ paradasInfo.length }}</span>
+        <span class="linea-resumen-datos">Duración: {{ duracion }}</span>
+        <span class="linea-resumen-datos">Saltos: {{ saltos }}</span>
+    </div>
+    <div>
+        <input name="filtro" type="text">
     </div>
     <div class="tabla-horarios">
-
+        <div>
+            <h2>Horarios de ida</h2>
+            <div *ngFor="let horario of getTablaDeHorarios(true)">
+                <h3>{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+                <div class="horarios-parada" *ngFor="let parada of horario.paradas">
+                    <div class="horarios-parada-info">
+                        <h4>{{ parada.name }}</h4>
+                        <span class="zona-{{parada.zona}}">Zona {{ parada.zona }}</span>
+                    </div>
+                    <span class="hora" *ngFor="let hora of parada.horario">{{ hora }} </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="hasVuelta">
+            <h2>Horarios de vuelta</h2>
+            <div *ngFor="let horario of getTablaDeHorarios(false)">
+                <h3>{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+                <div class="horarios-parada" *ngFor="let parada of horario.paradas">
+                    <div class="horarios-parada-info">
+                        <h4>{{ parada.name }}</h4>
+                        <span class="zona-{{parada.zona}}">Zona {{ parada.zona }}</span>
+                    </div>
+                    <span class="hora" *ngFor="let hora of parada.horario">{{ hora }} </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

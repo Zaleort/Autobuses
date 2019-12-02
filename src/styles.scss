@@ -1,18 +1,110 @@
 @import 'scss/normalize';
 @import 'scss/variables';
+@import 'scss/utility';
 
 body {
     color: $text;
-    background-color: #FDFDFD;
-    font-family: sans-serif;
+    font-weight: 300;
+    background-color: $grey50;
+    font-family: $font-family;
+    font-size: 1.2em;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 48px auto;
+h1, h2, h3, h4 {
+    margin: 14px 0;
+    font-weight: 500;
 }
 
-.card {
-    background-color: #FFF;
-    padding: 12px;
+h1 {
+    font-size: 1.5em;
+    
+    @include mobile-l { font-size: 1.75em; }
+    @include tablet { font-size: 2em; }
+    @include desktop { font-size: 2.25em; }
+}
+
+h2 {
+    font-size: 1.4em;
+
+    @include mobile-l { font-size: 1.5em; }
+    @include tablet { font-size: 1.75em; }
+    @include desktop { font-size: 2em; }
+}
+
+h3 {
+    font-size: 1.2em;
+
+    @include mobile-l { font-size: 1.25em; }
+    @include tablet { font-size: 1.4em; }
+    @include desktop { font-size: 1.6em; }
+}
+
+h4 {
+    font-size: 1em;
+
+    @include mobile { font-size: 1.1em; }
+}
+
+p { margin: 14px 0; }
+
+.zona {
+    font-size: 0.8em;
+    font-weight: 500;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+
+    @include tablet {
+        margin: 0 14px;
+    }
+}
+
+.zona-A { 
+    @extend .zona;
+    background-color: $blue500;
+}
+
+.zona-B { 
+    @extend .zona;
+    background-color: $green500;
+}
+
+.zona-C { 
+    @extend .zona;
+    background-color: $indigo500;
+}
+
+.zona-D { 
+    @extend .zona;
+    background-color: $teal500;
+}
+
+.zona-E { 
+    @extend .zona;
+    background-color: $green800;
+}
+
+.zona-F { 
+    @extend .zona;
+    background-color: $red500;
+}
+
+.zona-G { 
+    @extend .zona;
+    background-color: $pink500;
+}
+
+.zona-H { 
+    @extend .zona;
+    background-color: $orange800;
+}
+
+.zona-I { 
+    @extend .zona;
+    background-color: $orange500;
+}
+
+.zona-J { 
+    @extend .zona;
+    background-color: $yellow800;
 }

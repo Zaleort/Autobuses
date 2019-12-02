@@ -1,10 +1,51 @@
+@import '../../scss/variables';
+
 .linea-resumen {
     display: flex;
     flex-direction: column;
+    margin: 1em 0;
+    padding: 32px 0;
+}
 
-    span {
-        margin: 3px 0;
+.linea-resumen-datos {
+
+}
+
+.horarios-parada {
+    padding: 16px 12px;
+    margin-bottom: 24px;
+    background-color: #FFF;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.horarios-parada-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 16px;
+
+    h4 {
+        margin: 7px 0;
+        font-weight: 400;
     }
+
+    @include tablet {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.hora {
+    display: inline-block;
+    margin: 7px 7px 7px 0;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 300;
+    width: 70px;
+    padding: 4px 0;
+    border: 1px solid $orange200;
+    background-color: $orange100;
+    color: $grey800;
 }
 
 .nucleos-list {

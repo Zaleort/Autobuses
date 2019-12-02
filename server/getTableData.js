@@ -62,13 +62,23 @@ module.exports = {
         })
     },
     
-    getLineasTableInfo: function () {
+    getLineasTableInfo: async function () {
         const db = mongo.getDb();
-        db.collection('lineas').find().each((err, linea) => {
-            if (linea === null) { return; } 
-            assert.equal(null, err);
-            this.requestHorarios(linea._id, 'http://siu.ctal.es/es/' + linea.url);
-        });
+
+        try {
+            const cursor = await db.collection('lineas').find();
+
+            while (await cursor.hasNext()) {
+                const linea = await cursor.next();
+                
+                if (linea === null) { return; } 
+                this.requestHorarios(linea._id, linea.url);
+            }
+        }
+
+        catch (err) {
+            console.warn(err.stack)
+        }
     },
     
     requestHorarios: async function (id, url) {
@@ -87,12 +97,15 @@ module.exports = {
             console.log('Obteniendo paradas ida');
             const paradasIda = await this.getParadasLinea(ida);
 
+            console.log('Obteniendo número de saltos');
+            const saltos = await this.getSaltos(paradasIda);
+
             console.log('Obteniendo horarios ida');
             const horariosIda = this.getHorariosLinea(ida, paradasIda);
-            let nucleos, paradas, horarios;
+
+            const db = mongo.getDb();
     
             if (vuelta) {
-                // Fusiona arrays eliminando duplicados
                 console.log('Obteniendo núcleos vuelta');
                 const nucleosVuelta = await this.getNucleosLinea(vuelta);
 
@@ -102,17 +115,14 @@ module.exports = {
                 console.log('Obteniendo horarios vuelta');
                 const horariosVuelta = this.getHorariosLinea(vuelta, paradasVuelta);
     
-                nucleos = [...new Set([...nucleosIda, ...nucleosVuelta])];
-                paradas = [...new Set([...paradasIda, ...paradasVuelta])];
                 horarios = { 'ida': horariosIda, 'vuelta': horariosVuelta }
+                db.collection('lineas').updateOne({ _id: id }, 
+                    { $set: { nucleosIda, paradasIda, nucleosVuelta, paradasVuelta, horarios, saltos }});
             } else {
-                nucleos = nucleosIda;
-                paradas = paradasIda;
                 horarios = { 'ida': horariosIda }
+                db.collection('lineas').updateOne({ _id: id }, 
+                    { $set: { nucleosIda, paradasIda, horarios, saltos }});
             }
-              
-            const db = mongo.getDb();
-            db.collection('lineas').updateOne({ _id: id }, { $set: { nucleos, paradas, horarios }});
         })
     },
     
@@ -237,6 +247,31 @@ module.exports = {
             case '#ffc124': return 'I';
             case '#e6f20c': return 'J';
             default: return '';
+        }
+    },
+
+    getSaltos: async function (paradas) {
+        let saltos = -1;
+        let zonas = [];
+
+        const db = mongo.getDb();
+
+        try {
+            for (var i = 0; i < paradas.length; i++) {
+                const parada = await db.collection('paradas').findOne({ _id: paradas[i] });
+
+                if (!zonas.some(z => z === parada.zona)) {
+                    zonas.push(parada.zona);
+                    saltos++;
+                }
+            }
+
+            return saltos;
+        }
+
+        catch (err) {
+            console.log(err.stack);
+            return saltos;
         }
     }
 }

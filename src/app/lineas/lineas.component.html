@@ -1,2 +1,6 @@
 <h2>Líneas</h2>
-<app-linea-card *ngFor="let linea of lineas | keyvalue" [linea]="linea" [nucleos]="getNucleosNames(linea.value.nucleos)"></app-linea-card>
+<app-linea-card 
+    *ngFor="let linea of lineas" 
+    [linea]="linea"
+    [nucleos]="getNucleosNames(linea.nucleosIda)">
+</app-linea-card>

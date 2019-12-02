@@ -9,8 +9,10 @@ export interface ApiLineas {
 export interface ApiLinea {
     _id: string;
     name: string;
-    nucleos: string[];
-    paradas: string[];
+    nucleosIda: string[];
+    nucleosVuelta?: string[];
+    paradasIda: string[];
+    paradasVuelta: string[];
     horarios?: ApiHorarios;
     paradasInfo?: ApiParada[];
     nucleosInfo?: ApiNucleo[];

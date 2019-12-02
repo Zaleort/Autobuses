@@ -1,11 +1,13 @@
-<div class="card linea-card">
-    <a class="linea-card-name" routerLink="/lineas/{{ linea.value._id }}">
-        Línea {{ linea.value.name }}
-    </a>
+<div class="card p-1">
+    <div class="card-header">
+        <a class="linea-card-name capitalize" routerLink="/lineas/{{ linea._id }}">
+            Línea {{ linea.name }} - {{ recorrido }}
+        </a>
+    </div>
     <div class="linea-card-nucleos" *ngIf="nucleos">
-        <span class="linea-card-nucleos-name">{{ nucleosNames.toLowerCase() }}</span>
+        <span class="capitalize">{{ nucleosNames.toLowerCase() }}</span>
     </div>
     <div class="linea-card-footer">
-        <span class="paradas">Paradas: {{ linea.value.paradas.length }}</span>
+        <span class="paradas">Paradas: {{ linea.paradasIda.length }}</span>
     </div>
 </div>

@@ -14,6 +14,12 @@ export class LineaCardComponent implements OnInit {
     return this.nucleos.join(' - ');
   }
 
+  get recorrido() {
+    const salida = this.nucleos[0].toLocaleLowerCase();
+    const destino = this.nucleos[this.nucleos.length - 1].toLocaleLowerCase();
+    return `${salida} - ${destino}`;
+  }
+
   constructor() { }
 
   ngOnInit() {

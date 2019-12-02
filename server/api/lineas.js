@@ -24,13 +24,21 @@ module.exports = {
             try {
                 const linea = await db.collection('lineas').aggregate([
                     {
-                        $match: {
-                            _id: args[0]
-                        },
+                        $match: { _id: args[0] }
                     },
                     {
-                        $project: {
-                            url: 0
+                        $project: { url: 0, }
+                    },
+                    {
+                        $addFields: {
+                            paradas: { $setUnion: [
+                                { $ifNull: ['$paradasIda', []] },
+                                { $ifNull: ['$paradasVuelta', []] },
+                            ]},
+                            nucleos: { $setUnion: [
+                                { $ifNull: ['$nucleosIda', []] },
+                                { $ifNull: ['$nucleosVuelta', []] },
+                            ]}
                         }
                     },
                     {
@@ -47,6 +55,12 @@ module.exports = {
                             localField: 'paradas',
                             foreignField: '_id',
                             as: 'paradasInfo'
+                        }
+                    },
+                    {
+                        $project: {
+                            paradas: 0,
+                            nucleos: 0,
                         }
                     }
                 ]).next();
