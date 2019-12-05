@@ -8,7 +8,9 @@ const mongo = require(__dirname + '/mongo.js');
 const api = new Map();
 const apiFiles = fs.readdirSync(__dirname + '/api');
 
-mongo.connect();
+mongo.connect(() => {
+    //scrape.getLineasTableInfo();
+});
 
 for (let file of apiFiles) {
     const method = require(`./api/${file}`);

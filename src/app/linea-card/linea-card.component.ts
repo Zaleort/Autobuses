@@ -11,7 +11,7 @@ export class LineaCardComponent implements OnInit {
   @Input() nucleos: string[];
 
   get nucleosNames() {
-    return this.nucleos.join(' - ');
+    return this.nucleos.join(', ');
   }
 
   get recorrido() {

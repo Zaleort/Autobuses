@@ -1,14 +1,67 @@
 @import '../../scss/variables';
 
-.linea-card-name {
-    display: block;
-    color: $primary;
-    margin-bottom: 7px;
-    font-weight: 400;
-    font-size: 1.2em;
-    text-decoration: none;
+.linea-card-header {
+    align-items: baseline;
+    justify-content: space-between;
+
+    @include mobile-l {
+        align-items: center;
+    }
 }
 
-.linea-card-nucleos-name {
-    text-transform: capitalize;
+.linea-card-name {
+    color: $text;
+    display: block;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.15s;
+
+    &:hover {
+        color: $primary;
+    }
+
+    @include mobile-l {
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    @include tablet {
+        font-size: 1.25em;
+    }
+}
+
+.linea-card-nucleos {
+    margin: 9px 0;
+}
+
+.linea-card-footer {
+    position: relative;
+    font-size: 0.8em;
+    color: $grey500;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fav-icon {
+    margin-left: 9px;
+    width: 21px;
+}
+
+.bus-icon, .accesible-icon {
+    margin-left: 9px;
+    width: 16px;
+}
+
+.accesible:hover + .tooltip, .paradas:hover + .tooltip {
+    visibility: visible;
+}
+
+.accesible, .paradas {
+    &:hover {
+        color: $grey700;
+    }
+
+    &:hover svg path {
+        fill: $grey700;
+    }
 }

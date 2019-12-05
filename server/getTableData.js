@@ -74,6 +74,8 @@ module.exports = {
                 if (linea === null) { return; } 
                 this.requestHorarios(linea._id, linea.url);
             }
+
+            console.log('Finalizado');
         }
 
         catch (err) {
@@ -90,7 +92,7 @@ module.exports = {
             const tablas = $('.tabla_horario');
             const ida = $(tablas).get(0);
             const vuelta = $(tablas).get(1);
-    
+
             console.log('Obteniendo núcleos ida');
             const nucleosIda = await this.getNucleosLinea(ida);
 
@@ -102,6 +104,9 @@ module.exports = {
 
             console.log('Obteniendo horarios ida');
             const horariosIda = this.getHorariosLinea(ida, paradasIda);
+
+            console.log('Obteniendo información sobre accesibilidad');
+            const accesible = this.getAccesible($);
 
             const db = mongo.getDb();
     
@@ -117,11 +122,11 @@ module.exports = {
     
                 horarios = { 'ida': horariosIda, 'vuelta': horariosVuelta }
                 db.collection('lineas').updateOne({ _id: id }, 
-                    { $set: { nucleosIda, paradasIda, nucleosVuelta, paradasVuelta, horarios, saltos }});
+                    { $set: { nucleosIda, paradasIda, nucleosVuelta, paradasVuelta, horarios, saltos, accesible }});
             } else {
                 horarios = { 'ida': horariosIda }
                 db.collection('lineas').updateOne({ _id: id }, 
-                    { $set: { nucleosIda, paradasIda, horarios, saltos }});
+                    { $set: { nucleosIda, paradasIda, horarios, saltos, accesible }});
             }
         })
     },
@@ -273,5 +278,10 @@ module.exports = {
             console.log(err.stack);
             return saltos;
         }
+    },
+
+    getAccesible: function (html) {
+        const accesible = html('#informacion ul').children().last().text();
+        return accesible.includes('sí');
     }
 }

@@ -16,6 +16,7 @@ export interface ApiLinea {
     horarios?: ApiHorarios;
     paradasInfo?: ApiParada[];
     nucleosInfo?: ApiNucleo[];
+    accesible: boolean;
 }
 
 export interface ApiHorarios {

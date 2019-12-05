@@ -108,3 +108,17 @@ p { margin: 14px 0; }
     @extend .zona;
     background-color: $yellow800;
 }
+
+.icon {
+    transition: all 0.15s;
+}
+
+.fav-icon {
+    margin-left: 9px;
+    width: 21px;
+}
+
+.bus-icon, .accesible-icon {
+    margin-left: 9px;
+    width: 16px;
+}
