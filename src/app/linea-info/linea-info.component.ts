@@ -113,7 +113,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             frecuencias.add(horario.frecuencia);
         })
 
-        return Array.from(frecuencias);
+        return this.ordenarFrecuencias(Array.from(frecuencias));
     }
 
     get frecuenciasVuelta(): string[] {
@@ -125,7 +125,20 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             frecuencias.add(horario.frecuencia);
         })
 
-        return Array.from(frecuencias);
+        return this.ordenarFrecuencias(Array.from(frecuencias));
+    }
+
+    ordenarFrecuencias(frecuencias: string[]): string[] {
+        const orden = ['L-D', 'L-S', 'L-VDF', 'L-V', 'S-D-F', 'DF', 'M-S', 'M-V', 'M-J', 'VD', 'L-X-V', 'L', 'V', 'S', 'D'];
+        const ordenado = [];
+
+        orden.forEach(f => {
+            if (frecuencias.some(frec => frec === f)) {
+                ordenado.push(f);
+            }
+        })
+
+        return ordenado;
     }
 
     normalizeFrecuencias(frecuencia: string): string {
