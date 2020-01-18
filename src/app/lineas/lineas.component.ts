@@ -11,6 +11,7 @@ import { ApiLinea, ApiError, ApiNucleo } from '../interfaces/api-responses';
 export class LineasComponent implements OnInit {
   private lineas: ApiLinea[];
   private nucleos: ApiNucleo[];
+  private filteredLineas: ApiLinea[];
 
   constructor(private api: ApiService) {}
 
@@ -25,6 +26,35 @@ export class LineasComponent implements OnInit {
     })
 
     return nucleosNames;
+  }
+
+  updateLineas(search: HTMLInputElement) {
+    const value = search.value.trim().toUpperCase();
+
+    // Si la caja de búsqueda está vacía, mostrar todas las líneas
+    if (!value || value === '') {
+      this.filteredLineas = this.lineas;
+      return;
+    }
+
+    const filtered = [];
+
+    // Buscar coincidencias en destinos
+    this.lineas.forEach(linea => {
+      if (linea.nucleosInfo.some(n => n.name.includes(value))) {
+        filtered.push(linea);
+      }
+    });
+
+    // Buscar coincidencias en paradas
+    const restantes = this.lineas.filter(l => !filtered.includes(l));
+    restantes.forEach(linea => {
+      if (linea.paradasInfo.some(p => p.name.includes(value))) {
+        filtered.push(linea);
+      }
+    })
+
+    this.filteredLineas = filtered;
   }
 
   ngOnInit() {
@@ -48,6 +78,7 @@ export class LineasComponent implements OnInit {
               }
       
               this.lineas = res;
+              this.filteredLineas = this.lineas;
               console.log(this.lineas);
             },
       

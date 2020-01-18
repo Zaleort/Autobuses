@@ -8,7 +8,46 @@ module.exports = {
         const db = mongo.getDb();
         if (args.length === 0 || args[0] === '') {
             try {
-                const lineas = await db.collection('lineas').find({}, { projection: { horarios: 0, url: 0 } }).toArray();
+                const lineas = await db.collection('lineas').aggregate([
+                    {
+                        $addFields: {
+                            paradas: { $setUnion: [
+                                { $ifNull: ['$paradasIda', []] },
+                                { $ifNull: ['$paradasVuelta', []] },
+                            ]},
+                            nucleos: { $setUnion: [
+                                { $ifNull: ['$nucleosIda', []] },
+                                { $ifNull: ['$nucleosVuelta', []] },
+                            ]}
+                        }
+                    },
+                    {
+                        $lookup: {
+                            from: 'nucleos',
+                            localField: 'nucleos',
+                            foreignField: '_id',
+                            as: 'nucleosInfo'
+                        },
+                    },
+                    {
+                        $lookup: {
+                            from: 'paradas',
+                            localField: 'paradas',
+                            foreignField: '_id',
+                            as: 'paradasInfo'
+                        }
+                    },
+                    { 
+                        $project: { 
+                            url: 0, 
+                            horarios: 0,
+                            paradasIda: 0,
+                            paradasVuelta: 0,
+                            nucleosVuelta: 0,
+                        }
+                    }
+                ]).toArray();
+    
                 console.log('API Response: Enviadas todas las líneas');
                 return lineas;
             } 

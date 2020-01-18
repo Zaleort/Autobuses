@@ -12,7 +12,7 @@ export interface ApiLinea {
     nucleosIda: string[];
     nucleosVuelta?: string[];
     paradasIda: string[];
-    paradasVuelta: string[];
+    paradasVuelta?: string[];
     horarios?: ApiHorarios;
     paradasInfo?: ApiParada[];
     nucleosInfo?: ApiNucleo[];

@@ -1,9 +1,13 @@
 <h2>Líneas</h2>
 <div>
-    <input class="input full-width lineas-search" type="text" name="" id="" placeholder="Buscar...">
+    <input class="input full-width lineas-search" 
+    type="search" 
+    name="search" 
+    placeholder="Buscar..."
+    (input)="updateLineas($event.target)">
 </div>
 <app-linea-card 
-    *ngFor="let linea of lineas" 
+    *ngFor="let linea of filteredLineas" 
     [linea]="linea"
     [nucleos]="getNucleosNames(linea.nucleosIda)">
 </app-linea-card>
