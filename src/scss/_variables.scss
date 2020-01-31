@@ -1,16 +1,16 @@
 // Colors
 $primary: #2186f2;
 
-$primary50: #edf8fe;
-$primary100: #c8eafc;
-$primary200: #a3dbfa;
-$primary300: #7ecdf7;
-$primary400: #59bff5;
+$primary50: #e8f2fd;
+$primary100: #bcdafb;
+$primary200: #90c2f8;
+$primary300: #63aaf5;
+$primary400: #3792f3;
 $primary500: #2186f2;
-$primary600: #0d95df;
-$primary700: #0b7dba;
-$primary800: #096495;
-$primary900: #074b70;
+$primary600: #1d78d9;
+$primary700: #175da9;
+$primary800: #104379;
+$primary900: #092848;
 
 $text: #565656;
 
@@ -122,6 +122,9 @@ $pink700: #c2185b;
 $pink800: #ad1457;
 $pink900: #880e4f;
 
+$white: #FFF;
+$black: #000;
+
 // Fuentes
 $font-family: 'Rubik', sans-serif;
 $roboto: 'Roboto Mono', sans-serif;
@@ -133,6 +136,9 @@ $mobile-l: 480px;
 $tablet: 768px;
 $desktop: 1024px;
 $desktop-l: 1400px;
+
+// Others
+$border-radius: 5px;
 
 @mixin mobile {
     @media only screen and (min-width: $mobile) {

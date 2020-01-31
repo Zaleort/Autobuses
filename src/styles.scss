@@ -2,6 +2,11 @@
 @import 'scss/variables';
 @import 'scss/zonas';
 @import 'scss/utility';
+@import 'scss/scrollbar';
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     color: $text;
