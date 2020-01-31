@@ -25,7 +25,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
     constructor(private api: ApiService, private route: ActivatedRoute) { }
 
     get hasVuelta() {
-        return this.horarios.vuelta !== null;
+        return this.horarios.vuelta != null;
     }
 
     get recorrido() {
@@ -49,20 +49,21 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         return nucleosList.join(', ').toLowerCase();
     }
 
-    get saltos(): number {
-        if (this.paradasIda == null) { return 0; }
-
-        let saltos: number = -1;
-        let zonas: string[] = [];
+    get zonas(): string[] {
+        const arr = [];
 
         this.paradasInfo.forEach(parada => {
-            if (!zonas.some(z => z === parada.zona)) {
-                zonas.push(parada.zona);
-                saltos++;
+            if (!arr.some(z => z === parada.zona)) {
+                arr.push(parada.zona);
             }
         })
 
-        return saltos;
+        return arr.sort();
+    }
+
+    get saltos(): number {
+        if (this.paradasIda == null) { return 0; }
+        return this.zonas.length - 1;
     }
 
     // @TODO Resolver para casos como M-336
@@ -157,7 +158,6 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
 
             case 'L-S': {
                 return 'Lunes a Sábados';
-                break;
             }
 
             case 'L-VDF': {
