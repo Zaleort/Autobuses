@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ApiLinea, ApiError, ApiParada, ApiNucleo, ApiHorarios, ApiHorario } from '../interfaces/api-responses';
+import { ApiLinea, ApiError, ApiParada, ApiNucleo, ApiHorarios } from '../interfaces/api-responses';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,44 +12,69 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
     id: string;
     name: string;
     url: any;
+
     horarios: ApiHorarios;
+    tablaHorariosIda: any[];
+    tablaHorariosVuelta: any[];
+
     paradasIda: string[];
     paradasVuelta: string[];
     paradasInfo: ApiParada[];
+    
     nucleosIda: string[];
     nucleosVuelta: string[]
     nucleosInfo: ApiNucleo[];
 
-    isReady = false;
+    filtroParadaSalida: string;
+    filtroParadaDestino: string;
+    filtroParadasSalida: ApiParada[];
+    filtroParadasDestino: ApiParada[];
+    filtroFecha: string;
+    filtroHora: string;
 
-    constructor(private api: ApiService, private route: ActivatedRoute) { }
+    dropdownSalida: boolean = false;
+    dropdownDestino: boolean = false;
 
-    get hasVuelta() {
-        return this.horarios.vuelta != null;
+    hasVuelta: boolean;
+    recorrido: string;
+    nucleosList: string;
+    zonas: string[];
+    saltos: number;
+    duracion: string;
+
+    frecuenciasIda: string[];
+    frecuenciasVuelta: string[];
+
+    isReady: boolean = false;
+
+    constructor(private api: ApiService, private route: ActivatedRoute) {}
+
+    getHasVuelta() {
+        this.hasVuelta = this.horarios.vuelta != null;
     }
 
-    get recorrido() {
+    getRecorrido() {
         const salida = this.nucleosInfo.find(n =>
             n._id === this.nucleosIda[0]).name.toLocaleLowerCase();
 
         const destino = this.nucleosInfo.find(n =>
             n._id === this.nucleosIda[this.nucleosIda.length - 1]).name.toLocaleLowerCase();
-        return `${salida} - ${destino}`;
+        this.recorrido = `${salida} - ${destino}`;
     }
 
-    get nucleosList(): string {
+    getNucleosList() {
         if (this.nucleosIda == null) { return ''; }
 
-        const nucleosList = [];
+        const nucleos = [];
         this.nucleosIda.forEach(nucleo => {
             const n = this.nucleosInfo.find(n => n._id === nucleo);
-            nucleosList.push(n.name);
+            nucleos.push(n.name);
         })
 
-        return nucleosList.join(', ').toLowerCase();
+        this.nucleosList = nucleos.join(', ').toLowerCase();
     }
 
-    get zonas(): string[] {
+    getZonas() {
         const arr = [];
 
         this.paradasInfo.forEach(parada => {
@@ -58,16 +83,18 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             }
         })
 
-        return arr.sort();
+        this.zonas = arr.sort();
     }
 
-    get saltos(): number {
-        if (this.paradasIda == null) { return 0; }
-        return this.zonas.length - 1;
+    getSaltos() {
+        if (this.paradasIda == null) { 
+            this.saltos = 0; 
+        }
+        this.saltos = this.zonas.length - 1;
     }
 
     // @TODO Resolver para casos como M-336
-    get duracion(): string {
+    getDuracion() {
         if (this.horarios == null) { return '?'; }
         const primera = this.paradasIda[0];
         const ultima = this.paradasIda[this.paradasIda.length - 1];
@@ -88,14 +115,14 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
 
         const minutos = minutosUltima - minutosPrimera;
         if (minutos < 60) {
-            return minutos + ' min';
+            this.duracion = minutos + ' min';
         }
 
         else {
             const horas = Math.floor(minutos / 60);
             const minutosFinal = minutos - (60 * horas);
 
-            return horas + 'h' + ' ' + minutosFinal + ' min';
+            this.duracion = horas + 'h' + ' ' + minutosFinal + ' min';
         }
     }
 
@@ -107,17 +134,17 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         return hourInMinutes + minutes;
     }
 
-    get frecuenciasIda(): string[] {
+    getFrecuenciasIda() {
         const frecuencias: Set<string> = new Set();
         const primeraParada = this.paradasIda[0];
         this.horarios.ida[primeraParada].forEach(horario => {
             frecuencias.add(horario.frecuencia);
         })
 
-        return this.ordenarFrecuencias(Array.from(frecuencias));
+        this.frecuenciasIda = this.ordenarFrecuencias(Array.from(frecuencias));
     }
 
-    get frecuenciasVuelta(): string[] {
+    getFrecuenciasVuelta(): string[] {
         if (!this.paradasVuelta) { return []; }
         const frecuencias: Set<string> = new Set();
 
@@ -126,7 +153,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             frecuencias.add(horario.frecuencia);
         })
 
-        return this.ordenarFrecuencias(Array.from(frecuencias));
+        this.frecuenciasVuelta = this.ordenarFrecuencias(Array.from(frecuencias));
     }
 
     ordenarFrecuencias(frecuencias: string[]): string[] {
@@ -210,6 +237,29 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         }
     }
 
+    setFiltroParadaSalida(parada) {
+        this.filtroParadaSalida = parada.target.innerHTML.trim();
+    }
+
+    setFiltroParadaDestino(parada) {
+        this.filtroParadaDestino = parada.target.innerHTML.trim();
+    }
+
+    updateFiltroParadasSalida(): void {
+        if (!this.filtroParadaSalida) {
+            this.filtroParadasSalida = this.paradasInfo;
+        }
+
+        this.filtroParadasSalida = this.paradasInfo.filter(p => p.name.includes(this.filtroParadaSalida.toLocaleUpperCase()));
+    }
+
+    updateFiltroParadasDestino(): void {
+        if (!this.filtroParadaDestino) {
+            this.filtroParadasDestino = this.paradasInfo;
+        }
+
+        this.filtroParadasDestino = this.paradasInfo.filter(p => p.name.includes(this.filtroParadaDestino.toLocaleUpperCase()));
+    }
 
     /*
       horario = [
@@ -227,7 +277,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         }
       ]
     */
-    getTablaDeHorarios(ida: boolean) {
+    getTablaDeHorarios(ida: boolean): any[] {
         const horario = [];
         let paradas;
         let frecuencias;
@@ -307,6 +357,19 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
                         this.nucleosIda = res.nucleosIda;
                         this.nucleosVuelta = res.nucleosVuelta;
                         this.nucleosInfo = res.nucleosInfo;
+                        
+                        this.filtroParadasSalida = this.paradasInfo;
+                        this.filtroParadasDestino = this.paradasInfo;
+                        this.getDuracion();
+                        this.getHasVuelta();
+                        this.getNucleosList();
+                        this.getRecorrido();
+                        this.getZonas();
+                        this.getSaltos();
+                        this.getFrecuenciasIda();
+                        this.getFrecuenciasVuelta();
+                        this.tablaHorariosIda = this.getTablaDeHorarios(true);
+                        this.tablaHorariosVuelta = this.getTablaDeHorarios(false);
 
                         this.isReady = true;
                     },
