@@ -7,13 +7,63 @@
         <span class="linea-resumen-datos">Saltos: {{ saltos }}</span>
     </div>
     <div>
-        <input name="filtro" type="text">
+        <span>
+            <h3>Filtro</h3>
+        </span>
+        <div class="horarios-filtro">
+            <div class="horarios-filtro-group relative" (clickOutside)="dropdownSalida = false">
+                <label for="paradaSalida">Salida</label>
+                <input
+                    [(ngModel)]="filtroParadaSalida"
+                    (input)="updateFiltroParadasSalida()"
+                    (focus)="dropdownSalida = true"
+                    class="input dropdown-input w100"
+                    placeholder="Selecciona una parada" 
+                    name="paradaSalida" 
+                    type="text">
+                <div class="dropdown-container w100" [ngClass]="{ 'visible': dropdownSalida }">
+                    <li 
+                        *ngFor="let parada of filtroParadasSalida"
+                        (click)="setFiltroParadaSalida($event) ; dropdownSalida = false;">
+                            {{ parada.name }}
+                    </li>
+                </div>
+            </div>
+            <div class="horarios-filtro-group relative" (clickOutside)="dropdownDestino = false">
+                <label for="paradaDestino">Destino</label>
+                <input
+                    [disabled]="!filtroParadaSalida"
+                    [(ngModel)]="filtroParadaDestino"
+                    (input)="updateFiltroParadasDestino()"
+                    (focus)="dropdownDestino = true"
+                    class="input dropdown-input w100"
+                    placeholder="Selecciona una parada" 
+                    name="paradaDestino" 
+                    type="text">
+                <div class="dropdown-container w100" [ngClass]="{ 'visible': dropdownDestino }">
+                    <li 
+                        *ngFor="let parada of filtroParadasDestino"
+                        (click)="setFiltroParadaDestino($event); dropdownDestino = false;">
+                            {{ parada.name }}
+                    </li>
+                </div>
+            </div>
+            <!-- @TODO: Custom datepicker -->
+            <div class="horarios-filtro-group">
+                <label for="fecha">Fecha de salida</label>
+                <input class="input w100" placeholder="Selecciona día" name="fecha" type="date">
+            </div>
+            <div class="horarios-filtro-group">
+                <label for="hora">Hora de salida</label>
+                <input class="input w100" placeholder="Selecciona horario" name="hora" type="time">
+            </div>
+        </div>
     </div>
     <div class="tabla-horarios">
         <div>
-            <h2>Horarios de ida</h2>
-            <div *ngFor="let horario of getTablaDeHorarios(true)">
-                <h3>{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+            <h2 id="ida">Horarios de ida</h2>
+            <div *ngFor="let horario of tablaHorariosIda">
+                <h3 [id]="'ida' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
                 <div class="horarios-parada" *ngFor="let parada of horario.paradas">
                     <div class="horarios-parada-info">
                         <h4>{{ parada.name }}</h4>
@@ -24,9 +74,9 @@
             </div>
         </div>
         <div *ngIf="hasVuelta">
-            <h2>Horarios de vuelta</h2>
-            <div *ngFor="let horario of getTablaDeHorarios(false)">
-                <h3>{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+            <h2 id="vuelta">Horarios de vuelta</h2>
+            <div *ngFor="let horario of tablaHorariosVuelta">
+                <h3 [id]="'vuelta' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
                 <div class="horarios-parada" *ngFor="let parada of horario.paradas">
                     <div class="horarios-parada-info">
                         <h4>{{ parada.name }}</h4>

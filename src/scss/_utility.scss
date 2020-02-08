@@ -95,7 +95,7 @@
 }
 
 // Width
-.full-width { width: 100%; }
+.w100 { width: 100%; }
 .w25 { width: 25%; }
 .w33 { width: 33%; }
 .w50 { width: 50%; }
@@ -189,7 +189,7 @@
 .card {
     margin-top: 1em;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: $border-radius;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -222,6 +222,39 @@
     }
 }
 
+.dropdown-input {
+    position: relative;
+}
+
+.dropdown-container {
+    z-index: 100;
+    position: absolute;
+    visibility: hidden;
+    background-color: $white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    max-height: 250px;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: all ease 0.15s;
+    overflow-y: auto;
+
+    li {
+        list-style-type: none;
+        padding: 12px;
+
+        &:hover {
+            cursor: pointer;
+            color: $white;
+            background-color: $primary;
+        }
+    }
+
+    &.visible {
+        visibility: visible;
+        transform: scaleY(1);
+    }
+}
+
 // Tooltip
 .tooltip {
     visibility: hidden;
@@ -236,6 +269,6 @@
     color: white;
     font-size: 0.8em;
     padding: 9px 16px;
-    border-radius: 5px;
+    border-radius: $border-radius;
     line-height: 1.33;
 }
