@@ -3,7 +3,7 @@
     font-weight: 500;
     color: white;
     padding: 5px 12px;
-    border-radius: 20px;
+    border-radius: $pill;
 
     @include tablet {
         margin: 0 14px;

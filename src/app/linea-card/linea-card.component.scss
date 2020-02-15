@@ -52,13 +52,13 @@
     width: 16px;
 }
 
-.accesible:hover + .tooltip, .paradas:hover + .tooltip {
-    visibility: visible;
-}
-
 .accesible, .paradas {
     &:hover {
         color: $grey700;
+    }
+
+    &:hover + .tooltip {
+        visibility: visible;
     }
 
     &:hover svg path {

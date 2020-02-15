@@ -17,6 +17,7 @@ export interface ApiLinea {
     paradasInfo?: ApiParada[];
     nucleosInfo?: ApiNucleo[];
     accesible: boolean;
+    saltos: number;
 }
 
 export interface ApiHorarios {

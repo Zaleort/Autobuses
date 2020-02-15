@@ -7,8 +7,78 @@
     padding: 32px 0;
 }
 
-.linea-resumen-datos {
+.linea-resumen-info {
+    display: flex;
+    flex-direction: column;
+}
 
+.linea-resumen-nucleos {
+    .linea-resumen-nucleo:not(:last-child) .linea-resumen-nucleo-separador {
+        vertical-align: middle;
+        display: inline-block;
+        width: 9px;
+        height: 3px;
+        background-color: $orange200;
+
+        @include tablet {
+            width: 18px;
+        }
+    }
+}
+
+.linea-resumen-nucleo {
+    font-size: 0.8em;
+    display: inline-block;
+
+    @include mobile-l {
+        font-size: 0.9em;
+    }
+
+    @include tablet {
+        font-size: 1em;
+    }
+}
+
+.linea-resumen-nucleo-etiqueta {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 6px 12px;
+    margin: 5px 0;
+    background-color: $orange100;
+    border-radius: $pill;
+    border: 1px solid $orange200;
+}
+
+.linea-resumen-datos {
+    display: none;
+    margin: 12px 0 0 0;
+
+    @include mobile-l {
+        display: flex;
+    }
+}
+
+.linea-resumen-dato {
+    display: flex;
+    position: relative;
+    padding: 3px 12px;
+    margin: 5px 3px;
+    color: $white;
+    background-color: $primary;
+    border-radius: $pill;
+
+    svg {
+        width: 15px;
+        margin-right: 5px;
+
+        path {
+            fill: $white;
+        }
+    }
+
+    &:hover + .tooltip {
+        visibility: visible;
+    }
 }
 
 .horarios-filtro {
@@ -66,8 +136,4 @@
     border: 1px solid $orange200;
     background-color: $orange100;
     color: $grey800;
-}
-
-.nucleos-list {
-    text-transform: capitalize;
 }

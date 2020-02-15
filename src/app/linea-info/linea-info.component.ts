@@ -12,6 +12,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
     id: string;
     name: string;
     url: any;
+    accesible: boolean;
 
     horarios: ApiHorarios;
     tablaHorariosIda: any[];
@@ -24,6 +25,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
     nucleosIda: string[];
     nucleosVuelta: string[]
     nucleosInfo: ApiNucleo[];
+    nucleosList: string[];
 
     filtroParadaSalida: string;
     filtroParadaDestino: string;
@@ -37,7 +39,6 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
 
     hasVuelta: boolean;
     recorrido: string;
-    nucleosList: string;
     zonas: string[];
     saltos: number;
     duracion: string;
@@ -68,10 +69,10 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         const nucleos = [];
         this.nucleosIda.forEach(nucleo => {
             const n = this.nucleosInfo.find(n => n._id === nucleo);
-            nucleos.push(n.name);
+            nucleos.push(n.name.toLowerCase());
         })
 
-        this.nucleosList = nucleos.join(', ').toLowerCase();
+        this.nucleosList = nucleos;
     }
 
     getZonas() {
@@ -84,13 +85,6 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
         })
 
         this.zonas = arr.sort();
-    }
-
-    getSaltos() {
-        if (this.paradasIda == null) { 
-            this.saltos = 0; 
-        }
-        this.saltos = this.zonas.length - 1;
     }
 
     // @TODO Resolver para casos como M-336
@@ -349,7 +343,10 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
                             return;
                         }
 
+                        console.log(res);
+
                         this.name = res.name;
+                        this.accesible = res.accesible;
                         this.horarios = res.horarios;
                         this.paradasIda = res.paradasIda;
                         this.paradasVuelta = res.paradasVuelta;
@@ -357,6 +354,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
                         this.nucleosIda = res.nucleosIda;
                         this.nucleosVuelta = res.nucleosVuelta;
                         this.nucleosInfo = res.nucleosInfo;
+                        this.saltos = res.saltos;
                         
                         this.filtroParadasSalida = this.paradasInfo;
                         this.filtroParadasDestino = this.paradasInfo;
@@ -365,7 +363,6 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
                         this.getNucleosList();
                         this.getRecorrido();
                         this.getZonas();
-                        this.getSaltos();
                         this.getFrecuenciasIda();
                         this.getFrecuenciasVuelta();
                         this.tablaHorariosIda = this.getTablaDeHorarios(true);
