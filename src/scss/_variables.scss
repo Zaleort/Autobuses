@@ -139,7 +139,7 @@ $desktop-l: 1400px;
 
 // Others
 $border-radius: 5px;
-$pill: 100%;
+$pill: 20px;
 
 @mixin mobile {
     @media only screen and (min-width: $mobile) {
