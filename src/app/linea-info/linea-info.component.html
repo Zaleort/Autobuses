@@ -99,7 +99,12 @@
                         <h4>{{ parada.name }}</h4>
                         <span class="zona-{{parada.zona}}">Zona {{ parada.zona }}</span>
                     </div>
-                    <span class="hora" *ngFor="let hora of parada.horario">{{ hora }} </span>
+                    <span>
+                        <span class="horas" *ngFor="let hora of parada.horario">
+                            <span class="excepcion" *ngIf="hora.excepcion">{{ hora.excepcion }}</span>
+                            <span class="hora">{{ hora.hora }}</span>
+                        </span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -112,7 +117,12 @@
                         <h4>{{ parada.name }}</h4>
                         <span class="zona-{{parada.zona}}">Zona {{ parada.zona }}</span>
                     </div>
-                    <span class="hora" *ngFor="let hora of parada.horario">{{ hora }} </span>
+                    <span>
+                        <span class="horas" *ngFor="let hora of parada.horario">
+                            <span class="excepcion" *ngIf="hora.excepcion">{{ hora.excepcion }}</span>
+                            <span class="hora">{{ hora.hora }}</span>
+                        </span>
+                    </span>
                 </div>
             </div>
         </div>

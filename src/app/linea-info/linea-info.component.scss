@@ -126,14 +126,29 @@
     }
 }
 
+.horas {
+    display: inline-flex;
+    min-width: 100px;
+    margin: 7px 7px 7px 0;
+}
+
+.excepcion {
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+    padding: 4px;
+    border: 1px solid $red500;
+    background-color: $red400;
+    color: $grey100;
+}
+
 .hora {
     display: inline-block;
-    margin: 7px 7px 7px 0;
+    flex-grow: 1;
     text-align: center;
     letter-spacing: 1px;
     font-weight: 300;
-    width: 70px;
-    padding: 4px 0;
+    padding: 4px;
     border: 1px solid $orange200;
     background-color: $orange100;
     color: $grey800;

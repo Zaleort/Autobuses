@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ApiLinea, ApiError, ApiParada, ApiNucleo, ApiHorarios } from '../interfaces/api-responses';
+import { ApiLinea, ApiError, ApiParada, ApiNucleo, ApiHorarios, ApiHorario } from '../interfaces/api-responses';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -45,6 +45,10 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
 
     frecuenciasIda: string[];
     frecuenciasVuelta: string[];
+    frecuenciasLV: string[] = ['L-D', 'L-V', 'L-S', 'L-VDF', 'M-S', 'M-V', 'M-J', 'VD', 'L-X-V', 'L', 'V'];
+    frecuenciasSD: string[] = ['L-D', 'L-S', 'L-VDF', 'S-D-F', 'DF', 'M-S', 'VD', 'S', 'D'];
+    frecuenciasF: string[] = ['L-VDF', 'S-D-F', 'DF'];
+    frecuencias: string[] = ['LV', 'SD', 'F'];
 
     isReady: boolean = false;
 
@@ -135,7 +139,7 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             frecuencias.add(horario.frecuencia);
         })
 
-        this.frecuenciasIda = this.ordenarFrecuencias(Array.from(frecuencias));
+        this.frecuenciasIda = Array.from(frecuencias);
     }
 
     getFrecuenciasVuelta(): string[] {
@@ -147,82 +151,21 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
             frecuencias.add(horario.frecuencia);
         })
 
-        this.frecuenciasVuelta = this.ordenarFrecuencias(Array.from(frecuencias));
-    }
-
-    ordenarFrecuencias(frecuencias: string[]): string[] {
-        const orden = ['L-D', 'L-S', 'L-VDF', 'L-V', 'S-D-F', 'DF', 'M-S', 'M-V', 'M-J', 'VD', 'L-X-V', 'L', 'V', 'S', 'D'];
-        const ordenado = [];
-
-        orden.forEach(f => {
-            if (frecuencias.some(frec => frec === f)) {
-                ordenado.push(f);
-            }
-        })
-
-        return ordenado;
+        this.frecuenciasVuelta = Array.from(frecuencias);
     }
 
     normalizeFrecuencias(frecuencia: string): string {
         switch (frecuencia) {
-            case 'L': {
-                return 'Solo Lunes';
-            }
-
-            case 'L-D': {
-                return 'Diario';
-            }
-
-            case 'L-V': {
+            case 'LV': {
                 return 'Lunes a Viernes';
             }
 
-            case 'L-S': {
-                return 'Lunes a Sábados';
+            case 'SD': {
+                return 'Sábados y Domingos';
             }
 
-            case 'L-VDF': {
-                return 'Lunes a Viernes y Domingos';
-            }
-
-            case 'L-X-V': {
-                return 'Lunes, Miércoles y Viernes';
-            }
-
-            case 'M-J': {
-                return 'Martes y Jueves';
-            }
-
-            case 'M-V': {
-                return 'Martes a Viernes';
-            }
-
-            case 'M-S': {
-                return 'Martes a Sábados';
-            }
-
-            case 'V': {
-                return 'Viernes';
-            }
-
-            case 'VD': {
-                return 'Viernes y Domingos';
-            }
-
-            case 'S': {
-                return 'Sábados';
-            }
-
-            case 'S-D-F': {
-                return 'Sábados, Domingos y festivos';
-            }
-
-            case 'D': {
-                return 'Domingos';
-            }
-
-            case 'DF': {
-                return 'Domingos y festivos';
+            case 'F': {
+                return 'Festivos';
             }
 
             default: {
@@ -272,51 +215,101 @@ export class LineaInfoComponent implements OnInit, OnDestroy {
       ]
     */
     getTablaDeHorarios(ida: boolean): any[] {
-        const horario = [];
-        let paradas;
-        let frecuencias;
+        let paradas: string[];
         let horarios;
 
         if (ida) {
             paradas = this.paradasIda;
-            frecuencias = this.frecuenciasIda;
             horarios = this.horarios.ida;
         }
 
         else {
             paradas = this.paradasVuelta;
-            frecuencias = this.frecuenciasVuelta;
             horarios = this.horarios.vuelta;
         }
 
-        for (var i = 0; i < frecuencias.length; i++) {
-            const frecuencia = frecuencias[i];
-            horario.push({ frecuencia, paradas: [] });
-
-            for (var j = 0; j < paradas.length; j++) {
-                let { name, zona } = this.paradasInfo.find(p => p._id === paradas[j]);;
-
-                let parada = {
-                    id: paradas[j],
-                    name,
-                    zona,
-                    horario: [],
-                }
-
-                horarios[paradas[j]].forEach(hora => {
-                    if (hora.frecuencia === frecuencias[i] && hora.hora !== '--') {
-                        parada.horario.push(hora.hora);
-                    }
-                })
-
-                if (parada.horario.length > 0) {
-                    horario[i].paradas.push(parada);
-                }
-            }
-        }
+        const horario = [
+            { frecuencia: 'LV', paradas: this.getHorario(paradas, horarios, 'LV') },
+            { frecuencia: 'SD', paradas: this.getHorario(paradas, horarios, 'SD') },
+            { frecuencia: 'F', paradas: this.getHorario(paradas, horarios, 'F') },
+        ];
 
         console.log(horario);
         return horario;
+    }
+
+    getHorario(paradas: string[], horarios, frecuencia): any[] {
+        const arr = [];
+        let dias;
+
+        if (frecuencia === 'LV') { dias = this.frecuenciasLV; }
+        else if (frecuencia === 'SD') { dias = this.frecuenciasSD; }
+        else if (frecuencia === 'F') { dias = this.frecuenciasF; }
+        else { return; }
+
+        for (var i = 0; i < paradas.length; i++) {
+            const { name, zona } = this.paradasInfo.find(p => p._id === paradas[i]);;
+
+            const parada = {
+                id: paradas[i],
+                name,
+                zona,
+                horario: [],
+            }
+
+            horarios[paradas[i]].forEach(hora => {
+                if (dias.some(d => d === hora.frecuencia) && hora.hora !== '--') {
+                    parada.horario.push({ hora: hora.hora, excepcion: this.getExcepcion(frecuencia, hora.frecuencia) });
+                }
+            });
+
+            if (parada.horario.length > 0) {
+                arr.push(parada);
+            }
+        }
+
+        return arr;
+    }
+
+    getExcepcion(dias, frecuencia): string | null {
+        if (dias === 'LV') {
+            switch (frecuencia) {
+                case 'M-V':
+                case 'M-S':
+                    return '-L';
+                case 'M-J':
+                    return 'MJ';
+                case 'VD':
+                case 'V':
+                    return 'V';
+                case 'L-X-V':
+                    return 'LXV';
+                case 'L':
+                    return 'L';
+                default:
+                    return null;
+            }
+        }
+
+        else if (dias === 'SD') {
+            switch (frecuencia) {
+                case 'L-S':
+                case 'M-S':
+                case 'S':
+                    return 'S';
+                case 'L-VDF':
+                case 'DF':
+                case 'VD':
+                case 'D':
+                    return 'D';
+                default:
+                    return null;
+            }
+        }
+
+        else {
+            return null;
+        }
     }
 
     getParadaName(_id: string): string {
