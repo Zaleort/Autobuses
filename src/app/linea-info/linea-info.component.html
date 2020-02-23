@@ -93,7 +93,7 @@
         <div>
             <h2 id="ida">Horarios de ida</h2>
             <div *ngFor="let horario of tablaHorariosIda">
-                <h3 [id]="'ida' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+                <h3 *ngIf="horario.paradas.length > 0" [id]="'ida' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
                 <div class="horarios-parada" *ngFor="let parada of horario.paradas">
                     <div class="horarios-parada-info">
                         <h4>{{ parada.name }}</h4>
@@ -111,7 +111,7 @@
         <div *ngIf="hasVuelta">
             <h2 id="vuelta">Horarios de vuelta</h2>
             <div *ngFor="let horario of tablaHorariosVuelta">
-                <h3 [id]="'vuelta' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
+                <h3 *ngIf="horario.paradas.length > 0" [id]="'vuelta' + horario.frecuencia">{{ normalizeFrecuencias(horario.frecuencia) }}</h3>
                 <div class="horarios-parada" *ngFor="let parada of horario.paradas">
                     <div class="horarios-parada-info">
                         <h4>{{ parada.name }}</h4>
