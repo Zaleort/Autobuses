@@ -3,8 +3,9 @@
 .linea-resumen {
     display: flex;
     flex-direction: column;
-    margin: 1em 0;
-    padding: 32px 0;
+    margin-bottom: 2em;
+
+    @include tablet { margin: 2em 0; }
 }
 
 .linea-resumen-info {
@@ -84,7 +85,7 @@
 .horarios-filtro {
     display: flex;
     flex-direction: column;
-    margin-bottom: 32px;
+    margin-bottom: 2em;
 
     @include tablet {
         flex-direction: row;
@@ -112,7 +113,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 1em;
 
     h4 {
         margin: 7px 0;
