@@ -11,7 +11,7 @@ import { ApiLinea, ApiError, ApiNucleo } from '../interfaces/api-responses';
 export class LineasComponent implements OnInit {
   private lineas: ApiLinea[];
   private nucleos: ApiNucleo[];
-  private filteredLineas: ApiLinea[];
+  public filteredLineas: ApiLinea[];
 
   constructor(private api: ApiService) {}
 
