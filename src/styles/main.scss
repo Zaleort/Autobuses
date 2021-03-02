@@ -1,0 +1,87 @@
+@import 'normalize';
+@import 'variables';
+@import 'zonas';
+@import 'utility';
+@import 'scrollbar';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: $text;
+  font-weight: 300;
+  background-color: $grey50;
+  font-family: $font-family;
+  font-size: 1.2em;
+}
+
+h1, h2, h3, h4 {
+  margin: 14px 0;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 1.5em;
+  
+  @include mobile-l { font-size: 1.75em; }
+  @include tablet { font-size: 2em; }
+  @include desktop { font-size: 2.25em; }
+}
+
+h2 {
+  font-size: 1.4em;
+
+  @include mobile-l { font-size: 1.5em; }
+  @include tablet { font-size: 1.75em; }
+  @include desktop { font-size: 2em; }
+}
+
+h3 {
+  font-size: 1.2em;
+
+  @include mobile-l { font-size: 1.25em; }
+  @include tablet { font-size: 1.4em; }
+  @include desktop { font-size: 1.6em; }
+}
+
+h4 {
+  font-size: 1em;
+
+  @include mobile { font-size: 1.1em; }
+}
+
+p { margin: 14px 0; }
+
+.icon {
+  transition: all 0.15s;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  width: 100%;
+  z-index: 200;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  background-color: $primary;
+  color: #FFF;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 28px 7px;
+  text-decoration: none;
+  color: #FFF;
+}
+
+main {
+  padding-top: $header-height;
+}
