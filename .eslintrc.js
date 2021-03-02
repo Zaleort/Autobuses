@@ -37,5 +37,6 @@ module.exports = {
     "no-nested-ternary": "off",
     "global-require": "off",
     "import/no-dynamic-require": "off",
+    "no-shadow": "off",
   },
 };
