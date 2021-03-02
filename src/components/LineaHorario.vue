@@ -55,7 +55,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import Icon from '@/components/icons/Icon.vue';
+import Icon from '@/components/Icon.vue';
 import Util from '@/composables/Util';
 
 export default defineComponent({
