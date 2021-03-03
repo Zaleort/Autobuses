@@ -1,0 +1,79 @@
+@include block(tooltip) {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 10;
+  max-width: 290px;
+  line-break: loose;
+  word-wrap: break-word;
+  font-size: 0.8em;
+  padding: 9px 16px;
+  transition: all 90ms ease;
+
+  @if ($is-rounded) {
+    border-radius: $radius;
+  }
+
+  @if ($is-shadowed) {
+    box-shadow: $low-shadow;
+  }
+
+  @include element(parent) {
+    position: relative;
+
+    &:hover .ui-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  @include modifier(top) {
+    left: 50%;
+    top: 40px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+    }
+  }
+
+  @include modifier(bottom) {
+    left: 50%;
+    bottom: -40px;
+    transform: translateX(-50%);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      transform: rotateX(180deg);
+    }
+  }
+
+  @include modifier(black) {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+
+    &::after {
+      border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+    }
+  }
+
+  @include modifier(white) {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+
+    &::after {
+      border-color: rgba(255, 255, 255, 0.8) transparent transparent transparent;
+    }
+  }
+}
