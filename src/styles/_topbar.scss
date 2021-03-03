@@ -1,0 +1,54 @@
+@include block(topbar) {
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  padding: 0 1em;
+  width: 100%;
+  height: $topbar-height;
+
+  @if ($is-shadowed) {
+    box-shadow: $low-shadow;
+  }
+
+  @include modifier(primary) {
+    background-color: $primary;
+    color: $white;
+  }
+
+  @include modifier(secondary) {
+    background-color: $secondary;
+    color: $white;
+  }
+
+  @include modifier(black) {
+    background-color: $grey900;
+    color: $white;
+  }
+
+  @include modifier(white) {
+    background-color: $white;
+    color: $text-color;
+  }
+
+  @include modifier(danger) {
+    background-color: $danger;
+    color: $white;
+  }
+
+  @include modifier(warning) {
+    background-color: $warning;
+    color: $white;
+  }
+
+  @include modifier(success) {
+    background-color: $success;
+    color: $white;
+  }
+
+  @include modifier(info) {
+    background-color: $info;
+    color: $white;
+  }
+}
