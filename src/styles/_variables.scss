@@ -1,5 +1,8 @@
+@import 'mixins/mixins';
+
 // Colors
 $primary: #2186f2;
+$secondary: #934759;
 
 $primary50: #e8f2fd;
 $primary100: #bcdafb;
@@ -11,8 +14,6 @@ $primary600: #1d78d9;
 $primary700: #175da9;
 $primary800: #104379;
 $primary900: #092848;
-
-$text: #565656;
 
 // Escala de grises
 $grey50: #fafafa;
@@ -126,6 +127,8 @@ $white: #FFF;
 $black: #000;
 
 // Fuentes
+$text-color: $grey800;
+$text-secondary-color: #565656;
 $font-family: 'Rubik', sans-serif;
 $roboto: 'Roboto Mono', sans-serif;
 $font-size: 1.15rem;
@@ -144,33 +147,3 @@ $header-height-mobile: 50px;
 // Others
 $border-radius: 5px;
 $pill: 20px;
-
-@mixin mobile {
-    @media only screen and (min-width: $mobile) {
-        @content;
-    }
-}
-
-@mixin mobile-l {
-    @media only screen and (min-width: $mobile-l) {
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media only screen and (min-width: $tablet) {
-        @content;
-    }
-}
-
-@mixin desktop {
-    @media only screen and (min-width: $desktop) {
-        @content;
-    }
-}
-
-@mixin desktop-l {
-    @media only screen and (min-width: $desktop-l) {
-        @content;
-    }
-}

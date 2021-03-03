@@ -1,0 +1,196 @@
+@import 'config';
+@import 'functions';
+
+@mixin block($block) {
+  $B: $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin element($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + '.' + $B + $element-separator + $unit + ','};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin modifier($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin configurable-mod($modifier, $E-flag: false) {
+  $selector: &;
+  $interpolation: '';
+
+  @if $E-flag {
+    $interpolation: $element-separator + $E-flag;
+  }
+
+  @at-root {
+    #{$selector} {
+      .#{$B+$interpolation+$modifier-separator+$modifier} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin spec-selector($specSelector: '', $element: $E, $modifier: false, $block: $B) {
+  $modifierCombo: '';
+
+  @if $modifier {
+    $modifierCombo: $modifier-separator + $modifier;
+  }
+
+  @at-root {
+    #{&}#{$specSelector}.#{$block+$element-separator+$element+$modifierCombo} {
+      @content;
+    }
+  }
+}
+
+@mixin meb($modifier: false, $element: $E, $block: $B) {
+  $selector: &;
+  $modifierCombo: '';
+
+  @if $modifier {
+    $modifierCombo: $modifier-separator + $modifier;
+  }
+
+  @at-root {
+    #{$selector} {
+      .#{$block+$element-separator+$element+$modifierCombo} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin when($state) {
+  @at-root {
+    &.#{$state-prefix + $state} {
+      @content;
+    }
+  }
+}
+
+@mixin extend-rule($name) {
+  @extend #{'%shared-'+$name};
+}
+
+@mixin share-rule($name) {
+  $rule-name: '%shared-'+$name;
+
+  @at-root #{$rule-name} {
+    @content;
+  }
+}
+
+@mixin pseudo($pseudo) {
+  @at-root #{&}#{':#{$pseudo}'} {
+    @content;
+  }
+}
+
+
+@mixin mobile {
+  @media only screen and (min-width: $mobile) {
+      @content;
+  }
+}
+
+@mixin mobile-l {
+  @media only screen and (min-width: $mobile-l) {
+      @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: $tablet) {
+      @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $desktop) {
+      @content;
+  }
+}
+
+@mixin desktop-l {
+  @media only screen and (min-width: $desktop-l) {
+      @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media only screen and (min-width: $desktop-xl) {
+      @content;
+  }
+}
+
+@mixin max-mobile {
+  @media only screen and (max-width: $mobile) {
+      @content;
+  }
+}
+
+@mixin max-mobile-l {
+  @media only screen and (max-width: $mobile-l) {
+      @content;
+  }
+}
+
+@mixin max-tablet {
+  @media only screen and (max-width: $tablet) {
+      @content;
+  }
+}
+
+@mixin max-desktop {
+  @media only screen and (max-width: $desktop) {
+      @content;
+  }
+}
+
+@mixin max-desktop-l {
+  @media only screen and (max-width: $desktop-l) {
+      @content;
+  }
+}
+
+@mixin max-desktop-xl {
+  @media only screen and (max-width: $desktop-xl) {
+      @content;
+  }
+}

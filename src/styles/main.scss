@@ -1,5 +1,6 @@
 @import 'normalize';
 @import 'variables';
+@import 'icon';
 @import 'zonas';
 @import 'utility';
 @import 'scrollbar';
@@ -9,7 +10,7 @@ html {
 }
 
 body {
-  color: $text;
+  color: $text-color;
   font-weight: 300;
   background-color: $grey50;
   font-family: $font-family;
