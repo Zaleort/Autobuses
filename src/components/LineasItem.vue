@@ -102,7 +102,7 @@ export default defineComponent({
 }
 
 .linea-card-name {
-    color: $text;
+    color: $text-color;
     display: block;
     font-weight: 400;
     text-decoration: none;
