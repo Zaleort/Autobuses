@@ -1,0 +1,162 @@
+@include block(input) {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: all 90ms ease-in;
+  background-color: $white;
+  border: 1px solid $border-color;
+  width: 100%;
+
+  @if $is-rounded {
+    border-radius: $radius;
+  }
+
+  &:hover {
+    border-color: $grey600;
+    transition-timing-function: ease-out;
+  }
+
+  @include modifier(primary) {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover {
+      border-color: $primary800;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include modifier(secondary) {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+
+    &:hover {
+      border-color: $secondary800;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include modifier(danger) {
+    color: $white;
+    background-color: $danger;
+    border-color: $danger;
+
+    &:hover {
+      border-color: $danger-dark;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include modifier(warning) {
+    color: $white;
+    background-color: $warning;
+    border-color: $warning;
+
+    &:hover {
+      border-color: $warning-dark;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include modifier(success) {
+    color: $white;
+    background-color: $success;
+    border-color: $success;
+
+    &:hover {
+      border-color: $success-dark;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include modifier(info) {
+    color: $white;
+    background-color: $info;
+    border-color: $info;
+
+    &:hover {
+      border-color: $info-dark;
+    }
+
+    & .ui-input__inner {
+      color: $white;
+    }
+  }
+
+  @include when(focus) {
+    border-color: $primary;
+  }
+
+  @include when(disabled) {
+    color: $grey600;
+    background-color: $grey50;
+    border: 1px solid $border-color;
+  }
+
+  @include when(readonly) {
+    color: $grey600;
+    border: 1px solid $border-color;
+  }
+
+  @include when(error) {
+    border: 1px solid $danger;
+  }
+
+  @include element(inner) {
+    flex: 1;
+    padding: 7px 9px;
+    border: none;
+    background-color: transparent;
+  
+    &:focus {
+      outline: none;
+    }
+
+    @include when(disabled) {
+      color: $grey600;
+      cursor: not-allowed;
+    }
+  
+    @include when(readonly) {
+      color: $grey600;
+      cursor: initial;
+    }
+
+    @include modifier(small) {
+      padding: 3px 9px;
+    }
+
+    @include modifier(large) {
+      padding: 11px 9px;
+    }
+  }
+
+  @include element(prepend) {
+    display: flex;
+    align-items: center;
+    padding-left: 9px;
+  }
+
+  @include element(append) {
+    display: flex;
+    align-items: center;
+    padding-right: 9px;
+  }
+}
