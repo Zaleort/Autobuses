@@ -1,9 +1,13 @@
 @import 'normalize';
 @import 'variables';
 @import 'icon';
-@import 'zonas';
-@import 'utility';
+@import 'input';
 @import 'scrollbar';
+@import 'select';
+@import 'tag';
+@import 'tooltip';
+@import 'utility';
+@import 'zonas';
 
 html {
   scroll-behavior: smooth;
