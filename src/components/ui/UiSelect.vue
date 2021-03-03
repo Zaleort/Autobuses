@@ -275,6 +275,8 @@ export default defineComponent({
     };
 
     const clearSelectedValues = () => {
+      if (isDisabled.value) return;
+
       if (props.multiple && Array.isArray(selected)) {
         selected.splice(0, selected.length);
         context.emit('update:value', []);
