@@ -3,12 +3,17 @@
     <h2 :id="tipoHorario">
       Horarios de {{ tipoHorario }}
       <icon
-        :icon-name="'ocultar/ver horarios'"
+        v-if="verHorarios"
+        icon="minus"
+        size="mini"
         @click="toggleHorario"
-      >
-        <icon-minus v-if="verHorarios" />
-        <icon-plus v-else />
-      </icon>
+      />
+      <icon
+        v-else
+        icon="plus"
+        size="mini"
+        @click="toggleHorario"
+      />
     </h2>
     <div
       v-for="(horario, index) of horarios"
@@ -21,12 +26,17 @@
       >
         {{ normalizeFrecuencias(horario.frecuencia) }}
         <icon
-          :icon-name="'ocultar/ver paradas'"
+          v-if="verFrecuencia[horario.frecuencia]"
+          icon="minus"
+          size="small"
           @click="toggleFrecuencia(horario.frecuencia)"
-        >
-          <icon-minus v-if="verFrecuencia[horario.frecuencia]" />
-          <icon-plus v-else />
-        </icon>
+        />
+        <icon
+          v-else
+          icon="plus"
+          size="small"
+          @click="toggleFrecuencia(horario.frecuencia)"
+        />
       </h3>
       <div
         v-for="parada of horario.paradas"

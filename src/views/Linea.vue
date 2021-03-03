@@ -17,43 +17,19 @@
         </div>
         <div class="linea-resumen-datos">
           <span class="linea-resumen-dato">
-            <icon
-              :icon-name="'paradas'"
-              :width="15"
-              :height="15"
-            >
-              <icon-autobus />
-            </icon>
+            <icon icon="bus" />
             {{ paradasInfo.length }}
           </span>
           <span class="linea-resumen-dato">
-            <icon
-              :icon-name="'tiempo estimado'"
-              :width="15"
-              :height="15"
-            >
-              <icon-reloj />
-            </icon>
+            <icon icon="clock" />
             {{ duracion }}
           </span>
           <span class="linea-resumen-dato">
-            <icon
-              :icon-name="'saltos'"
-              :width="15"
-              :height="15"
-            >
-              <icon-saltos />
-            </icon>
+            <icon icon="running" />
             {{ saltos }}
           </span>
           <span v-if="accesible" class="linea-resumen-dato">
-            <icon
-              :icon-name="'accesible'"
-              :width="15"
-              :height="15"
-            >
-              <icon-accesible />
-            </icon>
+            <icon icon="wheelchair" />
             Accesible
           </span>
         </div>
@@ -121,7 +97,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import {
+  computed, defineComponent, onMounted, ref,
+} from 'vue';
 import LineaHorario from '@/components/LineaHorario.vue';
 import Icon from '@/components/Icon.vue';
 import Util from '@/composables/Util';
@@ -180,7 +158,7 @@ export default defineComponent({
 
     const hasVuelta = () => horarios.value?.vuelta != null;
 
-    const recorrido = () => {
+    const recorrido = computed(() => {
       const salida = nucleosInfo.value.find(n => n._id === nucleosIda.value[0]);
       const destino = nucleosInfo.value.find(n => n._id === nucleosIda.value[nucleosIda.value.length - 1]);
 
@@ -192,9 +170,9 @@ export default defineComponent({
       const salidaName = salida.name.toLocaleLowerCase();
       const destinoName = destino.name.toLocaleLowerCase();
       return `${salidaName} - ${destinoName}`;
-    };
+    });
 
-    const nucleosList = (): string[] => {
+    const nucleosList = computed((): string[] => {
       if (nucleosIda.value == null) { return []; }
 
       const nucleos: string[] = [];
@@ -206,7 +184,7 @@ export default defineComponent({
       });
 
       return nucleos;
-    };
+    });
 
     const zonas = (): string[] => {
       const arr: string[] = [];
@@ -221,7 +199,7 @@ export default defineComponent({
     };
 
     // @TODO Resolver para casos como M-336
-    const duracion = () => {
+    const duracion = computed(() => {
       if (horarios.value == null) { return '?'; }
       const primera = paradasIda.value[0];
       const ultima = paradasIda.value[paradasIda.value.length - 1];
@@ -249,7 +227,7 @@ export default defineComponent({
       const minutosFinal = minutos - (60 * horas);
 
       return `${horas}h ${minutosFinal}m`;
-    };
+    });
 
     const frecuenciasIda = (): string[] => {
       if (!horarios.value) return [];
@@ -447,7 +425,46 @@ export default defineComponent({
     });
 
     return {
-
+      name,
+      accesible,
+      horarios,
+      tablaHorariosIda,
+      tablaHorariosVuelta,
+      paradasIda,
+      paradasVuelta,
+      paradasInfo,
+      nucleosIda,
+      nucleosVuelta,
+      nucleosInfo,
+      filtroParadaSalida,
+      filtroParadaDestino,
+      filtroParadasSalida,
+      filtroParadasDestino,
+      filtroFecha,
+      filtroHora,
+      dropdownSalida,
+      dropdownDestino,
+      saltos,
+      frecuenciasLV,
+      frecuenciasSD,
+      frecuenciasF,
+      frecuencias,
+      loading,
+      hasVuelta,
+      recorrido,
+      nucleosList,
+      zonas,
+      duracion,
+      frecuenciasIda,
+      frecuenciasVuelta,
+      setFiltroParadaSalida,
+      setFiltroParadaDestino,
+      updateFiltroParadasSalida,
+      updateFiltroParadasDestino,
+      getExcepcion,
+      getHorariosParadas,
+      getTablaDeHorarios,
+      getParadaName,
     };
   },
 });
