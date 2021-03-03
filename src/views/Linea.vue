@@ -35,52 +35,15 @@
         </div>
       </div>
     </div>
-    <div>
-      <span>
-        <h3>Filtro</h3>
-      </span>
-      <div class="linea__filtro">
-        <div class="linea__filtro-group relative" @click-outside="dropdownSalida = false">
-          <label for="paradaSalida">Salida</label>
-          <ui-select
-            v-model:value="filtroParadaSalida"
-            filterable
-            clearable
-          >
-            <ui-option
-              v-for="parada of paradasInfo"
-              :key="parada._id"
-              :value="parada._id"
-              :label="parada.name"
-            />
-          </ui-select>
-        </div>
-        <div class="linea__filtro-group relative" @click-outside="dropdownDestino = false">
-          <label for="paradaDestino">Destino</label>
-          <ui-select
-            v-model:value="filtroParadaDestino"
-            filterable
-            clearable
-            :disabled="!filtroParadaSalida"
-          >
-            <ui-option
-              v-for="parada of paradasInfo"
-              :key="parada._id"
-              :value="parada._id"
-              :label="parada.name"
-            />
-          </ui-select>
-        </div>
-      </div>
-    </div>
-    <div class="tabla-horarios">
-      <linea-horario :tipo-horario="'ida'" :horarios="tablaHorariosIda" />
-      <linea-horario
-        v-if="hasVuelta"
-        :tipo-horario="'vuelta'"
-        :horarios="tablaHorariosVuelta"
-      />
-    </div>
+
+    <linea-filtro :paradas="paradasInfo" />
+
+    <linea-horario :tipo-horario="'ida'" :horarios="tablaHorariosIda" />
+    <linea-horario
+      v-if="hasVuelta"
+      :tipo-horario="'vuelta'"
+      :horarios="tablaHorariosVuelta"
+    />
   </div>
 </template>
 
@@ -89,9 +52,8 @@ import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
 import LineaHorario from '@/components/LineaHorario.vue';
+import LineaFiltro from '@/components/LineaFiltro.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
-import UiSelect from '@/components/ui/UiSelect.vue';
-import UiOption from '@/components/ui/UiOption.vue';
 import Util from '@/composables/Util';
 import {
   ApiHorario, ApiHorarios, ApiParada, ApiNucleo,
@@ -103,10 +65,9 @@ import { useRoute } from 'vue-router';
 export default defineComponent({
   name: 'Linea',
   components: {
-    LineaHorario,
     UiIcon,
-    UiSelect,
-    UiOption,
+    LineaHorario,
+    LineaFiltro,
   },
 
   setup() {
@@ -127,11 +88,6 @@ export default defineComponent({
     const nucleosIda = ref<string[]>([]);
     const nucleosVuelta = ref<string[]>();
     const nucleosInfo = ref<ApiNucleo[]>([]);
-
-    const filtroParadaSalida = ref('');
-    const filtroParadaDestino = ref('');
-    const filtroFecha = ref('');
-    const filtroHora = ref('');
 
     const dropdownSalida = ref(false);
     const dropdownDestino = ref(false);
@@ -396,10 +352,6 @@ export default defineComponent({
       nucleosIda,
       nucleosVuelta,
       nucleosInfo,
-      filtroParadaSalida,
-      filtroParadaDestino,
-      filtroFecha,
-      filtroHora,
       dropdownSalida,
       dropdownDestino,
       saltos,
