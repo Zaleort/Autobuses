@@ -1,0 +1,118 @@
+@include block(select) {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  & .ui-input__inner.is-readonly {
+    color: $text-color;
+    cursor: pointer;
+  }
+
+  & .ui-input.is-focus {
+    border-color: $primary;
+  }
+
+  @include element(tags) {
+    display: flex;
+    flex-wrap: wrap;
+
+    & .ui-tag {
+      margin: 2px;
+    }
+  }
+ }
+
+@include block(select-menu) {
+  position: absolute;
+  z-index: 10;
+  padding: 7px 0;
+  margin: 0;
+  background-color: $white;
+  border: 1px solid $border-color;
+  max-height: 300px;
+  width: 100%;
+  overflow-y: auto;
+
+  @if ($is-rounded) {
+    border-radius: $radius;
+  }
+
+  @if ($is-shadowed) {
+    box-shadow: $low-shadow;
+  }
+
+  @include element(option) {
+    list-style: none;
+    padding: 7px 16px;
+    margin: 0;
+    cursor: pointer;
+    transition: all 90ms ease-out;
+
+    &:not(.is-disabled):hover, &:focus {
+      transition-timing-function: ease-in;
+      background-color: $primary;
+      color: $white;
+    }
+
+    @include when(disabled) {
+      cursor: default;
+      color: $text-secondary-color;
+    }
+
+    @include when(selected) {
+      color: $primary;
+    }
+
+    @include when(hovered) {
+      transition-timing-function: ease-in;
+      background-color: $primary;
+      color: $white;
+    }
+  }
+
+  @include element(empty) {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 7px 16px;
+    color: $text-secondary-color;
+  }
+}
+
+.ui-select-show-enter-active {
+  transform-origin: top;
+  animation-duration: 120ms;
+  animation-timing-function: ease-out;
+  animation-name: ui-select-show-enter;
+}
+
+.ui-select-show-leave-active {
+  transform-origin: top;
+  animation-duration: 120ms;
+  animation-timing-function: ease-in;
+  animation-name: ui-select-show-leave;
+}
+
+@keyframes ui-select-show-enter {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(100%);
+  }
+}
+
+@keyframes ui-select-show-leave {
+  from {
+    opacity: 1;
+    transform: scaleY(100%);
+  }
+
+  to {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
