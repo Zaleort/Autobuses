@@ -1,0 +1,157 @@
+@include block(linea) {
+  max-width: $desktop-xl;
+  margin: 0 auto;
+
+  @include element(filtro) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+
+    @include tablet {
+      flex-direction: row;
+    }
+  }
+
+  @include element(filtro-group) {
+    margin: 5px 0;
+    flex-grow: 1;
+
+    @include tablet {
+      margin: 0 5px;
+    }
+  }
+}
+
+@include block(linea-resumen) {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+
+  @include tablet { margin: 2em 0; }
+
+  @include element(info) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include element(nucleos) {
+    .linea-resumen__nucleo:not(:last-child) .linea-resumen__separador {
+      vertical-align: middle;
+      display: inline-block;
+      width: 9px;
+      height: 3px;
+      background-color: $orange200;
+  
+      @include tablet {
+        width: 18px;
+      }
+    }
+  }
+
+  @include element(nucleo) {
+    font-size: 0.8em;
+    display: inline-block;
+
+    @include mobile-l {
+      font-size: 0.9em;
+    }
+
+    @include tablet {
+      font-size: 1em;
+    }
+  }
+
+  @include element(etiqueta) {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 6px 12px;
+    margin: 5px 0;
+    background-color: $orange100;
+    border-radius: $pill;
+    border: 1px solid $orange200;
+  }
+
+  @include element(datos) {
+    display: none;
+    margin: 12px 0 0 0;
+
+    @include mobile-l {
+      display: flex;
+    }
+  }
+
+  @include element(dato) {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 3px 12px;
+    margin: 5px 3px;
+    color: $white;
+    background-color: $primary;
+    border-radius: $pill;
+
+    svg {
+      margin-right: 5px;
+      margin-bottom: 1px;
+    }
+
+    &:hover + .tooltip {
+      visibility: visible;
+    }
+  }
+}
+
+@include block(linea-horario) {
+  @include element(parada) {
+    padding: 16px 12px;
+    margin-bottom: 24px;
+    background-color: #FFF;
+    border-radius: $radius;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  @include element(info) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1em;
+  
+    h4 {
+      margin: 7px 0;
+      font-weight: 400;
+    }
+  
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  @include element(horas) {
+    display: inline-flex;
+    min-width: 100px;
+    margin: 7px 7px 7px 0;
+  }
+
+  @include element(hora) {
+    display: inline-block;
+    flex-grow: 1;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 300;
+    padding: 4px;
+    border: 1px solid $orange200;
+    background-color: $orange100;
+    color: $grey800;
+  }
+
+  @include element(excepcion) {
+    display: inline-block;
+    text-align: center;
+    font-weight: 500;
+    padding: 4px;
+    border: 1px solid $red500;
+    background-color: $red400;
+    color: $grey100;
+  }
+}

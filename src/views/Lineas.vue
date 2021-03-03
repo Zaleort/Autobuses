@@ -1,14 +1,13 @@
 <template>
-  <div v-if="!loading">
+  <div v-if="!loading" class="linea">
     <h1>Líneas</h1>
     <div>
-      <input
-        v-model="searchQuery"
-        class="input w100 lineas-search"
-        type="search"
-        name="search"
-        placeholder="Buscar..."
-      >
+      <ui-input
+        v-model:value="searchQuery"
+        :type="'search'"
+        :name="'search'"
+        :placeholder="'Buscar...'"
+      />
     </div>
     <lineas-item
       v-for="linea of filteredLineas"
@@ -24,6 +23,7 @@ import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
 import { useStore } from 'vuex';
+import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
 import ApiLineas from '@/lib/ApiLineas';
 import ApiNucleos from '@/lib/ApiNucleos';
@@ -32,6 +32,7 @@ import { ApiLinea, ApiNucleo } from '@/interfaces/apiResponses';
 export default defineComponent({
   name: 'Lineas',
   components: {
+    UiInput,
     LineasItem,
   },
 
@@ -111,11 +112,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-@import '../styles/variables';
-
-.lineas-search {
-    padding: 12px 16px;
-}
-</style>

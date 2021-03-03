@@ -42,9 +42,9 @@
         v-for="parada of horario.paradas"
         v-show="verFrecuencia[horario.frecuencia]"
         :key="parada._id"
-        class="horarios-parada"
+        class="linea-horario__parada"
       >
-        <div class="horarios-parada-info">
+        <div class="linea-horario__info">
           <h4>{{ parada.name }}</h4>
           <span :class="'zona-' + parada.zona">Zona {{ parada.zona }}</span>
         </div>
@@ -52,10 +52,10 @@
           <span
             v-for="(hora, index) of parada.horario"
             :key="index"
-            class="horas"
+            class="linea-horario__horas"
           >
-            <span v-if="hora.excepcion" class="excepcion">{{ hora.excepcion }}</span>
-            <span class="hora">{{ hora.hora }}</span>
+            <span v-if="hora.excepcion" class="linea-horario__excepcion">{{ hora.excepcion }}</span>
+            <span class="linea-horario__hora">{{ hora.hora }}</span>
           </span>
         </span>
       </div>

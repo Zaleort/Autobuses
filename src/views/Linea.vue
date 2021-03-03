@@ -1,34 +1,34 @@
 <template>
-  <div v-if="!loading">
+  <div v-if="!loading" class="linea">
     <div class="linea-resumen">
       <h1 class="text-capitalize">
         Línea {{ name }} - {{ recorrido }}
       </h1>
-      <div class="linea-resumen-info">
-        <div class="linea-resumen-nucleos">
+      <div class="linea-resumen__info">
+        <div class="linea-resumen__nucleos">
           <div
             v-for="nucleo of nucleosList"
             :key="nucleo._id"
-            class="linea-resumen-nucleo"
+            class="linea-resumen__nucleo"
           >
-            <span class="linea-resumen-nucleo-etiqueta">{{ nucleo }}</span>
-            <span class="linea-resumen-nucleo-separador" />
+            <span class="linea-resumen__etiqueta">{{ nucleo }}</span>
+            <span class="linea-resumen__separador" />
           </div>
         </div>
-        <div class="linea-resumen-datos">
-          <span class="linea-resumen-dato">
+        <div class="linea-resumen__datos">
+          <span class="linea-resumen__dato">
             <ui-icon icon="bus" />
             {{ paradasInfo.length }}
           </span>
-          <span class="linea-resumen-dato">
+          <span class="linea-resumen__dato">
             <ui-icon icon="clock" />
             {{ duracion }}
           </span>
-          <span class="linea-resumen-dato">
+          <span class="linea-resumen__dato">
             <ui-icon icon="running" />
             {{ saltos }}
           </span>
-          <span v-if="accesible" class="linea-resumen-dato">
+          <span v-if="accesible" class="linea-resumen__dato">
             <ui-icon icon="wheelchair" />
             Accesible
           </span>
@@ -39,8 +39,8 @@
       <span>
         <h3>Filtro</h3>
       </span>
-      <div class="horarios-filtro">
-        <div class="horarios-filtro-group relative" @click-outside="dropdownSalida = false">
+      <div class="linea__filtro">
+        <div class="linea__filtro-group relative" @click-outside="dropdownSalida = false">
           <label for="paradaSalida">Salida</label>
           <ui-select
             v-model:value="filtroParadaSalida"
@@ -55,7 +55,7 @@
             />
           </ui-select>
         </div>
-        <div class="horarios-filtro-group relative" @click-outside="dropdownDestino = false">
+        <div class="linea__filtro-group relative" @click-outside="dropdownDestino = false">
           <label for="paradaDestino">Destino</label>
           <ui-select
             v-model:value="filtroParadaDestino"
@@ -423,158 +423,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-@import '../styles/variables';
-
-.linea-resumen {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2em;
-
-  @include tablet { margin: 2em 0; }
-}
-
-.linea-resumen-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.linea-resumen-nucleos {
-  .linea-resumen-nucleo:not(:last-child) .linea-resumen-nucleo-separador {
-    vertical-align: middle;
-    display: inline-block;
-    width: 9px;
-    height: 3px;
-    background-color: $orange200;
-
-    @include tablet {
-      width: 18px;
-    }
-  }
-}
-
-.linea-resumen-nucleo {
-  font-size: 0.8em;
-  display: inline-block;
-
-  @include mobile-l {
-    font-size: 0.9em;
-  }
-
-  @include tablet {
-    font-size: 1em;
-  }
-}
-
-.linea-resumen-nucleo-etiqueta {
-  display: inline-block;
-  text-transform: capitalize;
-  padding: 6px 12px;
-  margin: 5px 0;
-  background-color: $orange100;
-  border-radius: $pill;
-  border: 1px solid $orange200;
-}
-
-.linea-resumen-datos {
-  display: none;
-  margin: 12px 0 0 0;
-
-  @include mobile-l {
-    display: flex;
-  }
-}
-
-.linea-resumen-dato {
-  display: flex;
-  align-items: center;
-  position: relative;
-  padding: 3px 12px;
-  margin: 5px 3px;
-  color: $white;
-  background-color: $primary;
-  border-radius: $pill;
-
-  svg {
-    margin-right: 5px;
-    margin-bottom: 1px;
-  }
-
-  &:hover + .tooltip {
-    visibility: visible;
-  }
-}
-
-.horarios-filtro {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 2em;
-
-  @include tablet {
-    flex-direction: row;
-  }
-}
-
-.horarios-filtro-group {
-  margin: 5px 0;
-  flex-grow: 1;
-
-  @include tablet {
-    margin: 0 5px;
-  }
-}
-
-.horarios-parada {
-  padding: 16px 12px;
-  margin-bottom: 24px;
-  background-color: #FFF;
-  border-radius: $radius;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-.horarios-parada-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 1em;
-
-  h4 {
-    margin: 7px 0;
-    font-weight: 400;
-  }
-
-  @include tablet {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.horas {
-  display: inline-flex;
-  min-width: 100px;
-  margin: 7px 7px 7px 0;
-}
-
-.excepcion {
-  display: inline-block;
-  text-align: center;
-  font-weight: 500;
-  padding: 4px;
-  border: 1px solid $red500;
-  background-color: $red400;
-  color: $grey100;
-}
-
-.hora {
-  display: inline-block;
-  flex-grow: 1;
-  text-align: center;
-  letter-spacing: 1px;
-  font-weight: 300;
-  padding: 4px;
-  border: 1px solid $orange200;
-  background-color: $orange100;
-  color: $grey800;
-}
-</style>
