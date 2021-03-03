@@ -395,6 +395,7 @@ export default defineComponent({
         isSelected = i >= 0;
       } else {
         isSelected = selected.key === val.key;
+        close();
       }
 
       if (!isSelected) addSelectedValue(val);
