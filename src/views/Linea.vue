@@ -48,7 +48,7 @@
             clearable
           >
             <ui-option
-              v-for="parada of filtroParadasSalida"
+              v-for="parada of paradasInfo"
               :key="parada._id"
               :value="parada._id"
               :label="parada.name"
@@ -64,7 +64,7 @@
             :disabled="!filtroParadaSalida"
           >
             <ui-option
-              v-for="parada of filtroParadasDestino"
+              v-for="parada of paradasInfo"
               :key="parada._id"
               :value="parada._id"
               :label="parada.name"
@@ -130,8 +130,6 @@ export default defineComponent({
 
     const filtroParadaSalida = ref('');
     const filtroParadaDestino = ref('');
-    const filtroParadasSalida = ref<ApiParada[]>([]);
-    const filtroParadasDestino = ref<ApiParada[]>([]);
     const filtroFecha = ref('');
     const filtroHora = ref('');
 
@@ -377,9 +375,6 @@ export default defineComponent({
         nucleosInfo.value = res.nucleosInfo;
         saltos.value = res.saltos;
 
-        filtroParadasSalida.value = paradasInfo.value;
-        filtroParadasDestino.value = paradasInfo.value;
-
         tablaHorariosIda.value = getTablaDeHorarios(true);
         tablaHorariosVuelta.value = getTablaDeHorarios(false);
 
@@ -403,8 +398,6 @@ export default defineComponent({
       nucleosInfo,
       filtroParadaSalida,
       filtroParadaDestino,
-      filtroParadasSalida,
-      filtroParadasDestino,
       filtroFecha,
       filtroHora,
       dropdownSalida,
