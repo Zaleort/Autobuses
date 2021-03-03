@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <header class="header">
       <h1 class="logo" routerLink="/">
         Autobuses
@@ -14,7 +14,7 @@
       </nav>
     </header>
 
-    <main class="container main">
+    <main class="main">
       <router-view />
     </main>
   </div>

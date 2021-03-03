@@ -1,7 +1,7 @@
 <template>
   <div v-if="!loading">
     <div class="linea-resumen">
-      <h1 class="capitalize">
+      <h1 class="text-capitalize">
         Línea {{ name }} - {{ recorrido }}
       </h1>
       <div class="linea-resumen-info">
@@ -529,7 +529,7 @@ export default defineComponent({
   padding: 16px 12px;
   margin-bottom: 24px;
   background-color: #FFF;
-  border-radius: $border-radius;
+  border-radius: $radius;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 

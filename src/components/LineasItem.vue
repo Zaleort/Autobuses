@@ -1,7 +1,7 @@
 <template>
   <div class="card p-1">
     <div class="card-header linea-card-header">
-      <router-link class="linea-card-name capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
+      <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
         Línea {{ linea.name }} - {{ recorrido }}
       </router-link>
       <div class="icon fav-icon">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div v-if="nucleos" class="linea-card-nucleos">
-      <span class="capitalize">{{ nucleosNames.toLowerCase() }}</span>
+      <span class="text-capitalize">{{ nucleosNames.toLowerCase() }}</span>
     </div>
     <div class="linea-card-footer">
       <span v-if="linea.accesible" class="accesible">
