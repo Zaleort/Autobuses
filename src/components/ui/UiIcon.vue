@@ -28,7 +28,7 @@ import icons from '@/components/icons/icons';
 import { Icons } from '@/interfaces/icons';
 
 export default defineComponent({
-  name: 'Icon',
+  name: 'UiIcon',
   props: {
     viewBox: {
       type: String,

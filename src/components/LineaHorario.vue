@@ -2,13 +2,13 @@
   <div>
     <h2 :id="tipoHorario">
       Horarios de {{ tipoHorario }}
-      <icon
+      <ui-icon
         v-if="verHorarios"
         icon="minus"
         size="mini"
         @click="toggleHorario"
       />
-      <icon
+      <ui-icon
         v-else
         icon="plus"
         size="mini"
@@ -25,13 +25,13 @@
         :ref="horario.frecuencia"
       >
         {{ normalizeFrecuencias(horario.frecuencia) }}
-        <icon
+        <ui-icon
           v-if="verFrecuencia[horario.frecuencia]"
           icon="minus"
           size="small"
           @click="toggleFrecuencia(horario.frecuencia)"
         />
-        <icon
+        <ui-icon
           v-else
           icon="plus"
           size="small"
@@ -65,13 +65,13 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
-import Icon from '@/components/Icon.vue';
+import UiIcon from '@/components/ui/UiIcon.vue';
 import Util from '@/composables/Util';
 
 export default defineComponent({
   name: 'LineaHorario',
   components: {
-    Icon,
+    UiIcon,
   },
 
   props: {
