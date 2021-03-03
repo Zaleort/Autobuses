@@ -1,19 +1,5 @@
+@import './mixins/functions';
 @import 'mixins/mixins';
-
-// Colors
-$primary: #2186f2;
-$secondary: #934759;
-
-$primary50: #e8f2fd;
-$primary100: #bcdafb;
-$primary200: #90c2f8;
-$primary300: #63aaf5;
-$primary400: #3792f3;
-$primary500: #2186f2;
-$primary600: #1d78d9;
-$primary700: #175da9;
-$primary800: #104379;
-$primary900: #092848;
 
 // Escala de grises
 $grey50: #fafafa;
@@ -126,19 +112,86 @@ $pink900: #880e4f;
 $white: #FFF;
 $black: #000;
 
-// Fuentes
-$text-color: $grey800;
-$text-secondary-color: #565656;
-$font-family: 'Rubik', sans-serif;
+// Primary
+$primary: #2186f2 !default;
+$primary50: tint($primary, 90%) !default;
+$primary100: tint($primary, 70%) !default;
+$primary200: tint($primary, 50%) !default;
+$primary300: tint($primary, 30%) !default;
+$primary400: tint($primary, 10%) !default;
+$primary500: shade($primary, 10%) !default;
+$primary600: shade($primary, 20%) !default;
+$primary700: shade($primary, 30%) !default;
+$primary800: shade($primary, 40%) !default;
+$primary900: shade($primary, 50%) !default;
+
+// Secondary
+$secondary: $pink500 !default;
+$secondary50: tint($secondary, 90%) !default;
+$secondary100: tint($secondary, 70%) !default;
+$secondary200: tint($secondary, 50%) !default;
+$secondary300: tint($secondary, 30%) !default;
+$secondary400: tint($secondary, 10%) !default;
+$secondary500: shade($secondary, 10%) !default;
+$secondary600: shade($secondary, 20%) !default;
+$secondary700: shade($secondary, 30%) !default;
+$secondary800: shade($secondary, 40%) !default;
+$secondary900: shade($secondary, 50%) !default;
+
+// Success
+$success-light: $green50 !default;
+$success: $green500 !default;
+$success-dark: $green700 !default;
+
+// Warning
+$warning-light: $orange50 !default;
+$warning: $orange500 !default;
+$warning-dark: $orange700 !default;
+
+// Danger
+$danger-light: $red50 !default;
+$danger: $red500 !default;
+$danger-dark: $red700 !default;
+
+// Info
+$info-light: $blue50 !default;
+$info: $blue500 !default;
+$info-dark: $blue700 !default;
+
+// Common color
+$text-color: $grey800 !default;
+$text-secondary-color: $grey500 !default;
+$border-color: $grey300 !default;
+$background-color: $grey50 !default;
+
+// Fonts
+$font-size: 16px !default;
+$font-family: 'Rubik', sans-serif !default;
 $roboto: 'Roboto Mono', sans-serif;
-$font-size: 1.15rem;
+
+// Border radius
+$is-rounded: false !default;
+$radius: 5px !default;
+
+// Shadows
+$is-shadowed: false !default;
+$low-shadow: 
+  0 3px 4px 0 rgba(0, 0, 0, 0.15),
+  0 6px 12px 0 rgba(0, 0, 0, 0.10) !default;
+$med-shadow: 
+  0 6px 8px 0 rgba(0, 0, 0, 0.18),
+  0 10px 20px 0 rgba(0, 0, 0, 0.13) !default;
+$high-shadow: 
+  0 12px 16px 0 rgba(0, 0, 0, 0.21),
+  0 14px 28px 0 rgba(0, 0, 0, 0.16) !default;
 
 // Media queries
 $mobile: 320px;
 $mobile-l: 480px;
 $tablet: 768px;
 $desktop: 1024px;
-$desktop-l: 1400px;
+$desktop-l: 1200px;
+$desktop-xl: 1400px;
 
 //Header
 $header-height: 78px;
