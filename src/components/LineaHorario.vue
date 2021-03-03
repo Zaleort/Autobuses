@@ -84,6 +84,11 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
+
+    filtro: {
+      type: Object,
+      default: () => ({ salida: null, destino: null }),
+    },
   },
 
   setup() {

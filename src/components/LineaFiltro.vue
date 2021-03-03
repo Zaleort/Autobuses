@@ -73,8 +73,8 @@ export default defineComponent({
   emits: ['update'],
 
   setup(props, context) {
-    const destino = ref('');
-    const salida = ref('');
+    const destino = ref(null);
+    const salida = ref(null);
 
     const filtro = computed(() => ({ destino: destino.value, salida: salida.value }));
 

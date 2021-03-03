@@ -36,13 +36,18 @@
       </div>
     </div>
 
-    <linea-filtro :paradas="paradasInfo" />
+    <linea-filtro :paradas="paradasInfo" @update="filtro = $event" />
 
-    <linea-horario :tipo-horario="'ida'" :horarios="tablaHorariosIda" />
+    <linea-horario
+      :tipo-horario="'ida'"
+      :horarios="tablaHorariosIda"
+      :filtro="filtro"
+    />
     <linea-horario
       v-if="hasVuelta"
       :tipo-horario="'vuelta'"
       :horarios="tablaHorariosVuelta"
+      :filtro="filtro"
     />
   </div>
 </template>
@@ -98,6 +103,8 @@ export default defineComponent({
     const frecuenciasSD = ref<string[]>(['L-D', 'L-S', 'L-VDF', 'S-D-F', 'DF', 'M-S', 'VD', 'S', 'D']);
     const frecuenciasF = ref<string[]>(['L-VDF', 'S-D-F', 'DF']);
     const frecuencias = ref<string[]>(['LV', 'SD', 'F']);
+
+    const filtro = ref();
 
     const loading = ref(true);
     const apiLinea = ApiLineas;
@@ -359,6 +366,7 @@ export default defineComponent({
       frecuenciasSD,
       frecuenciasF,
       frecuencias,
+      filtro,
       loading,
       hasVuelta,
       recorrido,
