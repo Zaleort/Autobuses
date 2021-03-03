@@ -1,0 +1,72 @@
+// Tamaños
+@include block(tag) {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  transition: all 90ms;
+
+  @if $is-rounded {
+    border-radius: $radius;
+  }
+
+  @include modifier(small) {
+    font-size: 14px;
+    padding: 3px 12px;
+  }
+
+  @include modifier(large) {
+    padding: 11px 16px;
+  }
+
+  // Colores
+  @include modifier(primary) {
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: $white;
+  }
+
+  @include modifier(secondary) {
+    background-color: $secondary;
+    border: 1px solid $secondary;
+    color: $white;
+  }
+
+  @include modifier(success) {
+    background-color: $success;
+    border: 1px solid $success;
+    color: $white;
+  }
+
+  @include modifier(warning) {
+    background-color: $warning;
+    border: 1px solid $warning;
+    color: $white;
+  }
+
+  @include modifier(danger) {
+    background-color: $danger;
+    border: 1px solid $danger;
+    color: $white;
+  }
+
+  @include modifier(info) {
+    background-color: $info;
+    border: 1px solid $info;
+    color: $white;
+  }
+
+  @include modifier(grey) {
+    background-color: $grey500;
+    border: 1px solid $grey500;
+    color: $white;
+  }
+
+  @include when(pill) {
+    border-radius: 50px;
+  }
+
+  @include element(close) {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
