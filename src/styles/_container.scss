@@ -1,0 +1,19 @@
+@include block(container) {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100vh;
+  margin: 0 auto;
+
+  @if ($topbar-height) {
+    padding-top: $topbar-height;
+  }
+}
+
+@include block(main) {
+  display: block;
+  flex: 1;
+  padding: 1em;
+  overflow: auto;
+}
+
