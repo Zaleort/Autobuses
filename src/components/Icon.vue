@@ -1,9 +1,9 @@
 <template v-if="iconComponent">
   <svg
     :class="{
-      'hn-icon': true,
-      [`hn-icon--${size}`]: true,
-      [`hn-icon--${color}`]: color !== null,
+      'icon': true,
+      [`icon--${size}`]: true,
+      [`icon--${color}`]: color !== null,
     }"
     xmlns="http://www.w3.org/2000/svg"
     :viewBox="viewBox || iconComponent.viewBox"

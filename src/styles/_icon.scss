@@ -1,0 +1,75 @@
+@include block(icon) {
+  transition: transform 90ms ease-out;
+  text-align: center;
+
+  @include modifier(mini) {
+    width: 0.7em;
+    height: 0.7em;
+  }
+
+  @include modifier(small) {
+    width: 0.9em;
+    height: 0.9em;
+  }
+
+  @include modifier(normal) {
+    width: 1em;
+    height: 1em;
+  }
+
+  @include modifier(large) {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  @include modifier(xlarge) {
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  @include modifier(black) {
+    & g { fill: $text-color; }
+  }
+
+  @include modifier(primary) {
+    & g { fill: $primary; }
+  }
+
+  @include modifier(secondary) {
+    & g { fill: $secondary; }
+  }
+
+  @include modifier(grey) {
+    & g { fill: $text-secondary-color; }
+  }
+
+  @include modifier(reverse) {
+    transition-timing-function: ease-in;
+    transform: rotateY(180deg);
+  }
+
+  @include modifier(upside) {
+    transition-timing-function: ease-in;
+    transform: rotateX(180deg);
+  }
+
+  @for $i from 2 through 5 {
+    @include modifier('x' + $i) {
+      width: $i * 1em;
+      height: $i * 1em;
+    }
+  }
+}
+
+.icon-loading {
+  animation: rotating 1200ms linear infinite;
+}
+
+@keyframes rotating {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
