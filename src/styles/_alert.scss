@@ -1,0 +1,63 @@
+@include block(alert) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  width: 100%;
+  color: $grey800;
+  border-left: 5px solid $grey800;
+  background-color: $grey50;
+
+  @if ($is-rounded) {
+    border-radius: $radius;
+  }
+
+  @include element(title) {
+    font-weight: 500;
+    font-size: 1.1em;
+  }
+
+  @include element(close) {
+    margin-left: 1em;
+  }
+
+  @include modifier(primary) {
+    color: $primary;
+    border-color: $primary;
+    background-color: $primary50;
+  }
+
+  @include modifier(secondary) {
+    color: $secondary;
+    border-color: $secondary;
+    background-color: $secondary50;
+  }
+
+  @include modifier(danger) {
+    color: $danger;
+    border-color: $danger;
+    background-color: $danger-light;
+  }
+
+  @include modifier(warning) {
+    color: $warning;
+    border-color: $warning;
+    background-color: $warning-light;
+  }
+
+  @include modifier(success) {
+    color: $success;
+    border-color: $success;
+    background-color: $success-light;
+  }
+
+  @include modifier(info) {
+    color: $info;
+    border-color: $info;
+    background-color: $info-light;
+  }
+
+  @include element(close) {
+    cursor: pointer;
+  }
+}

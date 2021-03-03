@@ -1,0 +1,52 @@
+@include block(loading) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+  background-color: $white;
+  color: $primary;
+
+  @include modifier(animate-background) {
+    animation-duration: 800ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: loading-background-animation;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, #F5F5F5E0 3%, #FFFFFFE0 25%, #F5F5F5E0 45%);
+    background-size: 150vw 150vh;
+    backdrop-filter: blur(3px);
+  }
+
+  @include when(fullscreen) {
+    position: fixed;
+    z-index: 2001;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  @include when(absolute) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+  }
+
+  @include element(text) {
+    margin-top: 1em;
+  }
+}
+
+@keyframes loading-background-animation {
+  0% {
+    background-position: -50vw 0
+  }
+  100% {
+    background-position: 80vw 0
+  }
+}

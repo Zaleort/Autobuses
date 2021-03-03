@@ -1,12 +1,18 @@
 @import 'normalize';
 @import 'variables';
+@import 'alert';
+@import 'card';
 @import 'container';
 @import 'icon';
 @import 'input';
+@import 'label';
+@import 'linea';
+@import 'loading';
 @import 'scrollbar';
 @import 'select';
 @import 'tag';
 @import 'tooltip';
+@import 'topbar';
 @import 'utility';
 @import 'zonas';
 
@@ -19,7 +25,7 @@ body {
   font-weight: 300;
   background-color: $grey50;
   font-family: $font-family;
-  font-size: 1.2em;
+  font-size: 18px;
 }
 
 h1, h2, h3, h4 {
@@ -59,10 +65,6 @@ h4 {
 
 p { margin: 14px 0; }
 
-.icon {
-  transition: all 0.15s;
-}
-
 .header {
   position: fixed;
   top: 0;
@@ -86,8 +88,4 @@ p { margin: 14px 0; }
   padding: 28px 7px;
   text-decoration: none;
   color: #FFF;
-}
-
-main {
-  padding-top: $header-height;
 }

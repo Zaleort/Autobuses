@@ -1,0 +1,23 @@
+@include block(label) {
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include element(container) {
+    display: flex;
+    flex-direction: column;
+
+    @include modifier(left) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  @include modifier(margin) {
+    margin: 3px 0;
+    margin-right: 7px;
+  }
+}

@@ -1,0 +1,140 @@
+@include block(card) {
+  margin-top: 12px;
+  padding: 7px 12px;
+  background-color: #ffffff;
+  border-left: 9px solid $primary;
+  transition: all 120ms ease;
+  box-shadow:
+    inset -1px 0   0 $border-color,
+    inset  0  -1px 0 $border-color,
+    inset  0   1px 0 $border-color;
+
+  @if ($is-rounded) {
+    border-radius: $radius;
+  }
+
+  @if ($is-shadowed) {
+    box-shadow: $low-shadow;
+  }
+
+  @include when(compact) {
+    margin-top: 5px;
+    padding: 3px 7px;
+    border-left-width: 5px;
+  }
+
+  @include element(header) {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 3px;
+    margin-bottom: 12px;
+
+    @include mobile-l {
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+
+  @include element(title) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    font-weight: 500;
+    text-decoration: none;
+
+    & > * { margin: 2px 0 }
+
+    @include mobile-l {
+      align-items: center;
+      flex-direction: row;
+    }
+
+    @include tablet {
+      font-size: 16px;
+    }
+
+    @include when(clickable) {
+      cursor: pointer;
+      transition: all 0.1s;
+      padding: 0 5px;
+      margin-left: -5px;
+      &:hover {
+        background-color: lighten($color: $primary, $amount: 55%);
+      }
+    }
+  }
+
+  @include element(subtitle) {
+    flex-basis: 100%;
+    font-size: 12px;
+    color: $grey800;
+    font-weight: bold;
+
+    @include tablet {
+      font-size: 13px;
+    }
+  }
+
+  @include element(select) {
+    margin-right: 7px!important;
+  }
+
+  @include element(options) {
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-left: auto;
+
+    @include when(mobile) {
+      @include mobile-l {
+        display: none;
+      }
+    }
+
+    @include when(desktop) {
+      display: none;
+
+      @include mobile-l {
+        display: inline-block;
+      }
+    }
+  }
+
+  @include element(footer) {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    color: $info;
+    font-size: 0.9em;
+    margin-top: 12px;
+    margin-bottom: 3px;
+
+    & > * { margin: 2px 0 }
+  }
+
+  @include modifier(secondary) {
+    border-color: $secondary;
+  }
+
+  @include modifier(success) {
+    border-color: $success;
+  }
+
+  @include modifier(danger) {
+    border-color: $danger;
+  }
+
+  @include modifier(warning) {
+    border-color: $warning;
+  }
+
+  @include modifier(info) {
+    border-color: $info;
+  }
+
+  @include modifier(grey) {
+    border-color: $grey500;
+  }
+}

@@ -3,8 +3,8 @@
     <span
       :class="{
         'tooltip': true,
-        [`ui-tooltip--${color}`]: true,
-        [`ui-tooltip--${position}`]: true,
+        [`tooltip--${color}`]: true,
+        [`tooltip--${position}`]: true,
       }"
     >
       <slot name="content">{{ content }}</slot>
