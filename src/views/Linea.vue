@@ -17,19 +17,19 @@
         </div>
         <div class="linea-resumen-datos">
           <span class="linea-resumen-dato">
-            <icon icon="bus" />
+            <ui-icon icon="bus" />
             {{ paradasInfo.length }}
           </span>
           <span class="linea-resumen-dato">
-            <icon icon="clock" />
+            <ui-icon icon="clock" />
             {{ duracion }}
           </span>
           <span class="linea-resumen-dato">
-            <icon icon="running" />
+            <ui-icon icon="running" />
             {{ saltos }}
           </span>
           <span v-if="accesible" class="linea-resumen-dato">
-            <icon icon="wheelchair" />
+            <ui-icon icon="wheelchair" />
             Accesible
           </span>
         </div>
@@ -42,46 +42,34 @@
       <div class="horarios-filtro">
         <div class="horarios-filtro-group relative" @click-outside="dropdownSalida = false">
           <label for="paradaSalida">Salida</label>
-          <input
-            v-model="filtroParadaSalida"
-            class="input dropdown-input w100"
-            placeholder="Selecciona una parada"
-            name="paradaSalida"
-            type="text"
-            @input="updateFiltroParadasSalida()"
-            @focus="dropdownSalida = true"
+          <ui-select
+            v-model:value="filtroParadaSalida"
+            filterable
+            clearable
           >
-          <div class="dropdown-container w100" :class="{ 'visible': dropdownSalida }">
-            <li
+            <ui-option
               v-for="parada of filtroParadasSalida"
               :key="parada._id"
-              @click="setFiltroParadaSalida($event); dropdownSalida = false;"
-            >
-              {{ parada.name }}
-            </li>
-          </div>
+              :value="parada._id"
+              :label="parada.name"
+            />
+          </ui-select>
         </div>
         <div class="horarios-filtro-group relative" @click-outside="dropdownDestino = false">
           <label for="paradaDestino">Destino</label>
-          <input
-            v-model="filtroParadaDestino"
+          <ui-select
+            v-model:value="filtroParadaDestino"
+            filterable
+            clearable
             :disabled="!filtroParadaSalida"
-            class="input dropdown-input w100"
-            placeholder="Selecciona una parada"
-            name="paradaDestino"
-            type="text"
-            @input="updateFiltroParadasDestino()"
-            @focus="dropdownDestino = true"
           >
-          <div class="dropdown-container w100" :class="{ 'visible': dropdownDestino }">
-            <li
+            <ui-option
               v-for="parada of filtroParadasDestino"
               :key="parada._id"
-              @click="setFiltroParadaDestino($event); dropdownDestino = false;"
-            >
-              {{ parada.name }}
-            </li>
-          </div>
+              :value="parada._id"
+              :label="parada.name"
+            />
+          </ui-select>
         </div>
       </div>
     </div>
@@ -101,7 +89,9 @@ import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
 import LineaHorario from '@/components/LineaHorario.vue';
-import Icon from '@/components/Icon.vue';
+import UiIcon from '@/components/ui/UiIcon.vue';
+import UiSelect from '@/components/ui/UiSelect.vue';
+import UiOption from '@/components/ui/UiOption.vue';
 import Util from '@/composables/Util';
 import {
   ApiHorario, ApiHorarios, ApiParada, ApiNucleo,
@@ -114,7 +104,9 @@ export default defineComponent({
   name: 'Linea',
   components: {
     LineaHorario,
-    Icon,
+    UiIcon,
+    UiSelect,
+    UiOption,
   },
 
   setup() {
@@ -251,33 +243,6 @@ export default defineComponent({
       });
 
       return Array.from(setFrecuencias);
-    };
-
-    const setFiltroParadaSalida = (parada: any) => {
-      filtroParadaSalida.value = parada.target.innerHTML.trim();
-      // filterParadas();
-    };
-
-    const setFiltroParadaDestino = (parada: any) => {
-      filtroParadaDestino.value = parada.target.innerHTML.trim();
-    };
-
-    const updateFiltroParadasSalida = (): void => {
-      if (!filtroParadaSalida.value) {
-        filtroParadasSalida.value = paradasInfo.value;
-      }
-
-      filtroParadasSalida.value = paradasInfo.value
-        .filter(p => p.name.includes(filtroParadaSalida.value.toLocaleUpperCase()));
-    };
-
-    const updateFiltroParadasDestino = (): void => {
-      if (!filtroParadaDestino.value) {
-        filtroParadasDestino.value = paradasInfo.value;
-      }
-
-      filtroParadasDestino.value = paradasInfo.value
-        .filter(p => p.name.includes(filtroParadaDestino.value.toLocaleUpperCase()));
     };
 
     const getExcepcion = (dias: string, frecuencia: string): string | null => {
@@ -457,10 +422,6 @@ export default defineComponent({
       duracion,
       frecuenciasIda,
       frecuenciasVuelta,
-      setFiltroParadaSalida,
-      setFiltroParadaDestino,
-      updateFiltroParadasSalida,
-      updateFiltroParadasDestino,
       getExcepcion,
       getHorariosParadas,
       getTablaDeHorarios,
