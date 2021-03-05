@@ -1,11 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import store, { key } from './store';
 import '@/styles/main.scss';
 
 const app = createApp(App);
-app.use(store).use(router);
+app.use(store, key).use(router);
 
 app.directive('click-outside', {
   beforeMount(el, binding) {

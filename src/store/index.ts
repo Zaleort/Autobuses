@@ -1,8 +1,18 @@
-import { createStore } from 'vuex';
+import { InjectionKey } from 'vue';
+import { createStore, useStore as baseUseStore, Store } from 'vuex';
+import linea, { LineaState } from '@/store/linea';
 
-export default createStore({
+export interface State {
+  linea: LineaState;
+  urlBase: string;
+}
+
+export const key: InjectionKey<Store<State>> = Symbol('storeKey');
+
+export default createStore<State>({
   state: {
-      urlBase: 'http://localhost:3000/api/',
+    linea: linea.state(),
+    urlBase: 'http://localhost:3000/api/',
   },
 
   mutations: {
@@ -10,5 +20,10 @@ export default createStore({
   actions: {
   },
   modules: {
+    linea,
   },
 });
+
+export function useStore() {
+  return baseUseStore(key);
+}
