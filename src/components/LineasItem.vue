@@ -26,7 +26,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue';
-import { ApiLinea } from '@/interfaces/apiResponses';
 import UiCard from '@/components/ui/UiCard.vue';
 import UiTooltip from '@/components/ui/UiTooltip.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';

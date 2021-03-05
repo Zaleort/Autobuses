@@ -1,5 +1,4 @@
 import { h } from 'vue';
-import { Icons, IconObject } from '@/interfaces/icons';
 
 const icons: Icons = {
   angleUp: {

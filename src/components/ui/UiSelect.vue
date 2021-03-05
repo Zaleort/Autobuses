@@ -82,7 +82,6 @@ import UiInput from '@/components/ui/UiInput.vue';
 import UiTag from '@/components/ui/UiTag.vue';
 import UiOption from '@/components/ui/UiOption.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
-import { UiSelectOption } from '@/interfaces/Select';
 import useFormInject from '@/composables/formInject';
 import debounce from '@/lib/debounce';
 

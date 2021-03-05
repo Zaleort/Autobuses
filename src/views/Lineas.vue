@@ -27,7 +27,6 @@ import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
 import ApiLineas from '@/lib/ApiLineas';
 import ApiNucleos from '@/lib/ApiNucleos';
-import { ApiLinea, ApiNucleo } from '@/interfaces/apiResponses';
 
 export default defineComponent({
   name: 'Lineas',

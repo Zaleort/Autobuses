@@ -25,7 +25,6 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import icons from '@/components/icons/icons';
-import { Icons } from '@/interfaces/icons';
 
 export default defineComponent({
   name: 'UiIcon',
