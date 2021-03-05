@@ -1,15 +1,13 @@
-import { VNode } from 'vue';
-
-export interface Icons {
+interface Icons {
   [key: string]: Icon
 }
 
-export interface Icon {
+interface Icon {
   node: Function | VNode,
   viewBox: string,
 }
 
-export interface IconObject {
+interface IconObject {
   name: string,
   node: VNode,
   viewBox: string,

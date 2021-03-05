@@ -1,12 +1,12 @@
-export interface ApiError {
+interface ApiError {
   error: string;
 }
 
-export interface ApiLineas {
+interface ApiLineas {
   [id: string]: ApiLinea;
 }
 
-export interface ApiLinea {
+interface ApiLinea {
   _id: string;
   name: string;
   nucleosIda: string[];
@@ -20,31 +20,31 @@ export interface ApiLinea {
   saltos: number;
 }
 
-export interface ApiHorarios {
+interface ApiHorarios {
   ida: { [id: string]: ApiHorario[] };
   vuelta: { [id: string]: ApiHorario[] };
 }
 
-export interface ApiHorario {
+interface ApiHorario {
   hora: string;
   frecuencia: string;
 }
 
-export interface ApiParadas {
+interface ApiParadas {
   [id: string]: ApiParada;
 }
 
-export interface ApiParada {
+interface ApiParada {
   _id: string;
   name: string;
   zona: string;
 }
 
-export interface ApiNucleos {
+interface ApiNucleos {
   [id: string]: ApiNucleo;
 }
 
-export interface ApiNucleo {
+interface ApiNucleo {
   _id: string;
   name: string;
 }

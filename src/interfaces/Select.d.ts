@@ -1,4 +1,4 @@
-export interface UiSelectOption {
+interface UiSelectOption {
   value: any;
   key: number | string;
   label: string;

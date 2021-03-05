@@ -1,4 +1,4 @@
-export interface TablaHorarios {
+interface TablaHorarios {
   frecuencia: string,
   paradas: {
     id: string,
@@ -8,7 +8,14 @@ export interface TablaHorarios {
   }[]
 }
 
-export interface Hora {
+interface Hora {
   hora: string,
   excepcion: string | null,
+}
+
+interface LineaFiltro {
+  salida: string,
+  destino: string,
+  frecuencia?: string,
+  hora?: string,
 }
