@@ -1,8 +1,6 @@
-import { ApiLinea } from '@/interfaces/apiResponses';
 import api from '@/lib/ApiService';
-import store from '@/store';
 
-const { urlBase } = store.state;
+const urlBase = 'http://localhost:3000/api/';
 
 export default {
   getLineas: async (): Promise<ApiLinea[]> => api.get(`${urlBase}lineas`),

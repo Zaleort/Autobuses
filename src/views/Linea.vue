@@ -18,7 +18,7 @@
         <div class="linea-resumen__datos">
           <span class="linea-resumen__dato">
             <ui-icon icon="bus" />
-            {{ paradasInfo.length }}
+            {{ paradas.length }}
           </span>
           <span class="linea-resumen__dato">
             <ui-icon icon="clock" />
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <linea-filtro :paradas="paradasInfo" @update="filtro = $event" />
+    <linea-filtro :paradas="paradas" @update="filtro = $event" />
 
     <linea-horario
       :tipo-horario="'ida'"
@@ -60,12 +60,9 @@ import LineaHorario from '@/components/LineaHorario.vue';
 import LineaFiltro from '@/components/LineaFiltro.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
 import Util from '@/composables/Util';
-import {
-  ApiHorario, ApiHorarios, ApiParada, ApiNucleo,
-} from '@/interfaces/apiResponses';
-import { TablaHorarios, Hora } from '@/interfaces/linea';
 import ApiLineas from '@/lib/ApiLineas';
 import { useRoute } from 'vue-router';
+import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'Linea',
@@ -78,26 +75,24 @@ export default defineComponent({
   setup() {
     const { hoursToMinutes } = Util();
     const route = useRoute();
+    const store = useStore();
 
-    const name = ref('');
-    const accesible = ref(false);
+    const name = computed(() => store.state.linea.name);
+    const accesible = computed(() => store.state.linea.accesible);
+    const horarios = computed(() => store.state.linea.horarios);
+    const paradas = computed(() => store.state.linea.paradas);
+    const paradasIda = computed(() => store.state.linea.paradasIda);
+    const paradasVuelta = computed(() => store.state.linea.paradasVuelta);
+    const nucleos = computed(() => store.state.linea.nucleos);
+    const nucleosIda = computed(() => store.state.linea.nucleosIda);
+    const nucleosVuelta = computed(() => store.state.linea.nucleosVuelta);
+    const saltos = computed(() => store.state.linea.saltos);
 
-    const horarios = ref<ApiHorarios>();
     const tablaHorariosIda = ref<TablaHorarios[]>([]);
     const tablaHorariosVuelta = ref<TablaHorarios[]>([]);
 
-    const paradasIda = ref<string[]>([]);
-    const paradasVuelta = ref<string[]>();
-    const paradasInfo = ref<ApiParada[]>([]);
-
-    const nucleosIda = ref<string[]>([]);
-    const nucleosVuelta = ref<string[]>();
-    const nucleosInfo = ref<ApiNucleo[]>([]);
-
     const dropdownSalida = ref(false);
     const dropdownDestino = ref(false);
-
-    const saltos = ref(0);
 
     const frecuenciasLV = ref<string[]>(['L-D', 'L-V', 'L-S', 'L-VDF', 'M-S', 'M-V', 'M-J', 'VD', 'L-X-V', 'L', 'V']);
     const frecuenciasSD = ref<string[]>(['L-D', 'L-S', 'L-VDF', 'S-D-F', 'DF', 'M-S', 'VD', 'S', 'D']);
@@ -105,15 +100,17 @@ export default defineComponent({
     const frecuencias = ref<string[]>(['LV', 'SD', 'F']);
 
     const filtro = ref();
-
     const loading = ref(true);
-    const apiLinea = ApiLineas;
 
     const hasVuelta = () => horarios.value?.vuelta != null;
 
     const recorrido = computed(() => {
-      const salida = nucleosInfo.value.find(n => n._id === nucleosIda.value[0]);
-      const destino = nucleosInfo.value.find(n => n._id === nucleosIda.value[nucleosIda.value.length - 1]);
+      if (!nucleos.value || !nucleosIda.value) return '';
+
+      const salidaId = nucleosIda.value[0];
+      const destinoId = nucleosIda.value[nucleosIda.value.length - 1];
+      const salida = nucleos.value.find(n => n._id === salidaId);
+      const destino = nucleos.value.find(n => n._id === destinoId);
 
       if (!salida || !destino) {
         console.log('No se han encontrado los núcleos');
@@ -126,23 +123,25 @@ export default defineComponent({
     });
 
     const nucleosList = computed((): string[] => {
-      if (nucleosIda.value == null) { return []; }
+      if (nucleosIda.value == null || nucleos.value == null) return [];
 
-      const nucleos: string[] = [];
+      const list: string[] = [];
+      const arrNucleos = nucleos.value;
       nucleosIda.value.forEach(nucleoIda => {
-        const nucleo = nucleosInfo.value.find(n => n._id === nucleoIda);
+        const nucleo = arrNucleos.find(n => n._id === nucleoIda);
         if (!nucleo) return;
 
-        nucleos.push(nucleo.name.toLowerCase());
+        list.push(nucleo.name.toLowerCase());
       });
 
-      return nucleos;
+      return list;
     });
 
     const zonas = (): string[] => {
+      if (paradas.value == null) return [];
       const arr: string[] = [];
 
-      paradasInfo.value.forEach(parada => {
+      paradas.value.forEach(parada => {
         if (!arr.some(z => z === parada.zona)) {
           arr.push(parada.zona);
         }
@@ -153,7 +152,7 @@ export default defineComponent({
 
     // @TODO Resolver para casos como M-336
     const duracion = computed(() => {
-      if (horarios.value == null) { return '?'; }
+      if (horarios.value == null || paradasIda.value == null) { return '?'; }
       const primera = paradasIda.value[0];
       const ultima = paradasIda.value[paradasIda.value.length - 1];
 
@@ -183,7 +182,7 @@ export default defineComponent({
     });
 
     const frecuenciasIda = (): string[] => {
-      if (!horarios.value) return [];
+      if (!horarios.value || !paradasIda.value) return [];
 
       const setFrecuencias: Set<string> = new Set();
       const primeraParada = paradasIda.value[0];
@@ -243,7 +242,8 @@ export default defineComponent({
       }
     };
 
-    const getHorariosParadas = (paradas: string[], horariosIda: ApiHorarios['ida'], frecuencia: string) => {
+    const getHorariosParadas = (paradasIds: string[], horariosIda: ApiHorarios['ida'], frecuencia: string) => {
+      if (!paradas.value) return [];
       const arr = [];
       let dias: string[];
 
@@ -257,19 +257,19 @@ export default defineComponent({
         return [];
       }
 
-      for (let i = 0; i < paradas.length; i++) {
-        const paradaInfo = paradasInfo.value.find(p => p._id === paradas[i]);
+      for (let i = 0; i < paradasIds.length; i++) {
+        const paradaInfo = paradas.value.find(p => p._id === paradasIds[i]);
         if (!paradaInfo) return [];
 
         const { name, zona } = paradaInfo;
         const parada = {
-          id: paradas[i],
+          id: paradasIds[i],
           name,
           zona,
           horario: [] as Hora[],
         };
 
-        horariosIda[paradas[i]].forEach(hora => {
+        horariosIda[paradasIds[i]].forEach(hora => {
           if (dias.some(d => d === hora.frecuencia) && hora.hora !== '--') {
             const horario = {
               hora: hora.hora,
@@ -289,7 +289,7 @@ export default defineComponent({
     };
 
     const getTablaDeHorarios = (ida: boolean): TablaHorarios[] => {
-      if (!horarios.value) return [] as TablaHorarios[];
+      if (!horarios.value || !paradasIda.value) return [] as TablaHorarios[];
 
       let paradas: string[];
       let tablaHorarios: ApiHorarios['ida'] | ApiHorarios['vuelta'];
@@ -314,7 +314,8 @@ export default defineComponent({
     };
 
     const getParadaName = (_id: string): string => {
-      const parada = paradasInfo.value.find(p => p._id === _id);
+      if (!paradas.value) return '';
+      const parada = paradas.value.find(p => p._id === _id);
 
       if (!parada) {
         console.warn(`No se encuentra la parada con ID: ${_id}`);
@@ -326,17 +327,7 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        const res = await apiLinea.getLinea(route.params.id as string);
-        name.value = res.name;
-        accesible.value = res.accesible;
-        horarios.value = res.horarios;
-        paradasIda.value = res.paradasIda;
-        paradasVuelta.value = res.paradasVuelta;
-        paradasInfo.value = res.paradasInfo;
-        nucleosIda.value = res.nucleosIda;
-        nucleosVuelta.value = res.nucleosVuelta;
-        nucleosInfo.value = res.nucleosInfo;
-        saltos.value = res.saltos;
+        await store.dispatch('loadLinea', route.params.id);
 
         tablaHorariosIda.value = getTablaDeHorarios(true);
         tablaHorariosVuelta.value = getTablaDeHorarios(false);
@@ -349,16 +340,17 @@ export default defineComponent({
 
     return {
       name,
+      store,
       accesible,
       horarios,
       tablaHorariosIda,
       tablaHorariosVuelta,
+      paradas,
       paradasIda,
       paradasVuelta,
-      paradasInfo,
+      nucleos,
       nucleosIda,
       nucleosVuelta,
-      nucleosInfo,
       dropdownSalida,
       dropdownDestino,
       saltos,
