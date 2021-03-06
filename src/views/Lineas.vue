@@ -1,20 +1,20 @@
 <template>
-  <div v-if="!loading" class="linea">
+  <div v-if="!loading" class="linea position-relative">
     <h1>Líneas</h1>
-    <div>
-      <ui-input
-        v-model:value="searchQuery"
-        :type="'search'"
-        :name="'search'"
-        :placeholder="'Buscar...'"
-      />
-    </div>
-    <lineas-item
-      v-for="linea of filteredLineas"
-      :key="linea._id"
-      :linea="linea"
-      :nucleos="getNucleosNames(linea.nucleosIda)"
+    <ui-input
+      v-model:value="searchQuery"
+      :type="'search'"
+      :name="'search'"
+      :placeholder="'Buscar...'"
     />
+    <transition-group name="linea-card">
+      <lineas-item
+        v-for="linea of filteredLineas"
+        :key="linea._id"
+        :linea="linea"
+        :nucleos="getNucleosNames(linea.nucleosIda)"
+      />
+    </transition-group>
   </div>
 </template>
 

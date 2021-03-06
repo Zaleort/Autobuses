@@ -1,31 +1,31 @@
 import api from '@/lib/ApiLineas';
 
 export interface LineaState {
-  _id: string | null;
-  name: string | null;
-  accesible: boolean | null;
-  horarios: ApiHorarios | null;
-  paradas: ApiParada[] | null;
-  paradasIda: string[] | null;
+  _id: string;
+  name: string;
+  accesible: boolean;
+  horarios: ApiHorarios;
+  paradas: ApiParada[];
+  paradasIda: string[];
   paradasVuelta: string[] | null;
-  nucleos: ApiNucleo[] | null;
-  nucleosIda: string[] | null;
+  nucleos: ApiNucleo[];
+  nucleosIda: string[];
   nucleosVuelta: string[] | null;
-  saltos: number | null;
+  saltos: number;
 }
 
 const lineaState = (): LineaState => ({
-  _id: null,
-  name: null,
-  accesible: null,
-  horarios: null,
-  paradas: null,
-  paradasIda: null,
+  _id: '',
+  name: '',
+  accesible: false,
+  horarios: {} as ApiHorarios,
+  paradas: [],
+  paradasIda: [],
   paradasVuelta: null,
-  nucleos: null,
-  nucleosIda: null,
+  nucleos: [],
+  nucleosIda: [],
   nucleosVuelta: null,
-  saltos: null,
+  saltos: 1,
 });
 
 const mutations = {

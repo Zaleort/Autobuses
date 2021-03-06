@@ -166,3 +166,14 @@
     color: $grey100;
   }
 }
+
+.linea-card-enter-from,
+.linea-card-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.linea-card-leave-active {
+  position: absolute;
+  width: 100%;
+}
