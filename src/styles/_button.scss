@@ -1,0 +1,232 @@
+@include block(button) {
+  padding: 7px 16px;
+  transition: all 90ms ease-in;
+
+  @if $is-rounded {
+    border-radius: $radius;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transition-timing-function: ease-out;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @include modifier(small) {
+    padding: 3px 12px;
+  }
+
+  @include modifier(large) {
+    padding: 11px 16px;
+  }
+
+  @include modifier(primary) {
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $primary600;
+      border-color: $primary600;
+    }
+
+    &:disabled {
+      background-color: $primary200;
+      border-color: $primary200;
+    }
+
+    @include when(plain) {
+      color: $primary;
+      background-color: $primary50;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+
+  @include modifier(secondary) {
+    background-color: $secondary;
+    border: 1px solid $secondary;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $secondary600;
+      border-color: $secondary600;
+    }
+
+    &:disabled {
+      background-color: $secondary200;
+      border-color: $secondary200;
+    }
+
+    @include when(plain) {
+      color: $secondary;
+      background-color: $secondary50;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $secondary;
+        border-color: $secondary;
+      }
+    }
+  }
+
+  @include modifier(success) {
+    background-color: $success;
+    border: 1px solid $success;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $success-dark;
+      border-color: $success-dark;
+    }
+
+    &:disabled {
+      background-color: $success-light;
+      border-color: $success-light;
+    }
+
+    @include when(plain) {
+      color: $success;
+      background-color: $success-light;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $success;
+        border-color: $success;
+      }
+    }
+  }
+
+  @include modifier(warning) {
+    background-color: $warning;
+    border: 1px solid $warning;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $warning-dark;
+      border-color: $warning-dark;
+    }
+
+    &:disabled {
+      background-color: $warning-light;
+      border-color: $warning-light;
+    }
+
+    @include when(plain) {
+      color: $warning;
+      background-color: $warning-light;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $warning;
+        border-color: $warning;
+      }
+    }
+  }
+
+  @include modifier(danger) {
+    background-color: $danger;
+    border: 1px solid $danger;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $danger-dark;
+      border-color: $danger-dark;
+    }
+
+    &:disabled {
+      background-color: $danger-light;
+      border-color: $danger-light;
+    }
+
+    @include when(plain) {
+      color: $danger;
+      background-color: $danger-light;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $danger;
+        border-color: $danger;
+      }
+    }
+  }
+
+  @include modifier(info) {
+    background-color: $info;
+    border: 1px solid $info;
+    color: $white;
+
+    &:hover, &:focus {
+      background-color: $info-dark;
+      border-color: $info-dark;
+    }
+
+    &:disabled {
+      background-color: $info-light;
+      border-color: $info-light;
+    }
+
+    @include when(plain) {
+      color: $info;
+      background-color: $info-light;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $info;
+        border-color: $info;
+      }
+    }
+  }
+
+  @include modifier(grey) {
+    background-color: $grey500;
+    border: 1px solid $grey500;
+    color: $white;
+
+    &:hover, &:focus, &:focus {
+      background-color: $grey700;
+      border-color: $grey700;
+    }
+
+    &:disabled {
+      background-color: $grey200;
+      border-color: $grey200;
+    }
+
+    @include when(plain) {
+      color: $grey500;
+      background-color: $grey200;
+
+      &:hover, &:focus {
+        color: $white;
+        background-color: $grey500;
+        border-color: $grey500;
+      }
+    }
+  }
+
+  @include modifier(white) {
+    background-color: $white;
+    border: 1px solid $border-color;
+    color: $text-color;
+
+    &:hover, &:focus {
+      color: $primary;
+    }
+  }
+
+  @include when(pill) {
+    border-radius: 50px;
+  }
+}
