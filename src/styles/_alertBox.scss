@@ -1,0 +1,124 @@
+@include block(alert-box) {
+  background-color: $white;
+  padding: 12px;
+  border: 1px solid $border-color;
+  min-width: 310px;
+
+  @if ($is-rounded) {
+    border-radius: $radius;
+  }
+
+  @if($is-shadowed) {
+    box-shadow: $low-shadow;
+  }
+
+  & g {
+    fill: $primary;
+  }
+
+  @include modifier(error) {
+    & g {
+      fill: $danger;
+    }
+  }
+
+  @include modifier(warning) {
+    & g {
+      fill: $warning;
+    }
+  }
+
+  @include modifier(success) {
+    & g {
+      fill: $success;
+    }
+  }
+
+  @include modifier(info) {
+    & g {
+      fill: $info;
+    }
+  }
+
+  @include element(mask) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2000;
+  }
+
+  @include element(title) {
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 12px;
+  }
+
+  @include element(body) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include element(footer) {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1em;
+  }
+}
+
+.alert-box-fade-enter-active {
+  animation-duration: 220ms;
+  animation-name: fade-enter;
+
+  .alert-box {
+    animation: alert-box-fade-up-enter;
+    animation-timing-function: ease-out;
+    animation-duration: 220ms;
+  }
+}
+
+.alert-box-fade-leave-active {
+  animation-duration: 220ms;
+  animation-name: fade-leave;
+
+  .alert-box {
+    animation: alert-box-fade-down-leave;
+    animation-timing-function: ease-in;
+    animation-duration: 220ms;
+  }
+}
+
+.alert-box-fade-leave-to {
+  .alert-box {
+    opacity: 0;
+  }
+}
+
+@keyframes alert-box-fade-down-leave {
+  from {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+
+  to {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0);
+  }
+}
+
+@keyframes alert-box-fade-up-enter {
+  from {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0);
+  }
+
+  to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+}

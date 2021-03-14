@@ -15,18 +15,18 @@ export default () => {
         return '';
       }
     }
-  }
-  
+  };
+
   const hoursToMinutes = (hour: string): number => {
     const arr = hour.split(':');
     const hourInMinutes = parseInt(arr[0], 10) * 60;
     const minutes = parseInt(arr[1], 10);
-  
+
     return hourInMinutes + minutes;
-  }
-  
+  };
+
   return {
     normalizeFrecuencias,
     hoursToMinutes,
-  }
+  };
 };

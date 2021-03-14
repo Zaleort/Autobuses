@@ -101,7 +101,7 @@ export default defineComponent({
 
   setup(props) {
     const store = useStore();
-    const paradas = computed(() => {
+    const paradas = computed((): string[] => {
       if (props.tipoHorario === 'ida') return store.state.linea.paradasIda;
       return store.state.linea.paradasVuelta;
     });
