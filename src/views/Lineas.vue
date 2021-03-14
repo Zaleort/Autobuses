@@ -17,6 +17,13 @@
     </transition-group>
   </div>
 
+  <component
+    :is="alertComponent"
+    :show="showAlertBox"
+    @ok="closeAlert"
+    @cancel="closeAlert"
+  />
+
   <ui-loading :loading="loading" text="Cargando líneas..." />
 </template>
 
@@ -24,12 +31,13 @@
 import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
-import { useStore } from 'vuex';
+import { useStore } from '@/store';
 import UiLoading from '@/components/ui/UiLoading.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
 import ApiLineas from '@/lib/ApiLineas';
 import ApiNucleos from '@/lib/ApiNucleos';
+import AlertBox from '@/composables/alertBox';
 
 export default defineComponent({
   name: 'Lineas',
@@ -48,7 +56,9 @@ export default defineComponent({
     const apiNucleos = ApiNucleos;
     const store = useStore();
 
-    const urlBase = computed(() => store.state.urlBase);
+    const {
+      openAlert, closeAlert, alertComponent, showAlertBox,
+    } = AlertBox();
 
     const filteredLineas = computed(() => {
       const value = searchQuery.value.trim().toUpperCase();
@@ -97,20 +107,29 @@ export default defineComponent({
 
         const lineasResponse = await apiLineas.getLineas();
         lineas.value = lineasResponse;
-        loading.value = false;
       } catch (error) {
+        openAlert({
+          title: 'Error',
+          message: 'Ha ocurrido un error obteniendo los datos de las líneas',
+        });
         console.log(error);
+      } finally {
+        loading.value = false;
       }
     });
 
     return {
-      urlBase,
+      store,
       lineas,
       nucleos,
       loading,
       searchQuery,
       filteredLineas,
       getNucleosNames,
+      openAlert,
+      closeAlert,
+      showAlertBox,
+      alertComponent,
     };
   },
 });

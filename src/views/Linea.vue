@@ -51,6 +51,13 @@
     />
   </div>
 
+  <component
+    :is="alertComponent"
+    :show="showAlertBox"
+    @ok="closeAlert"
+    @cancel="closeAlert"
+  />
+
   <ui-loading :loading="loading" text="Cargando línea..." />
 </template>
 
@@ -63,6 +70,7 @@ import LineaFiltro from '@/components/LineaFiltro.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
 import UiLoading from '@/components/ui/UiLoading.vue';
 import Util from '@/composables/Util';
+import AlertBox from '@/composables/alertBox';
 import { useRoute } from 'vue-router';
 import { useStore } from '@/store';
 
@@ -79,6 +87,10 @@ export default defineComponent({
     const { hoursToMinutes } = Util();
     const route = useRoute();
     const store = useStore();
+
+    const {
+      openAlert, closeAlert, alertComponent, showAlertBox,
+    } = AlertBox();
 
     const name = computed((): string => store.state.linea.name);
     const accesible = computed((): boolean => store.state.linea.accesible);
@@ -334,10 +346,14 @@ export default defineComponent({
 
         tablaHorariosIda.value = getTablaDeHorarios(true);
         tablaHorariosVuelta.value = getTablaDeHorarios(false);
-
-        loading.value = false;
       } catch (error) {
+        openAlert({
+          title: 'Error',
+          message: error.message || 'Ha ocurrido un error obteniendo los datos de la línea',
+        });
         console.error(error);
+      } finally {
+        loading.value = false;
       }
     });
 
@@ -374,6 +390,10 @@ export default defineComponent({
       getHorariosParadas,
       getTablaDeHorarios,
       getParadaName,
+      openAlert,
+      closeAlert,
+      alertComponent,
+      showAlertBox,
     };
   },
 });
