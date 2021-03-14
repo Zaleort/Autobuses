@@ -22,9 +22,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import UiIcon from '@/components/ui/UiIcon.vue';
 
 export default defineComponent({
   name: 'UiLoading',
+  components: {
+    UiIcon,
+  },
   props: {
     loading: {
       type: Boolean,
