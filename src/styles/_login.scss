@@ -1,0 +1,42 @@
+@include block(login) {
+  margin: 0 auto;
+  max-width: $mobile-l;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include element(content) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 16px;
+    background-color: white;
+    border-radius: $radius;
+    box-shadow: $low-shadow;
+  }
+
+  @include element(heading) {
+    margin: 0;
+    margin-bottom: 7px;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  @include element(input) {
+    margin: 7px 0;
+  }
+
+  @include element(button) {
+    margin-top: 12px;
+  }
+
+  @include element(register) {
+    display: block;
+    align-self: flex-end;
+    margin-top: 12px;
+    font-size: 0.9em;
+  }
+}
