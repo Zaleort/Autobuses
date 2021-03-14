@@ -50,6 +50,8 @@
       :filtro="filtro"
     />
   </div>
+
+  <ui-loading :loading="loading" text="Cargando línea..." />
 </template>
 
 <script lang="ts">
@@ -59,8 +61,8 @@ import {
 import LineaHorario from '@/components/LineaHorario.vue';
 import LineaFiltro from '@/components/LineaFiltro.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
+import UiLoading from '@/components/ui/UiLoading.vue';
 import Util from '@/composables/Util';
-import ApiLineas from '@/lib/ApiLineas';
 import { useRoute } from 'vue-router';
 import { useStore } from '@/store';
 
@@ -68,6 +70,7 @@ export default defineComponent({
   name: 'Linea',
   components: {
     UiIcon,
+    UiLoading,
     LineaHorario,
     LineaFiltro,
   },
@@ -77,16 +80,16 @@ export default defineComponent({
     const route = useRoute();
     const store = useStore();
 
-    const name = computed(() => store.state.linea.name);
-    const accesible = computed(() => store.state.linea.accesible);
-    const horarios = computed(() => store.state.linea.horarios);
-    const paradas = computed(() => store.state.linea.paradas);
-    const paradasIda = computed(() => store.state.linea.paradasIda);
-    const paradasVuelta = computed(() => store.state.linea.paradasVuelta);
-    const nucleos = computed(() => store.state.linea.nucleos);
-    const nucleosIda = computed(() => store.state.linea.nucleosIda);
-    const nucleosVuelta = computed(() => store.state.linea.nucleosVuelta);
-    const saltos = computed(() => store.state.linea.saltos);
+    const name = computed((): string => store.state.linea.name);
+    const accesible = computed((): boolean => store.state.linea.accesible);
+    const horarios = computed((): ApiHorarios => store.state.linea.horarios);
+    const paradas = computed((): ApiParada[] => store.state.linea.paradas);
+    const paradasIda = computed((): string[] => store.state.linea.paradasIda);
+    const paradasVuelta = computed((): string[] => store.state.linea.paradasVuelta);
+    const nucleos = computed((): ApiNucleo[] => store.state.linea.nucleos);
+    const nucleosIda = computed((): string[] => store.state.linea.nucleosIda);
+    const nucleosVuelta = computed((): string[] => store.state.linea.nucleosVuelta);
+    const saltos = computed((): number => store.state.linea.saltos);
 
     const tablaHorariosIda = ref<TablaHorarios[]>([]);
     const tablaHorariosVuelta = ref<TablaHorarios[]>([]);

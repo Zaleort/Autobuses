@@ -16,6 +16,8 @@
       />
     </transition-group>
   </div>
+
+  <ui-loading :loading="loading" text="Cargando líneas..." />
 </template>
 
 <script lang="ts">
@@ -23,6 +25,7 @@ import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
 import { useStore } from 'vuex';
+import UiLoading from '@/components/ui/UiLoading.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
 import ApiLineas from '@/lib/ApiLineas';
@@ -31,6 +34,7 @@ import ApiNucleos from '@/lib/ApiNucleos';
 export default defineComponent({
   name: 'Lineas',
   components: {
+    UiLoading,
     UiInput,
     LineasItem,
   },
