@@ -128,9 +128,6 @@ export default defineComponent({
       const salidaIndex = paradas.value.findIndex(p => p === salida);
       const destinoIndex = paradas.value.findIndex(p => p === destino);
 
-      console.log(salidaIndex);
-      console.log(destinoIndex);
-
       if (destinoIndex >= 0 && salidaIndex >= destinoIndex) {
         showHorario.value = false;
         return;
@@ -141,9 +138,20 @@ export default defineComponent({
       filteredHorarios.value.forEach(h => {
         const p = h.paradas;
         h.paradas = [];
+
+        // Si la salida no está disponible ese día no continuar con el proceso
+        if (!p[salidaIndex]) return;
         h.paradas.push(p[salidaIndex]);
 
-        if (destinoIndex >= 0) h.paradas.push(p[destinoIndex]);
+        // Destino existe
+        if (destinoIndex >= 0 && p[destinoIndex]) {
+          h.paradas.push(p[destinoIndex]);
+        }
+
+        // Si existe destino pero no está disponible ese día, entonces no puede ser una opción
+        if (destinoIndex >= 0 && !p[destinoIndex]) {
+          h.paradas = [];
+        }
       });
     });
 

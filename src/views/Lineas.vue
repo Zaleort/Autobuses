@@ -3,6 +3,7 @@
     <h1>Líneas</h1>
     <ui-input
       v-model:value="searchQuery"
+      size="large"
       :type="'search'"
       :name="'search'"
       :placeholder="'Buscar...'"
