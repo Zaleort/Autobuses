@@ -51,6 +51,7 @@ import UiAlert from '@/components/ui/UiAlert.vue';
 import UiLabel from '@/components/ui/UiLabel.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import UiButton from '@/components/ui/UiButton.vue';
+import router from '@/router';
 
 export default defineComponent({
   name: 'Login',
@@ -79,6 +80,7 @@ export default defineComponent({
         loading.value = true;
         const response = await store.dispatch('login', usuario);
         console.log(response);
+        router.push({ name: 'Home' });
       } catch (e) {
         error.value = e.message || e;
       } finally {
