@@ -1,0 +1,138 @@
+@include block(table) {
+  position: relative;
+  width: 100%;
+  background-color: $white;
+  border-collapse: collapse;
+
+  @include modifier(stripe) {
+    & .table__row:nth-child(even) {
+      background-color: $grey50;
+    }
+  }
+
+  @include element(wrapper) {
+    position: relative;
+    background-color: $white;
+    border: 1px solid $border-color;
+    overflow: auto;
+
+    @if ($is-rounded) {
+      border-radius: $radius;
+    }
+
+    @if ($is-shadowed) {
+      box-shadow: $low-shadow;
+    }
+  }
+
+  @include element(empty-text) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    font-weight: 500;
+    color: $text-secondary-color;
+  }
+
+  //
+  //  HEADING
+  //
+  @include element(heading) {
+    padding: 16px 12px;
+    border-bottom: 1px solid $border-color;
+    background-color: $white;
+    font-weight: normal;
+    text-align: left;
+    color: $primary;
+    font-size: 1.1em;
+    text-overflow: ellipsis;
+
+    @include modifier(mini) {
+      padding: 9px 5px;
+      font-size: 0.9em;
+    }
+
+    @include modifier(small) {
+      padding: 12px 7px;
+      font-size: 1em;
+    }
+
+    @include modifier(large) {
+      padding: 16px;
+    }
+  }
+
+  @include element(heading-cell) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include element(order) {
+    display: inline-flex;
+    flex-direction: column;
+    color: $text-color;
+  }
+ 
+  //
+  //  ROW
+  //
+  @include element(row) {
+    transition: all 50ms ease;
+
+    &:hover {
+      background-color: $grey50;
+    }
+
+    @include modifier(primary) {
+      background-color: $primary100!important;
+    }
+
+    @include modifier(secondary) {
+      background-color: $secondary100!important;
+    }
+
+    @include modifier(danger) {
+      background-color: $danger-light!important;
+    }
+
+    @include modifier(warning) {
+      background-color: $warning-light!important;
+    }
+
+    @include modifier(success) {
+      background-color: $success-light!important;
+    }
+
+    @include modifier(info) {
+      background-color: $info-light!important;
+    }
+  }
+
+  //
+  // DATA
+  //
+  @include element(data) {
+    padding: 12px;
+    border-bottom: 1px solid $border-color;
+    text-overflow: ellipsis;
+
+    @include modifier(mini) {
+      padding: 5px;
+      font-size: 0.85em;
+    }
+
+    @include modifier(small) {
+      padding: 7px;
+      font-size: 0.9em;
+    }
+
+    @include modifier(large) {
+      padding: 16px;
+    }
+  }
+
+  @include element(foot) {
+    width: 100%;
+    text-align: center;
+  }
+}
