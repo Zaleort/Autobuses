@@ -3,12 +3,12 @@
   position: relative;
   width: 100%;
 
-  & .ui-input__inner.is-readonly {
+  & .input__inner.is-readonly {
     color: $text-color;
     cursor: pointer;
   }
 
-  & .ui-input.is-focus {
+  & .input.is-focus {
     border-color: $primary;
   }
 
@@ -16,7 +16,7 @@
     display: flex;
     flex-wrap: wrap;
 
-    & .ui-tag {
+    & .tag {
       margin: 2px;
     }
   }
@@ -79,14 +79,14 @@
   }
 }
 
-.ui-select-show-enter-active {
+.select-show-enter-active {
   transform-origin: top;
   animation-duration: 120ms;
   animation-timing-function: ease-out;
   animation-name: ui-select-show-enter;
 }
 
-.ui-select-show-leave-active {
+.select-show-leave-active {
   transform-origin: top;
   animation-duration: 120ms;
   animation-timing-function: ease-in;
