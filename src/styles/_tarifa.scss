@@ -1,0 +1,23 @@
+@include block(tarifa) {
+  max-width: $desktop-xl;
+  margin: 0 auto;
+
+  @include element(descripcion) {
+    display: flex;
+    flex-direction: column;
+
+    @include desktop {
+      flex-direction: row;
+    }
+  }
+
+  @include element(img) {
+    display: block;
+    margin-top: 12px;
+
+    @include desktop {
+      margin-left: 12px;
+      margin-top: 0;
+    }
+  }
+}

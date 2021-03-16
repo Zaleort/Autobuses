@@ -28,8 +28,6 @@
   flex-direction: column;
   margin-bottom: 2em;
 
-  @include tablet { margin: 2em 0; }
-
   @include element(info) {
     display: flex;
     flex-direction: column;
