@@ -138,7 +138,7 @@ export default defineComponent({
     });
 
     const nucleosList = computed((): string[] => {
-      if (nucleosIda.value == null || nucleos.value == null) return [];
+      if (!nucleosIda.value || !nucleos.value) return [];
 
       const list: string[] = [];
       const arrNucleos = nucleos.value;
@@ -177,7 +177,7 @@ export default defineComponent({
         horaPrimera = horarios.value.ida[primera][i].hora;
         horaUltima = horarios.value.ida[ultima][i].hora;
 
-        if (horaPrimera !== '--' || horaUltima !== '--') {
+        if (horaPrimera !== '--' && horaUltima !== '--') {
           break;
         }
       }
