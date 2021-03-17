@@ -1,51 +1,53 @@
 <template>
-  <teleport to="body">
-    <transition name="alert-box-fade">
-      <div
-        v-if="show"
-        class="alert-box__mask"
-        @click="closeOnMask ? alertCancel() : null"
-      >
+  <span>
+    <teleport to="body">
+      <transition name="alert-box-fade">
         <div
-          :class="{
-            'alert-box': true,
-            [`alert-box--${type}`]: true,
-          }"
-          @click.stop
+          v-if="show"
+          class="alert-box__mask"
+          @click="closeOnMask ? alertCancel() : null"
         >
-          <header class="alert-box__title">
-            {{ title }}
-          </header>
-          <div class="alert-box__body">
-            <ui-icon
-              class="mr-4"
-              size="xlarge"
-              :icon="type"
-            />
-            <slot>{{ message }}</slot>
+          <div
+            :class="{
+              'alert-box': true,
+              [`alert-box--${type}`]: true,
+            }"
+            @click.stop
+          >
+            <header class="alert-box__title">
+              {{ title }}
+            </header>
+            <div class="alert-box__body">
+              <ui-icon
+                class="mr-4"
+                size="xlarge"
+                :icon="type"
+              />
+              <slot>{{ message }}</slot>
+            </div>
+            <footer class="alert-box__footer">
+              <ui-button
+                :color="okButtonColor"
+                size="small"
+                @click="alertOk(okButtonAction)"
+              >
+                {{ okButton }}
+              </ui-button>
+              <ui-button
+                v-if="showCancelButton"
+                :color="cancelButtonColor"
+                size="small"
+                class="mr-2"
+                @click="alertCancel(cancelButtonAction)"
+              >
+                {{ cancelButton }}
+              </ui-button>
+            </footer>
           </div>
-          <footer class="alert-box__footer">
-            <ui-button
-              :color="okButtonColor"
-              size="small"
-              @click="alertOk(okButtonAction)"
-            >
-              {{ okButton }}
-            </ui-button>
-            <ui-button
-              v-if="showCancelButton"
-              :color="cancelButtonColor"
-              size="small"
-              class="mr-2"
-              @click="alertCancel(cancelButtonAction)"
-            >
-              {{ cancelButton }}
-            </ui-button>
-          </footer>
         </div>
-      </div>
-    </transition>
-  </teleport>
+      </transition>
+    </teleport>
+  </span>
 </template>
 
 <script lang="ts">
