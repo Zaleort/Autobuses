@@ -39,6 +39,18 @@
     & g { fill: $secondary; }
   }
 
+  @include modifier(success) {
+    & g { fill: $success; }
+  }
+
+  @include modifier(danger) {
+    & g { fill: $danger; }
+  }
+
+  @include modifier(warning) {
+    & g { fill: $warning; }
+  }
+
   @include modifier(grey) {
     & g { fill: $text-secondary-color; }
   }
