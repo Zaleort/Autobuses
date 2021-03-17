@@ -21,13 +21,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import UiTopbar from '@/components/ui/UiTopbar.vue';
+import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'App',
   components: {
     UiTopbar,
+  },
+
+  setup() {
+    const store = useStore();
+    console.log(store);
+
+    onMounted(async () => {
+      console.log('App Mounted');
+      try {
+        const response = await store.dispatch('checkToken');
+      } catch (error) {
+        store.dispatch('clearUsuario');
+      }
+    });
+
+    return {
+      store,
+    };
   },
 });
 </script>
