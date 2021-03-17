@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading" class="linea position-relative">
+  <div class="linea position-relative">
     <h1>Líneas</h1>
     <ui-input
       v-model:value="searchQuery"
