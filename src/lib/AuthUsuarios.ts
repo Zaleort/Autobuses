@@ -11,4 +11,6 @@ export default {
     if (!usuario) return Promise.reject();
     return api.post(`${urlBase}login`, usuario);
   },
+  logout: async (): Promise<any> => api.get(`${urlBase}logout`),
+  checkToken: async (): Promise<AuthUsuario> => api.get(`${urlBase}token`),
 };
