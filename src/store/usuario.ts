@@ -153,6 +153,19 @@ const actions = {
       return Promise.reject(error);
     }
   },
+
+  removeLineaFavorita: async ({ state, commit }: any, linea: string) => {
+    if (!linea) return Promise.reject(new Error('No se ha especificado ninguna línea'));
+
+    try {
+      const res = await api.removeLineaFavorita(state.usuario, linea);
+      commit('SET_AUTOBUSES', res.autobuses);
+
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
 };
 
 export default {

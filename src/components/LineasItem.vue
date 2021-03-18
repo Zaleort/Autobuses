@@ -11,7 +11,7 @@
         icon="star"
         class="clickable"
         :color="starColor"
-        @click="addLineaFavorita"
+        @click="toggleLineaFavorita"
       />
     </template>
 
@@ -71,14 +71,13 @@ export default defineComponent({
     const store = useStore();
     const usuario = computed(() => store.state.usuario.usuario);
     const usuarioData = computed(() => store.state.usuario.autobuses);
-    const starColor = computed(() => {
-      if (!usuarioData.value || !usuarioData.value.lineas) return 'grey';
-
+    const isFavorite = computed(() => {
+      if (!usuarioData.value || !usuarioData.value.lineas) return false;
       const linea = usuarioData.value.lineas.findIndex((l: string) => l === props.linea._id);
-      if (linea !== -1) return 'warning';
-      return 'grey';
+      return linea !== -1;
     });
 
+    const starColor = computed(() => (isFavorite.value ? 'warning' : 'grey'));
     const {
       openAlert, closeAlert, showAlertBox, alertComponent,
     } = AlertBox();
@@ -101,13 +100,32 @@ export default defineComponent({
       }
     };
 
+    const removeLineaFavorita = async () => {
+      try {
+        await store.dispatch('removeLineaFavorita', props.linea._id);
+      } catch (error) {
+        openAlert({
+          title: 'Error',
+          message: error.message || 'Ha ocurrido un error tratando de eliminar la línea como favorita',
+        });
+      }
+    };
+
+    const toggleLineaFavorita = () => {
+      if (isFavorite.value) removeLineaFavorita();
+      else addLineaFavorita();
+    };
+
     return {
       store,
       usuario,
+      isFavorite,
       starColor,
       nucleosNames,
       recorrido,
       addLineaFavorita,
+      removeLineaFavorita,
+      toggleLineaFavorita,
       openAlert,
       closeAlert,
       showAlertBox,
