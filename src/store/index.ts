@@ -1,6 +1,8 @@
 import { InjectionKey } from 'vue';
 import { createStore, useStore as baseUseStore, Store } from 'vuex';
 import linea from '@/store/linea';
+import lineas from '@/store/lineas';
+import nucleos from '@/store/nucleos';
 import usuario from '@/store/usuario';
 
 export interface State {
@@ -21,6 +23,8 @@ export default createStore<State>({
   },
   modules: {
     linea,
+    lineas,
+    nucleos,
     usuario,
   },
 });
