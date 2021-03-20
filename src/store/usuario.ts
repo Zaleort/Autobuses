@@ -6,6 +6,7 @@ export interface UsuarioState {
   usuario: string;
   autobuses: object | null;
   token: string | null;
+  lineas: ApiLinea[];
 }
 
 const usuarioState = (): UsuarioState => ({
@@ -13,6 +14,7 @@ const usuarioState = (): UsuarioState => ({
   usuario: '',
   autobuses: null,
   token: null,
+  lineas: [],
 });
 
 const mutations = {
@@ -46,8 +48,13 @@ const mutations = {
     state.autobuses = null;
   },
 
-  PUT_LINEA: (state: any, linea: ApiParada[]) => state.autobuses.lineas.push(linea),
-  DELETE_LINEA: (state: any, linea: string[]) => state.autobuses.lineas.slice(1, 0),
+  SET_LINEAS: (state: any, lineas: ApiLinea[]) => state.lineas = lineas,
+  PUT_LINEA: (state: any, linea: ApiLinea[]) => state.lineas.push(linea),
+  DELETE_LINEA: (state: any, linea: string) => {
+    const i = state.lineas.findIndex((l: ApiLinea) => l._id === linea);
+    state.lineas.splice(i, 1);
+  },
+
   PUT_RECORRIDO: (state: any, recorrido: string[]) => state.autobuses.recorridos.push(recorrido),
   DELETE_RECORRIDO: (state: any, recorrido: ApiNucleo[]) => state.autobuses.recorridos.slice(1, 0),
 
@@ -141,12 +148,26 @@ const actions = {
     }
   },
 
-  addLineaFavorita: async ({ state, commit }: any, linea: string) => {
-    if (!linea) return Promise.reject(new Error('No se ha especificado ninguna línea'));
+  getLineasFavoritas: async ({ state, commit }: any) => {
+    try {
+      const res = await api.getLineasFavoritas(state.usuario);
+      commit('SET_LINEAS', res);
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+
+  addLineaFavorita: async ({ state, commit, rootState }: any, id: string) => {
+    if (!id) return Promise.reject(new Error('No se ha especificado ninguna línea'));
 
     try {
-      const res = await api.addLineaFavorita(state.usuario, linea);
+      const res = await api.addLineaFavorita(state.usuario, id);
       commit('SET_AUTOBUSES', res.autobuses);
+
+      const { lineas } = rootState.lineas;
+      const linea = lineas.find((l: ApiLinea) => l._id === id);
+      commit('PUT_LINEA', linea);
 
       return Promise.resolve(res);
     } catch (error) {
@@ -160,6 +181,7 @@ const actions = {
     try {
       const res = await api.removeLineaFavorita(state.usuario, linea);
       commit('SET_AUTOBUSES', res.autobuses);
+      commit('DELETE_LINEA', linea);
 
       return Promise.resolve(res);
     } catch (error) {
@@ -169,6 +191,7 @@ const actions = {
 };
 
 export default {
+  namespaced: true,
   state: usuarioState,
   mutations,
   actions,
