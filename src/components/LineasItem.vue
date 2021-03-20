@@ -1,40 +1,62 @@
 <template>
-  <ui-card clickable>
-    <template #title>
-      <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
-        Línea {{ linea.name }} - {{ recorrido }}
-      </router-link>
-    </template>
-    <template #options>
-      <ui-icon
-        v-if="usuario"
-        icon="star"
-        class="clickable"
-        :color="starColor"
-        @click="toggleLineaFavorita"
-      />
-    </template>
+  <div>
+    <ui-card v-if="!compact" clickable>
+      <template #title>
+        <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
+          Línea {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
+        </router-link>
+      </template>
+      <template #options>
+        <ui-icon
+          v-if="usuario"
+          icon="star"
+          class="clickable"
+          :color="starColor"
+          @click="toggleLineaFavorita"
+        />
+      </template>
 
-    <span v-if="nucleos" class="text-capitalize">{{ nucleosNames.toLowerCase() }}</span>
+      <span v-if="nucleos && nucleos.length > 0" class="text-capitalize">{{ nucleosNames }}</span>
 
-    <template #footer>
-      <ui-tooltip :content="`Paradas: ${linea.paradasInfo.length}`">
-        <ui-icon icon="bus" />
-        {{ linea.paradasInfo.length }}
-      </ui-tooltip>
+      <template #footer>
+        <ui-tooltip :content="`Paradas: ${linea.paradasInfo.length}`">
+          <ui-icon icon="bus" />
+          {{ linea.paradasInfo.length }}
+        </ui-tooltip>
 
-      <ui-tooltip v-if="linea.accesible" content="Accesible para personas con discapacidad">
-        <ui-icon icon="wheelchair" class="mr-2" />
-      </ui-tooltip>
-    </template>
+        <ui-tooltip v-if="linea.accesible" content="Accesible para personas con discapacidad">
+          <ui-icon icon="wheelchair" class="mr-2" />
+        </ui-tooltip>
+      </template>
+    </ui-card>
+
+    <ui-card
+      v-else
+      clickable
+      :compact="compact"
+    >
+      <template #title>
+        <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
+          Línea {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
+        </router-link>
+      </template>
+      <template #options>
+        <ui-icon
+          v-if="usuario"
+          icon="close"
+          class="clickable"
+          @click="removeLineaFavorita"
+        />
+      </template>
+    </ui-card>
 
     <component
       :is="alertComponent"
-      :v-show="showAlertBox"
+      :show="showAlertBox"
       @ok="closeAlert"
       @cancel="closeAlert"
     />
-  </ui-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -65,6 +87,11 @@ export default defineComponent({
       type: Array as PropType<Array<string>>,
       default: () => [],
     },
+
+    compact: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props) {
@@ -82,16 +109,14 @@ export default defineComponent({
       openAlert, closeAlert, showAlertBox, alertComponent,
     } = AlertBox();
 
-    const nucleosNames = computed(() => props.nucleos.join(', '));
-    const recorrido = computed(() => {
-      const salida = props.nucleos[0].toLocaleLowerCase();
-      const destino = props.nucleos[props.nucleos.length - 1].toLocaleLowerCase();
-      return `${salida} - ${destino}`;
+    const nucleosNames = computed(() => {
+      const names = props.nucleos.join(', ');
+      return names ? names.toLowerCase() : '';
     });
 
     const addLineaFavorita = async () => {
       try {
-        await store.dispatch('addLineaFavorita', props.linea._id);
+        await store.dispatch('usuario/addLineaFavorita', props.linea._id);
       } catch (error) {
         openAlert({
           title: 'Error',
@@ -102,7 +127,16 @@ export default defineComponent({
 
     const removeLineaFavorita = async () => {
       try {
-        await store.dispatch('removeLineaFavorita', props.linea._id);
+        if (props.compact) {
+          openAlert({
+            message: '¿Estás seguro que quieres borrar la línea?',
+            title: 'Atención',
+            type: 'warning',
+            showCancelButton: true,
+          });
+        }
+
+        await store.dispatch('usuario/removeLineaFavorita', props.linea._id);
       } catch (error) {
         openAlert({
           title: 'Error',
@@ -122,7 +156,6 @@ export default defineComponent({
       isFavorite,
       starColor,
       nucleosNames,
-      recorrido,
       addLineaFavorita,
       removeLineaFavorita,
       toggleLineaFavorita,
