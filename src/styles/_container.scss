@@ -17,3 +17,7 @@
   overflow: auto;
 }
 
+@include block(content) {
+  max-width: $desktop-xl;
+  margin: 0 auto;
+}

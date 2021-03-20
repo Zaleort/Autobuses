@@ -17,16 +17,13 @@
   }
 
   @include when(compact) {
-    margin-top: 5px;
-    padding: 3px 7px;
-    border-left-width: 5px;
+    margin: 7px 0;
   }
 
   @include element(header) {
     display: flex;
     align-items: flex-start;
-    margin-top: 3px;
-    margin-bottom: 12px;
+    margin: 5px 0;
 
     @include mobile-l {
       align-items: center;
@@ -82,7 +79,6 @@
 
   @include element(options) {
     flex-shrink: 0;
-    align-self: flex-start;
     margin-left: auto;
 
     @include when(mobile) {
@@ -105,7 +101,7 @@
     align-items: center;
     flex-direction: row-reverse;
     flex-wrap: wrap;
-    color: $info;
+    color: $text-secondary-color;
     font-size: 0.9em;
     margin-top: 12px;
     margin-bottom: 3px;
