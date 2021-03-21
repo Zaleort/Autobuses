@@ -36,8 +36,6 @@ import { useStore } from '@/store';
 import UiLoading from '@/components/ui/UiLoading.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
-import ApiLineas from '@/lib/ApiLineas';
-import ApiNucleos from '@/lib/ApiNucleos';
 import AlertBox from '@/composables/alertBox';
 
 export default defineComponent({
@@ -49,13 +47,11 @@ export default defineComponent({
   },
 
   setup() {
-    const lineas = ref<ApiLinea[]>([]);
-    const nucleos = ref<ApiNucleo[]>([]);
     const loading = ref(true);
     const searchQuery = ref('');
-    const apiLineas = ApiLineas;
-    const apiNucleos = ApiNucleos;
     const store = useStore();
+    const lineas = computed<ApiLinea[]>(() => store.state.lineas.lineas);
+    const nucleos = computed<ApiNucleo[]>(() => store.state.nucleos.nucleos);
 
     const {
       openAlert, closeAlert, alertComponent, showAlertBox,
@@ -103,11 +99,13 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        const nucleosResponse = await apiNucleos.getNucleos();
-        nucleos.value = nucleosResponse;
+        if (!lineas.value || lineas.value.length === 0) {
+          await store.dispatch('lineas/load');
+        }
 
-        const lineasResponse = await apiLineas.getLineas();
-        lineas.value = lineasResponse;
+        if (!nucleos.value || nucleos.value.length === 0) {
+          await store.dispatch('nucleos/load');
+        }
       } catch (error) {
         openAlert({
           title: 'Error',
