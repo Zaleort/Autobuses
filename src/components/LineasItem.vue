@@ -133,10 +133,11 @@ export default defineComponent({
             title: 'Atención',
             type: 'warning',
             showCancelButton: true,
+            okButtonAction: () => store.dispatch('usuario/removeLineaFavorita', props.linea._id),
           });
+        } else {
+          await store.dispatch('usuario/removeLineaFavorita', props.linea._id);
         }
-
-        await store.dispatch('usuario/removeLineaFavorita', props.linea._id);
       } catch (error) {
         openAlert({
           title: 'Error',
