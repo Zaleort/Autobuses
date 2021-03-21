@@ -4,7 +4,7 @@
       'tag': true,
       'tag--small': size === 'small',
       'tag--large': size === 'large',
-      [`ui-tag--${color}`]: true,
+      [`tag--${color}`]: true,
       'is-pill': pill,
     }"
   >
@@ -21,9 +21,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import UiIcon from '@/components/ui/UiIcon.vue';
 
 export default defineComponent({
   name: 'UiTag',
+  components: {
+    UiIcon,
+  },
+
   props: {
     plain: {
       type: Boolean,
