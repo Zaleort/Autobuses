@@ -1,4 +1,5 @@
 import { createApp } from 'vue';
+import ui from '@/ui';
 import App from './App.vue';
 import router from './router';
 import store, { key } from './store';
@@ -21,4 +22,5 @@ app.directive('click-outside', {
   },
 });
 
+ui.install(app, {});
 app.mount('#app');
