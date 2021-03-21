@@ -18,6 +18,7 @@
         :key="linea._id"
         :linea="linea"
         :nucleos="getNucleosNames(linea.nucleosIda)"
+        @select-nucleo="searchQuery = $event"
       />
     </transition-group>
   </div>
