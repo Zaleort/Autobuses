@@ -17,7 +17,17 @@
   }
 
   @include when(compact) {
-    margin: 7px 0;
+    margin: 5px 0;
+  }
+
+  @include when(no-shadow) {
+    box-shadow: none;
+    border: 1px solid $border-color;
+  }
+
+  @include when(bordered) {
+    border-radius: 0 $radius $radius 0;
+    border-left: 5px solid $primary;
   }
 
   @include element(header) {

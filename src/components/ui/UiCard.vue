@@ -3,6 +3,8 @@
     :class="{
       'card': true,
       [`card--${color}`]: true,
+      'is-no-shadow': !shadow,
+      'is-bordered': border,
       'is-compact': compact,
     }"
   >
@@ -47,6 +49,16 @@ export default defineComponent({
     },
 
     compact: {
+      type: Boolean,
+      default: false,
+    },
+
+    shadow: {
+      type: Boolean,
+      default: true,
+    },
+
+    border: {
       type: Boolean,
       default: false,
     },
