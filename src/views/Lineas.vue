@@ -1,6 +1,6 @@
 <template>
   <div class="linea position-relative">
-    <h1>Líneas</h1>
+    <h1>Líneas ({{ filteredLineas.length }})</h1>
     <ui-input
       v-model:value="searchQuery"
       size="large"
