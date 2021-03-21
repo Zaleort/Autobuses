@@ -68,6 +68,7 @@ const actions = {
 };
 
 export default {
+  namespaced: true,
   state: lineaState,
   mutations,
   actions,

@@ -78,7 +78,7 @@ export default defineComponent({
 
       try {
         loading.value = true;
-        const response = await store.dispatch('login', usuario);
+        const response = await store.dispatch('usuario/login', usuario);
         console.log(response);
         router.push({ name: 'Home' });
       } catch (e) {

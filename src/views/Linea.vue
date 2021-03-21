@@ -342,7 +342,7 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-        await store.dispatch('loadLinea', route.params.id);
+        await store.dispatch('linea/loadLinea', route.params.id);
 
         tablaHorariosIda.value = getTablaDeHorarios(true);
         tablaHorariosVuelta.value = getTablaDeHorarios(false);

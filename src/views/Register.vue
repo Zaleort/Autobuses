@@ -92,7 +92,7 @@ export default defineComponent({
 
       try {
         loading.value = true;
-        const response = await store.dispatch('register', usuario);
+        const response = await store.dispatch('usuario/register', usuario);
         console.log(response);
       } catch (e) {
         error.value = e.message || e;

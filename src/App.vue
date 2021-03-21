@@ -38,9 +38,9 @@ export default defineComponent({
     onMounted(async () => {
       console.log('App Mounted');
       try {
-        const response = await store.dispatch('checkToken');
+        await store.dispatch('usuario/checkToken');
       } catch (error) {
-        store.dispatch('clearUsuario');
+        store.dispatch('usuario/clearUsuario');
       }
     });
 
