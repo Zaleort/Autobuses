@@ -9,9 +9,14 @@
     border-radius: $radius;
   }
 
-  @include modifier(small) {
+  @include modifier(mini) {
     font-size: 14px;
     padding: 3px 12px;
+  }
+
+  @include modifier(small) {
+    font-size: 0.9em;
+    padding: 5px 12px;
   }
 
   @include modifier(large) {
