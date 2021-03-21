@@ -71,22 +71,11 @@
 import {
   computed, defineComponent, PropType,
 } from 'vue';
-import UiCard from '@/components/ui/UiCard.vue';
-import UiTooltip from '@/components/ui/UiTooltip.vue';
-import UiTag from '@/components/ui/UiTag.vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 import { useStore } from '@/store';
 import AlertBox from '@/composables/alertBox';
 
 export default defineComponent({
   name: 'LineasItem',
-  components: {
-    UiCard,
-    UiTag,
-    UiTooltip,
-    UiIcon,
-  },
-
   props: {
     linea: {
       type: Object as PropType<ApiLinea>,

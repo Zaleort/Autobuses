@@ -44,11 +44,11 @@
             </div>
           </header>
 
-          <main class="ui-dialog__main">
+          <main class="dialog__main">
             <slot />
           </main>
 
-          <footer class="ui-dialog__footer">
+          <footer class="dialog__footer">
             <slot name="footer" />
           </footer>
         </div>

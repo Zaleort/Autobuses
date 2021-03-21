@@ -58,14 +58,9 @@
 import {
   defineComponent, PropType, provide, ref,
 } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 
 export default defineComponent({
   name: 'UiTable',
-  components: {
-    UiIcon,
-  },
-
   props: {
     headings: {
       type: Array as PropType<UiTableHeading[]>,

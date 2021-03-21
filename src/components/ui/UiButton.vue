@@ -24,15 +24,10 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 import useFormInject from '@/composables/formInject';
 
 export default defineComponent({
   name: 'UiButton',
-  components: {
-    UiIcon,
-  },
-
   props: {
     type: {
       type: String,

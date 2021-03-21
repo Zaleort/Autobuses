@@ -22,14 +22,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 
 export default defineComponent({
   name: 'UiTag',
-  components: {
-    UiIcon,
-  },
-
   props: {
     plain: {
       type: Boolean,

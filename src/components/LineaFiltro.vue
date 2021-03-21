@@ -51,18 +51,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-import UiSelect from '@/components/ui/UiSelect.vue';
-import UiOption from '@/components/ui/UiOption.vue';
-import UiLabel from '@/components/ui/UiLabel.vue';
 
 export default defineComponent({
   name: 'LineaFiltro',
-  components: {
-    UiSelect,
-    UiOption,
-    UiLabel,
-  },
-
   props: {
     paradas: {
       type: Array,

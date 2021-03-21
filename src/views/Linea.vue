@@ -67,9 +67,6 @@ import {
 } from 'vue';
 import LineaHorario from '@/components/LineaHorario.vue';
 import LineaFiltro from '@/components/LineaFiltro.vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
-import UiTag from '@/components/ui/UiTag.vue';
-import UiLoading from '@/components/ui/UiLoading.vue';
 import Util from '@/composables/Util';
 import AlertBox from '@/composables/alertBox';
 import { useRoute } from 'vue-router';
@@ -78,9 +75,6 @@ import { useStore } from '@/store';
 export default defineComponent({
   name: 'Linea',
   components: {
-    UiIcon,
-    UiTag,
-    UiLoading,
     LineaHorario,
     LineaFiltro,
   },

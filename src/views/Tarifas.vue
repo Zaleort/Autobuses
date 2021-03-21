@@ -26,18 +26,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import UiTable from '@/components/ui/UiTable.vue';
-import UiTableRow from '@/components/ui/UiTableRow.vue';
-import UiTableData from '@/components/ui/UiTableData.vue';
 
 export default defineComponent({
   name: 'Tarifas',
-  components: {
-    UiTable,
-    UiTableRow,
-    UiTableData,
-  },
-
   setup() {
     const headings = ref([
       { name: 'Saltos' },

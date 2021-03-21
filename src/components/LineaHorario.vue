@@ -72,16 +72,11 @@ import {
   computed,
   defineComponent, PropType, reactive, ref, watch,
 } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 import Util from '@/composables/Util';
 import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'LineaHorario',
-  components: {
-    UiIcon,
-  },
-
   props: {
     tipoHorario: {
       type: String,

@@ -26,14 +26,9 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 
 export default defineComponent({
   name: 'UiAlert',
-  components: {
-    UiIcon,
-  },
-
   props: {
     closable: {
       type: Boolean,

@@ -50,16 +50,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
-import UiButton from '@/components/ui/UiButton.vue';
 
 export default defineComponent({
   name: 'UiAlertBox',
-  components: {
-    UiIcon,
-    UiButton,
-  },
-
   props: {
     type: {
       type: String,

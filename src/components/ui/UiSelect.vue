@@ -78,22 +78,11 @@
 import {
   defineComponent, computed, ref, reactive, watch, onMounted, provide,
 } from 'vue';
-import UiInput from '@/components/ui/UiInput.vue';
-import UiTag from '@/components/ui/UiTag.vue';
-import UiOption from '@/components/ui/UiOption.vue';
-import UiIcon from '@/components/ui/UiIcon.vue';
 import useFormInject from '@/composables/formInject';
 import debounce from '@/lib/debounce';
 
 export default defineComponent({
   name: 'UiSelect',
-  components: {
-    UiInput,
-    UiTag,
-    UiOption,
-    UiIcon,
-  },
-
   props: {
     value: {
       type: [Number, String, Object, Array],

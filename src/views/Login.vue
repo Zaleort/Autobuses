@@ -47,21 +47,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useStore } from '@/store';
-import UiAlert from '@/components/ui/UiAlert.vue';
-import UiLabel from '@/components/ui/UiLabel.vue';
-import UiInput from '@/components/ui/UiInput.vue';
-import UiButton from '@/components/ui/UiButton.vue';
 import router from '@/router';
 
 export default defineComponent({
   name: 'Login',
-  components: {
-    UiAlert,
-    UiLabel,
-    UiInput,
-    UiButton,
-  },
-
   setup() {
     const store = useStore();
     const user = ref();

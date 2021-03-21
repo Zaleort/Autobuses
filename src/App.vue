@@ -22,15 +22,10 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
-import UiTopbar from '@/components/ui/UiTopbar.vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    UiTopbar,
-  },
-
   setup() {
     const store = useStore();
     console.log(store);

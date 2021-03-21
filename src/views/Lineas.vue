@@ -38,18 +38,12 @@ import {
   computed, defineComponent, onMounted, ref,
 } from 'vue';
 import { useStore } from '@/store';
-import UiIcon from '@/components/ui/UiIcon.vue';
-import UiLoading from '@/components/ui/UiLoading.vue';
-import UiInput from '@/components/ui/UiInput.vue';
 import LineasItem from '@/components/LineasItem.vue';
 import AlertBox from '@/composables/alertBox';
 
 export default defineComponent({
   name: 'Lineas',
   components: {
-    UiIcon,
-    UiLoading,
-    UiInput,
     LineasItem,
   },
 
