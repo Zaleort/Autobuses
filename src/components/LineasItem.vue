@@ -3,7 +3,7 @@
     <ui-card v-if="!compact" clickable>
       <template #title>
         <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
-          Línea {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
+          {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
         </router-link>
       </template>
       <template #options>
@@ -16,7 +16,15 @@
         />
       </template>
 
-      <span v-if="nucleos && nucleos.length > 0" class="text-capitalize">{{ nucleosNames }}</span>
+      <ui-tag
+        v-for="(nucleo, index) of nucleos"
+        :key="index"
+        class="text-capitalize mb-2 mr-2 clickable"
+        size="small"
+        @click="$emit('select-nucleo', nucleo)"
+      >
+        {{ nucleo.toLowerCase() }}
+      </ui-tag>
 
       <template #footer>
         <ui-tooltip :content="`Paradas: ${linea.paradasInfo.length}`">
@@ -37,7 +45,7 @@
     >
       <template #title>
         <router-link class="linea-card-name text-capitalize" :to="{ name: 'Linea', params: { id: linea._id } }">
-          Línea {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
+          {{ linea.name }} - {{ linea.recorrido.toLowerCase() }}
         </router-link>
       </template>
       <template #options>
@@ -65,6 +73,7 @@ import {
 } from 'vue';
 import UiCard from '@/components/ui/UiCard.vue';
 import UiTooltip from '@/components/ui/UiTooltip.vue';
+import UiTag from '@/components/ui/UiTag.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
 import { useStore } from '@/store';
 import AlertBox from '@/composables/alertBox';
@@ -73,6 +82,7 @@ export default defineComponent({
   name: 'LineasItem',
   components: {
     UiCard,
+    UiTag,
     UiTooltip,
     UiIcon,
   },
@@ -94,6 +104,8 @@ export default defineComponent({
     },
   },
 
+  emits: ['select-nucleo'],
+
   setup(props) {
     const store = useStore();
     const usuario = computed(() => store.state.usuario.usuario);
@@ -108,11 +120,6 @@ export default defineComponent({
     const {
       openAlert, closeAlert, showAlertBox, alertComponent,
     } = AlertBox();
-
-    const nucleosNames = computed(() => {
-      const names = props.nucleos.join(', ');
-      return names ? names.toLowerCase() : '';
-    });
 
     const addLineaFavorita = async () => {
       try {
@@ -156,7 +163,6 @@ export default defineComponent({
       usuario,
       isFavorite,
       starColor,
-      nucleosNames,
       addLineaFavorita,
       removeLineaFavorita,
       toggleLineaFavorita,
