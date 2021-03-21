@@ -78,26 +78,6 @@
       display: flex;
     }
   }
-
-  @include element(dato) {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 3px 12px;
-    margin: 5px 3px;
-    color: $white;
-    background-color: $primary;
-    border-radius: $pill;
-
-    svg {
-      margin-right: 5px;
-      margin-bottom: 1px;
-    }
-
-    &:hover + .tooltip {
-      visibility: visible;
-    }
-  }
 }
 
 @include block(linea-horario) {

@@ -16,22 +16,22 @@
           </div>
         </div>
         <div class="linea-resumen__datos">
-          <span class="linea-resumen__dato">
-            <ui-icon icon="bus" />
+          <ui-tag size="small" class="mr-2">
+            <ui-icon icon="bus" class="mr-2" />
             {{ paradas.length }}
-          </span>
-          <span class="linea-resumen__dato">
-            <ui-icon icon="clock" />
+          </ui-tag>
+          <ui-tag size="small" class="mr-2">
+            <ui-icon icon="clock" class="mr-2" />
             {{ duracion }}
-          </span>
-          <span class="linea-resumen__dato">
-            <ui-icon icon="running" />
+          </ui-tag>
+          <ui-tag size="small" class="mr-2">
+            <ui-icon icon="running" class="mr-2" />
             {{ saltos }}
-          </span>
-          <span v-if="accesible" class="linea-resumen__dato">
-            <ui-icon icon="wheelchair" />
+          </ui-tag>
+          <ui-tag v-if="accesible" size="small">
+            <ui-icon icon="wheelchair" class="mr-2" />
             Accesible
-          </span>
+          </ui-tag>
         </div>
       </div>
     </div>
@@ -68,6 +68,7 @@ import {
 import LineaHorario from '@/components/LineaHorario.vue';
 import LineaFiltro from '@/components/LineaFiltro.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
+import UiTag from '@/components/ui/UiTag.vue';
 import UiLoading from '@/components/ui/UiLoading.vue';
 import Util from '@/composables/Util';
 import AlertBox from '@/composables/alertBox';
@@ -78,6 +79,7 @@ export default defineComponent({
   name: 'Linea',
   components: {
     UiIcon,
+    UiTag,
     UiLoading,
     LineaHorario,
     LineaFiltro,

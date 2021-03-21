@@ -2,6 +2,7 @@
   <span
     :class="{
       'tag': true,
+      'tag--mini': size === 'mini',
       'tag--small': size === 'small',
       'tag--large': size === 'large',
       [`tag--${color}`]: true,
@@ -38,7 +39,7 @@ export default defineComponent({
     size: {
       type: String,
       default: 'normal',
-      validator: (value: string) => ['large', 'normal', 'small'].indexOf(value) !== -1,
+      validator: (value: string) => ['large', 'normal', 'small', 'mini'].indexOf(value) !== -1,
     },
 
     color: {
