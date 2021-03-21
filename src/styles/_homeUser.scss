@@ -1,0 +1,20 @@
+@include block(home-user) {
+  @include element(lineas) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    @include desktop-xl {
+      flex-direction: row;
+
+      & > div {
+        padding-right: 12px;
+        flex-basis: 33%;
+      }
+  
+      & > div:nth-child(3n) {
+        padding-right: 0;
+      }
+    }
+  }
+}
