@@ -1,0 +1,98 @@
+@include block(col) {
+  display: block;
+  flex-shrink: 1;
+
+  @include modifier(grow) {
+    flex-grow: 1;
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+
+  @include modifier(gutter-small) {
+    padding: 0 3px;
+  }
+
+  @include modifier(gutter-normal) {
+    padding: 0 6px;
+  }
+
+  @include modifier(gutter-large) {
+    padding: 0 9px;
+  }
+}
+
+@for $i from 0 through 24 {
+  .col-#{$i} {
+    width: (1 / 24 * $i * 100) * 1%;
+  }
+}
+
+@include mobile {
+  .col-m-0 {
+    display: none;
+  }
+  
+  @for $i from 0 through 24 {
+    .col-m-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include mobile-l {
+  .col-ml-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .col-ml-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include tablet {
+  .col-t-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .col-t-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include desktop {
+  .col-d-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .col-d-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include desktop-l {
+  .col-dl-0 {
+    display: none;
+  }
+  @for $i from 0 through 24 {
+    .col-dl-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}
+
+@include desktop-xl {
+  .col-dxl-0 {
+    display: none;
+  }
+
+  @for $i from 0 through 24 {
+    .col-dxl-#{$i} {
+      width: (1 / 24 * $i * 100) * 1%;
+    }
+  }
+}

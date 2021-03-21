@@ -2,12 +2,14 @@ import UiAlert from '@/components/ui/UiAlert.vue';
 import UiAlertBox from '@/components/ui/UiAlertBox.vue';
 import UiButton from '@/components/ui/UiButton.vue';
 import UiCard from '@/components/ui/UiCard.vue';
+import UiCol from '@/components/ui/UiCol.vue';
 import UiDialog from '@/components/ui/UiDialog.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
 import UiInput from '@/components/ui/UiInput.vue';
 import UiLabel from '@/components/ui/UiLabel.vue';
 import UiLoading from '@/components/ui/UiLoading.vue';
 import UiOption from '@/components/ui/UiOption.vue';
+import UiRow from '@/components/ui/UiRow.vue';
 import UiSelect from '@/components/ui/UiSelect.vue';
 import UiTable from '@/components/ui/UiTable.vue';
 import UiTableData from '@/components/ui/UiTableData.vue';
@@ -22,12 +24,14 @@ const components = [
   UiAlertBox,
   UiButton,
   UiCard,
+  UiCol,
   UiDialog,
   UiIcon,
   UiInput,
   UiLabel,
   UiLoading,
   UiOption,
+  UiRow,
   UiSelect,
   UiTable,
   UiTableData,
