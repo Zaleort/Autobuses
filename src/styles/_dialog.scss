@@ -1,0 +1,168 @@
+@include block(dialog) {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  min-width: 300px;
+  max-height: 100vh;
+  margin: 0 auto;
+  background-color: $white;
+
+  @if $is-rounded {
+    border-radius: $radius;
+  }
+
+  box-shadow: $low-shadow;
+
+  // Sin important, los props de Dialog sobreescriben el estado de fullscreen
+  @include when(fullscreen) {
+    width: 100vw!important;
+    height: 100vh!important;
+
+    @include modifier(mobile) {
+      @include max-mobile {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+
+    @include modifier(mobile-l) {
+      @include max-mobile-l {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+
+    @include modifier(tablet) {
+      @include max-tablet {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+
+    @include modifier(desktop) {
+      @include max-desktop {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+
+    @include modifier(desktop-l) {
+      @include max-desktop-l {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+
+    @include modifier(desktop-xl) {
+      @include max-desktop-xl {
+        width: 100vw!important;
+        height: 100vh!important;
+      }
+    }
+  }
+
+  @include element(container) {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include when(mask) {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      transform: none;
+    }
+
+    @include when(fullscreen) {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: none;
+    }
+  }
+
+  @include element(header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    color: $white;
+    background-color: $primary;
+  }
+
+  @include element(main) {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 12px;
+  }
+
+  @include element(footer) {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 12px;
+  }
+
+  @include element(actions) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.dialog-fade-enter-active {
+  animation-duration: 220ms;
+  animation-name: fade-enter;
+
+  .dialog {
+    animation: dialog-fade-up-enter;
+    animation-timing-function: ease-out;
+    animation-duration: 220ms;
+  }
+}
+
+.dialog-fade-leave-active {
+  animation-duration: 220ms;
+  animation-name: fade-leave;
+
+  .dialog {
+    animation: dialog-fade-down-leave;
+    animation-timing-function: ease-in;
+    animation-duration: 220ms;
+  }
+}
+
+.dialog-fade-leave-to {
+  .dialog {
+    opacity: 0;
+  }
+}
+
+@keyframes dialog-fade-down-leave {
+  from {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+
+  to {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0);
+  }
+}
+
+@keyframes dialog-fade-up-enter {
+  from {
+      opacity: 0;
+      transform: translate3d(0, 25px, 0);
+  }
+
+  to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+}
