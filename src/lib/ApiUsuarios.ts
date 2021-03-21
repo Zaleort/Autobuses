@@ -9,6 +9,11 @@ export default {
     return api.get(`${urlBase}usuarios/${id}`);
   },
 
+  getLineasFavoritas: async (usuario: string): Promise<ApiLinea[]> => {
+    if (!usuario) return Promise.reject();
+    return api.get(`${urlBase}usuarios/${usuario}/lineas`);
+  },
+
   addLineaFavorita: async (usuario: string, id: string): Promise<AuthUsuario> => {
     if (!id) return Promise.reject();
     return api.post(`${urlBase}usuarios/${usuario}/lineas`, { linea: id });
