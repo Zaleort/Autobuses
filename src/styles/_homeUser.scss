@@ -17,4 +17,11 @@
       }
     }
   }
+
+  @include element(add-lineas-title) {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    padding: 9px 12px;
+  }
 }

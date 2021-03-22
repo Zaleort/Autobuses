@@ -31,36 +31,36 @@
 
 // Margin y padding
 @for $i from 0 through 5 {
-  .m-#{$i} { margin: $i * 3px; }
-  .mt-#{$i} { margin-top: $i * 3px; }
-  .mb-#{$i} { margin-bottom: $i * 3px; }
-  .ml-#{$i} { margin-left: $i * 3px; }
-  .mr-#{$i} { margin-right: $i * 3px; }
+  .m-#{$i} { margin: $i * 3px!important; }
+  .mt-#{$i} { margin-top: $i * 3px!important; }
+  .mb-#{$i} { margin-bottom: $i * 3px!important; }
+  .ml-#{$i} { margin-left: $i * 3px!important; }
+  .mr-#{$i} { margin-right: $i * 3px!important; }
 
   .mx-#{$i} { 
-      margin-left: $i * 3px; 
-      margin-right: $i * 3px; 
+      margin-left: $i * 3px!important; 
+      margin-right: $i * 3px!important; 
   }
 
   .my-#{$i} { 
-      margin-top: $i * 3px; 
-      margin-bottom: $i * 3px; 
+      margin-top: $i * 3px!important; 
+      margin-bottom: $i * 3px!important; 
   }
 
-  .p-#{$i} { padding: $i * 3px; }
-  .pt-#{$i} { padding-top: $i * 3px; }
-  .pb-#{$i} { padding-bottom: $i * 3px; }
-  .pl-#{$i} { padding-left: $i * 3px; }
-  .pr-#{$i} { padding-right: $i * 3px; }
+  .p-#{$i} { padding: $i * 3px!important; }
+  .pt-#{$i} { padding-top: $i * 3px!important; }
+  .pb-#{$i} { padding-bottom: $i * 3px!important; }
+  .pl-#{$i} { padding-left: $i * 3px!important; }
+  .pr-#{$i} { padding-right: $i * 3px!important; }
 
   .px-#{$i} { 
-      padding-left: $i * 3px; 
-      padding-right: $i * 3px; 
+      padding-left: $i * 3px!important; 
+      padding-right: $i * 3px!important; 
   }
 
   .py-#{$i} { 
-      padding-top: $i * 3px; 
-      padding-bottom: $i * 3px; 
+      padding-top: $i * 3px!important; 
+      padding-bottom: $i * 3px!important; 
   }
 }
 
