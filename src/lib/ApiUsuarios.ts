@@ -19,8 +19,8 @@ export default {
     return api.post(`${urlBase}usuarios/${usuario}/lineas`, { linea: id });
   },
 
-  removeLineaFavorita: async (usuario: string, id: string): Promise<AuthUsuario> => {
+  removeLineaFavorita: async (usuario: string, id: string | string[]): Promise<AuthUsuario> => {
     if (!id) return Promise.reject();
-    return api.delete(`${urlBase}usuarios/${usuario}/lineas/${id}`);
+    return api.delete(`${urlBase}usuarios/${usuario}/lineas`, { linea: id });
   },
 };

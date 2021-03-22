@@ -47,13 +47,15 @@ export default {
     return response.json();
   },
 
-  async delete(url: string) {
+  async delete(url: string, body: any) {
     const token = localStorage.getItem('token');
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(body),
     });
 
     if (!response.ok) {

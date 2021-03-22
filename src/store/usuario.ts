@@ -50,9 +50,15 @@ const mutations = {
 
   SET_LINEAS: (state: any, lineas: ApiLinea[]) => state.lineas = lineas,
   PUT_LINEA: (state: any, linea: ApiLinea[]) => state.lineas.push(linea),
-  DELETE_LINEA: (state: any, linea: string) => {
-    const i = state.lineas.findIndex((l: ApiLinea) => l._id === linea);
-    state.lineas.splice(i, 1);
+  DELETE_LINEA: (state: any, linea: string | string[]) => {
+    const lineas = [];
+    lineas.push(...state.lineas);
+
+    if (Array.isArray(linea)) {
+      state.lineas = lineas.filter((l: ApiLinea) => !linea.some(id => id === l._id));
+    } else {
+      state.lineas = lineas.filter((l: ApiLinea) => l._id !== linea);
+    }
   },
 
   PUT_RECORRIDO: (state: any, recorrido: string[]) => state.autobuses.recorridos.push(recorrido),
@@ -175,7 +181,7 @@ const actions = {
     }
   },
 
-  removeLineaFavorita: async ({ state, commit }: any, linea: string) => {
+  removeLineaFavorita: async ({ state, commit }: any, linea: string | string[]) => {
     if (!linea) return Promise.reject(new Error('No se ha especificado ninguna línea'));
 
     try {
