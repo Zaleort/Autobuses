@@ -49,7 +49,14 @@ const mutations = {
   },
 
   SET_LINEAS: (state: any, lineas: ApiLinea[]) => state.lineas = lineas,
-  PUT_LINEA: (state: any, linea: ApiLinea[]) => state.lineas.push(linea),
+  PUT_LINEA: (state: any, linea: ApiLinea | ApiLinea[]) => {
+    if (Array.isArray(linea)) {
+      state.lineas.push(...linea);
+    } else {
+      state.lineas.push(linea);
+    }
+  },
+
   DELETE_LINEA: (state: any, linea: string | string[]) => {
     const lineas = [];
     lineas.push(...state.lineas);
@@ -164,17 +171,23 @@ const actions = {
     }
   },
 
-  addLineaFavorita: async ({ state, commit, rootState }: any, id: string) => {
-    if (!id) return Promise.reject(new Error('No se ha especificado ninguna línea'));
+  addLineaFavorita: async ({ state, commit, rootState }: any, id: string | string[]) => {
+    if (!id || id.length === 0) return null;
 
     try {
       const res = await api.addLineaFavorita(state.usuario, id);
       commit('SET_AUTOBUSES', res.autobuses);
 
       const { lineas } = rootState.lineas;
-      const linea = lineas.find((l: ApiLinea) => l._id === id);
-      commit('PUT_LINEA', linea);
+      let linea;
 
+      if (Array.isArray(id)) {
+        linea = lineas.filter((l: ApiLinea) => id.some(_id => _id === l._id));
+      } else {
+        linea = lineas.find((l: ApiLinea) => l._id === id);
+      }
+
+      commit('PUT_LINEA', linea);
       return Promise.resolve(res);
     } catch (error) {
       return Promise.reject(error);
@@ -182,7 +195,7 @@ const actions = {
   },
 
   removeLineaFavorita: async ({ state, commit }: any, linea: string | string[]) => {
-    if (!linea) return Promise.reject(new Error('No se ha especificado ninguna línea'));
+    if (!linea || linea.length === 0) return null;
 
     try {
       const res = await api.removeLineaFavorita(state.usuario, linea);

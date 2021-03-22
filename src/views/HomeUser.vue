@@ -117,7 +117,7 @@ export default defineComponent({
       try {
         loadingAddLineas.value = true;
         const indexLineasFavoritas: number[] = [];
-        const add: number[] = [];
+        const add: string[] = [];
         const remove: string[] = [];
 
         lineas.value.forEach(linea => {
@@ -131,14 +131,11 @@ export default defineComponent({
           if (!checked && isFavorita) {
             remove.push(todasLineas.value[index]._id);
           } else if (checked && !isFavorita) {
-            add.push(index);
+            add.push(todasLineas.value[index]._id);
           }
         });
 
-        add.forEach(async i => {
-          await store.dispatch('usuario/addLineaFavorita', todasLineas.value[i]._id);
-        });
-
+        await store.dispatch('usuario/addLineaFavorita', add);
         await store.dispatch('usuario/removeLineaFavorita', remove);
       } catch (error) {
         console.log(error);

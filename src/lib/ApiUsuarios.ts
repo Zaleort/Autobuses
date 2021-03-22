@@ -14,7 +14,7 @@ export default {
     return api.get(`${urlBase}usuarios/${usuario}/lineas`);
   },
 
-  addLineaFavorita: async (usuario: string, id: string): Promise<AuthUsuario> => {
+  addLineaFavorita: async (usuario: string, id: string | string[]): Promise<AuthUsuario> => {
     if (!id) return Promise.reject();
     return api.post(`${urlBase}usuarios/${usuario}/lineas`, { linea: id });
   },
