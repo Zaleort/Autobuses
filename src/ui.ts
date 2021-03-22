@@ -2,6 +2,7 @@ import UiAlert from '@/components/ui/UiAlert.vue';
 import UiAlertBox from '@/components/ui/UiAlertBox.vue';
 import UiButton from '@/components/ui/UiButton.vue';
 import UiCard from '@/components/ui/UiCard.vue';
+import UiCheckBox from '@/components/ui/UiCheckBox.vue';
 import UiCol from '@/components/ui/UiCol.vue';
 import UiDialog from '@/components/ui/UiDialog.vue';
 import UiIcon from '@/components/ui/UiIcon.vue';
@@ -24,6 +25,7 @@ const components = [
   UiAlertBox,
   UiButton,
   UiCard,
+  UiCheckBox,
   UiCol,
   UiDialog,
   UiIcon,

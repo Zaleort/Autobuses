@@ -1,0 +1,90 @@
+@include block(checkbox) {
+  cursor: pointer;
+  display: inline-flex;
+  user-select: none;
+
+  &:hover .checkbox__input {
+    border-color: $primary;
+  }
+
+  @include when(border) {
+    transition: all 70ms ease-in;
+    padding: 7px 12px;
+    border: 1px solid $border-color;
+
+    @if ($is-rounded) {
+      border-radius: $radius;
+    }
+
+    &:hover {
+      border-color: $primary;
+    }
+  }
+
+  @include when(disabled) {
+    cursor: not-allowed;
+    color: $grey500;
+  }
+
+  @include element(input) {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid $grey400;
+    transition: all 70ms ease-in-out;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: ' ';
+      width: 0;
+      height: 0;
+      border: 0 solid $primary;
+      border-left-width: 0;
+      border-bottom-width: 0;
+      transform: rotateZ(-45deg);
+
+      transition: all 70ms ease-in-out;
+
+      @if ($is-rounded) {
+        border-radius: $radius;
+      }
+    }
+
+    @include when(focus) {
+      border-color: $primary;
+      outline: unset;
+    }
+
+    @include when(checked) {
+      border-color: $primary;
+
+      &::after {
+        top: 2px;
+        left: 1.3px;
+        width: 9px;
+        height: 5px;
+        border-left-width: 3px;
+        border-bottom-width: 3px;
+      }
+    }
+
+    @include when(disabled) {
+      border-color: $primary300;
+
+      &::after {
+        border-color: $primary300;
+      }
+    }
+  }
+
+  @include element(original) {
+    visibility: hidden;
+  }
+
+  @include element(label) {
+    margin-left: 5px;
+  }
+}
