@@ -1,7 +1,3 @@
-interface ApiError {
-  error: string;
-}
-
 interface ApiLineas {
   [id: string]: ApiLinea;
 }

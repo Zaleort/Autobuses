@@ -1,10 +1,21 @@
-import auth from '@/lib/AuthUsuarios';
 import api from '@/lib/ApiUsuarios';
+import auth from '@/lib/AuthUsuarios';
+
+export interface Tarjeta {
+  _id: string;
+  nombre: string;
+  saldo: number;
+  viajes: number;
+}
 
 export interface UsuarioState {
   _id: string;
   usuario: string;
-  autobuses: object | null;
+  autobuses: {
+    lineas: string[];
+    tarjetas: Tarjeta[];
+    recorridos: any[];
+  } | null;
   token: string | null;
   lineas: ApiLinea[];
 }
@@ -201,6 +212,19 @@ const actions = {
       const res = await api.removeLineaFavorita(state.usuario, linea);
       commit('SET_AUTOBUSES', res.autobuses);
       commit('DELETE_LINEA', linea);
+
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+
+  addTarjeta: async ({ state, commit }: any, tarjeta: Tarjeta) => {
+    if (!tarjeta) return Promise.reject(new Error('No se ha especificado ninguna tarjeta que añadir'));
+
+    try {
+      const res = await api.addTarjeta(state.usuario, tarjeta);
+      commit('SET_AUTOBUSES', res.autobuses);
 
       return Promise.resolve(res);
     } catch (error) {

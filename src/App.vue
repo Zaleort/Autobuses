@@ -5,8 +5,8 @@
         Autobuses
       </h1>
       <nav class="nav">
-        <router-link class="nav-link" to="/nucleos">
-          Núcleos Urbanos
+        <router-link class="nav-link" to="/tarifas">
+          Tarifas
         </router-link>
         <router-link class="nav-link" to="/lineas">
           Líneas

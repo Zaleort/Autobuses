@@ -17,11 +17,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Linea',
     component: () => import(/* webpackChunkName: "linea" */ '@/views/Linea.vue'),
   },
-  /* {
-    path: '/nucleos',
-    name: 'Nucleos',
-    component: () => import(/* webpackChunkName: "nucleos" / '@/views/Nucleos.vue'),
-  }, */
   {
     path: '/login',
     name: 'Login',
