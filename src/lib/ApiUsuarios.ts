@@ -25,6 +25,6 @@ export default {
 
   addTarjeta: async (usuario: string, tarjeta: any): Promise<AuthUsuario> => {
     if (!tarjeta) return Promise.reject();
-    return api.post(`${urlBase}usuarios/${usuario}/tarjeta`, { tarjeta });
+    return api.post(`${urlBase}usuarios/${usuario}/tarjetas`, { tarjeta });
   },
 };
