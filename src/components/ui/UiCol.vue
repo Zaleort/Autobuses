@@ -16,37 +16,37 @@ export default defineComponent({
 
     span: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     m: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     ml: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     t: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     d: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     dl: {
       type: Number,
-      default: undefined,
+      default: null,
     },
 
     dxl: {
       type: Number,
-      default: undefined,
+      default: null,
     },
   },
 
