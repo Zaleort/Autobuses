@@ -7,7 +7,7 @@
       'is-focus': focus,
       'is-disabled': isDisabled,
       'is-readonly': readonly,
-      'is-error': error !== null,
+      'is-error': inputError !== false && inputError !== null,
     }"
   >
     <div v-if="hasPrepend" class="input__prepend">
@@ -109,9 +109,14 @@ export default defineComponent({
       type: String,
       default: 'submit',
     },
+
+    error: {
+      type: [String, Boolean],
+      default: false,
+    },
   },
 
-  emits: ['update:value', 'input', 'change', 'blur', 'focus'],
+  emits: ['update:value', 'input', 'change', 'blur', 'focus', 'update:error'],
 
   setup(props, context) {
     const {
@@ -121,17 +126,21 @@ export default defineComponent({
       formValidators,
     } = useFormInject();
 
-    const error = ref<string | null>(null);
     const inputValue = computed({
       get: () => props.value,
       set: val => context.emit('update:value', val),
+    });
+
+    const inputError = computed({
+      get: () => props.error,
+      set: val => context.emit('update:error', val),
     });
 
     const handleInput = (e: InputEvent) => {
       context.emit('input', e);
 
       if (typeof props.validator === 'function' && props.validateOn === 'input') {
-        error.value = props.validator();
+        inputError.value = !props.validator();
       }
     };
 
@@ -139,7 +148,7 @@ export default defineComponent({
       context.emit('change', e);
 
       if (typeof props.validator === 'function' && props.validateOn === 'change') {
-        error.value = props.validator();
+        inputError.value = !props.validator();
       }
     };
 
@@ -155,7 +164,7 @@ export default defineComponent({
       context.emit('blur', e);
 
       if (typeof props.validator === 'function' && props.validateOn === 'blur') {
-        error.value = props.validator();
+        inputError.value = !props.validator();
       }
     };
 
@@ -172,7 +181,7 @@ export default defineComponent({
 
     return {
       inputValue,
-      error,
+      inputError,
       focus,
       setFocus,
       handleFocus,
