@@ -1,9 +1,15 @@
 <template>
   <div class="container">
     <ui-topbar>
-      <h1 class="logo" routerLink="/">
-        Autobuses
-      </h1>
+      <router-link
+        v-slot="{ navigate }"
+        to="/"
+        custom
+      >
+        <h1 class="logo clickable" @click="navigate">
+          Autobuses
+        </h1>
+      </router-link>
       <nav class="nav">
         <router-link class="nav-link" to="/tarifas">
           Tarifas
