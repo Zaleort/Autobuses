@@ -34,6 +34,7 @@
     :is="alertComponent"
     :show="showAlertBox"
     show-cancel-button
+    type="warning"
     @ok="closeAlert"
     @cancel="closeAlert"
   />
