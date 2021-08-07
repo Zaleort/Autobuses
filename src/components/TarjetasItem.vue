@@ -85,8 +85,8 @@ export default defineComponent({
 
     const deleteTarjeta = () => {
       openAlert({
-        title: `Borrar línea ${props.nombre}`,
-        message: '¿Estás seguro de que quieres borrar la línea?',
+        title: `Borrar tarjeta ${props.nombre}`,
+        message: '¿Estás seguro de que quieres borrar la tarjeta?',
         okButton: 'Borrar',
         okButtonAction: async () => {
           try {
