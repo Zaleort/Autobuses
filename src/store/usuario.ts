@@ -231,6 +231,32 @@ const actions = {
       return Promise.reject(error);
     }
   },
+
+  editTarjeta: async ({ state, commit }: any, tarjeta: Tarjeta) => {
+    if (!tarjeta || !tarjeta._id) return Promise.reject(new Error('No se ha especificado ninguna tarjeta que editar'));
+
+    try {
+      const res = await api.editTarjeta(state.usuario, tarjeta);
+      commit('SET_AUTOBUSES', res.autobuses);
+
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+
+  removeTarjeta: async ({ state, commit }: any, id: string) => {
+    if (!id) return Promise.reject(new Error('Debes especificar un ID'));
+
+    try {
+      const res = await api.removeTarjeta(state.usuario, id);
+      commit('SET_AUTOBUSES', res.autobuses);
+
+      return Promise.resolve(res);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
 };
 
 export default {

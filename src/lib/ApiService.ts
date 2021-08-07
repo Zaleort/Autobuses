@@ -47,6 +47,31 @@ export default {
     return response.json();
   },
 
+  async put(url: string, body: any) {
+    const token = localStorage.getItem('token');
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!response.ok) {
+      const json = await response.json();
+      const error = {
+        status: response.status,
+        statusText: response.statusText,
+        message: json.message || null,
+      };
+
+      return Promise.reject(error);
+    }
+
+    return response.json();
+  },
+
   async delete(url: string, body: any) {
     const token = localStorage.getItem('token');
     const response = await fetch(url, {

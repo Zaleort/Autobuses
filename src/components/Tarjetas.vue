@@ -2,11 +2,11 @@
   <h1>
     Tarjetas
     <ui-icon
-      icon="plus"
+      icon="plusCircle"
       size="mini"
       color="primary"
       class="clickable"
-      @click="openTarjetaDialog"
+      @click="openNewDialog"
     />
   </h1>
 
@@ -17,32 +17,33 @@
   <div class="home-user__tarjetas">
     <tarjetas-item
       v-for="tarjeta of datos.tarjetas"
-      :id="tarjeta._id"
       :key="tarjeta._id"
       v-bind="tarjeta"
+      @edit="openEditDialog"
     />
   </div>
 
-  <ui-dialog v-model:visibility="tarjetaDialog" :fullscreen="{ t: true }">
+  <ui-dialog v-model:visibility="dialog" :fullscreen="{ t: true }">
     <template #header>
-      Crear nueva tarjeta
+      {{ isEditing ? 'Editar' : 'Crear nueva' }}
+      tarjeta
     </template>
 
-    <ui-label class="login__input">
+    <ui-label class="mb-4">
       Nombre
       <template #content>
-        <ui-input v-model:value="nuevaTarjeta.nombre" size="large" />
+        <ui-input v-model:value="tarjeta.nombre" size="large" />
       </template>
     </ui-label>
 
-    <ui-label class="login__input">
+    <ui-label>
       Saldo
       <template #content>
         <ui-input
-          v-model:value="nuevaTarjeta.saldo"
-          v-model:error="hasTarjetaError"
+          v-model:value="tarjeta.saldo"
+          v-model:error="saldoError"
           size="large"
-          :validator="validateTarjetaSaldo"
+          :validator="validateSaldo"
           validate-on="input"
         >
           <template #append>
@@ -53,14 +54,14 @@
     </ui-label>
 
     <template #footer>
-      <ui-button :loading="loadingTarjeta" @click="saveTarjetaDialog">
+      <ui-button :loading="loading" @click="save">
         Guardar
       </ui-button>
 
       <ui-button
         color="danger"
         class="mr-2"
-        @click="tarjetaDialog = false"
+        @click="dialog = false"
       >
         Cancelar
       </ui-button>
@@ -96,59 +97,82 @@ export default defineComponent({
   setup(props, context) {
     const store = useStore();
     const datos = computed(() => store.state.usuario.autobuses);
-    const nuevaTarjeta = reactive<{ nombre: string; saldo: number | string; viajes: number }>({
+    const tarjeta = reactive<{ _id: string | null; nombre: string; saldo: number | string; viajes: number | string }>({
+      _id: null,
       nombre: 'Nueva tarjeta',
       saldo: '0',
-      viajes: 0,
+      viajes: '0',
     });
 
-    const tarjetaDialog = ref(false);
-    const loadingTarjeta = ref(false);
-    const hasTarjetaError = ref(false);
-    const validateTarjetaSaldo = () => {
-      const floatRegex = /^-?\d+(?:[.,]\d{1,2}?)?$/;
-      if (!floatRegex.test(nuevaTarjeta.saldo as string)) return false;
+    const dialog = ref(false);
+    const loading = ref(false);
+    const isEditing = ref(false);
 
-      const saldo = parseFloat(nuevaTarjeta.saldo as string);
+    const saldoError = ref(false);
+    const hasError = computed(() => saldoError.value);
+
+    const validateSaldo = () => {
+      const floatRegex = /^-?\d+(?:[.,]\d{1,2}?)?$/;
+      if (!floatRegex.test(tarjeta.saldo as string)) return false;
+
+      const saldo = parseFloat(tarjeta.saldo as string);
       if (isNaN(saldo)) return false;
       return true;
     };
 
-    const openTarjetaDialog = () => {
-      nuevaTarjeta.nombre = 'Nueva Tarjeta';
-      nuevaTarjeta.saldo = '0';
-      tarjetaDialog.value = true;
+    const openNewDialog = () => {
+      tarjeta._id = null;
+      tarjeta.nombre = 'Nueva Tarjeta';
+      tarjeta.saldo = '0';
+      isEditing.value = false;
+      dialog.value = true;
     };
 
-    const saveTarjetaDialog = async () => {
-      if (hasTarjetaError.value) return;
+    const openEditDialog = (e: any) => {
+      tarjeta._id = e._id;
+      tarjeta.nombre = e.nombre;
+      tarjeta.saldo = e.saldo.toString() || '0';
+      isEditing.value = true;
+      dialog.value = true;
+    };
+
+    const save = async () => {
+      if (hasError.value) return;
 
       try {
-        loadingTarjeta.value = true;
-        const saldo = parseFloat((nuevaTarjeta.saldo as string).replace(',', '.'));
-        const tarjeta = { ...nuevaTarjeta, saldo };
-        await store.dispatch('usuario/addTarjeta', tarjeta);
+        loading.value = true;
+        const saldo = parseFloat((tarjeta.saldo as string).replace(',', '.'));
+        const nuevaTarjeta = { ...tarjeta, saldo };
 
-        nuevaTarjeta.nombre = 'Nueva Tarjeta';
-        nuevaTarjeta.saldo = '0';
-        tarjetaDialog.value = false;
+        if (isEditing.value) {
+          await store.dispatch('usuario/editTarjeta', nuevaTarjeta);
+        } else {
+          await store.dispatch('usuario/addTarjeta', nuevaTarjeta);
+        }
+
+        tarjeta.nombre = 'Nueva Tarjeta';
+        tarjeta.saldo = '0';
+        dialog.value = false;
       } catch (error) {
         console.log(error);
       } finally {
-        loadingTarjeta.value = false;
+        loading.value = false;
       }
     };
 
     return {
       store,
       datos,
-      tarjetaDialog,
-      openTarjetaDialog,
-      saveTarjetaDialog,
-      nuevaTarjeta,
-      hasTarjetaError,
-      validateTarjetaSaldo,
-      loadingTarjeta,
+      dialog,
+      openNewDialog,
+      openEditDialog,
+      save,
+      tarjeta,
+      saldoError,
+      hasError,
+      isEditing,
+      validateSaldo,
+      loading,
     };
   },
 });

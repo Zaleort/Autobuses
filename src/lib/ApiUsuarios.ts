@@ -27,4 +27,14 @@ export default {
     if (!tarjeta) return Promise.reject();
     return api.post(`${urlBase}usuarios/${usuario}/tarjetas`, { tarjeta });
   },
+
+  editTarjeta: async (usuario: string, tarjeta: any): Promise<AuthUsuario> => {
+    if (!tarjeta) return Promise.reject();
+    return api.put(`${urlBase}usuarios/${usuario}/tarjetas`, { tarjeta });
+  },
+
+  removeTarjeta: async (usuario: string, id: string): Promise<AuthUsuario> => {
+    if (!id) return Promise.reject();
+    return api.delete(`${urlBase}usuarios/${usuario}/tarjetas`, { id });
+  },
 };

@@ -1,0 +1,35 @@
+@include block(tarjeta-card) {
+  @include element(name) {
+    width: 100%;
+    color: $text-color;
+    display: block;
+    font-weight: 400;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary;
+    }
+
+    @include mobile-l {
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+
+    @include tablet {
+        font-size: 1.25em;
+    }
+  }
+
+  @include element(saldo) {
+    font-size: 2em;
+    font-weight: 300;
+
+    @include desktop {
+      font-size: 3em;
+    }
+  }
+
+  @include element(viajes) {
+
+  }
+} 
