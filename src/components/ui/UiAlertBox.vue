@@ -27,7 +27,6 @@
           <footer class="alert-box__footer">
             <ui-button
               :color="okButtonColor"
-              size="small"
               @click="alertOk(okButtonAction)"
             >
               {{ okButton }}
@@ -35,7 +34,6 @@
             <ui-button
               v-if="showCancelButton"
               :color="cancelButtonColor"
-              size="small"
               class="mr-2"
               @click="alertCancel(cancelButtonAction)"
             >

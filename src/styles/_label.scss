@@ -5,6 +5,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 3px 0;
 
   @include element(container) {
     display: flex;
@@ -17,7 +18,6 @@
   }
 
   @include modifier(margin) {
-    margin: 3px 0;
     margin-right: 7px;
   }
 }

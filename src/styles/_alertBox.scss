@@ -1,8 +1,8 @@
 @include block(alert-box) {
   background-color: $white;
-  padding: 12px;
+  padding: 21px 24px;
   border: 1px solid $border-color;
-  min-width: 310px;
+  min-width: 300px;
 
   @if ($is-rounded) {
     border-radius: $radius;
@@ -56,7 +56,7 @@
   @include element(title) {
     font-weight: 500;
     font-size: 1.1em;
-    margin-bottom: 12px;
+    margin-bottom: 1em;
   }
 
   @include element(body) {

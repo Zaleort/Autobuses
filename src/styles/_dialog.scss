@@ -92,21 +92,22 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px;
+    padding: 21px 24px;
     color: $white;
+    font-size: 1.1em;
     background-color: $primary;
   }
 
   @include element(main) {
     flex-grow: 1;
     overflow: auto;
-    padding: 12px;
+    padding: 21px 24px;
   }
 
   @include element(footer) {
     display: flex;
     flex-direction: row-reverse;
-    padding: 12px;
+    padding: 21px 24px;
   }
 
   @include element(actions) {
