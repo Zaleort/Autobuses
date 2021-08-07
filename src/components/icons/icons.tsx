@@ -235,7 +235,7 @@ const icons: Icons = {
     ),
   },
 
-  plus: {
+  plusCircle: {
     viewBox: '0 0 512 512',
     node: () => h(
       <path

@@ -12,7 +12,7 @@
       <ui-icon
         v-else
         class="clickable"
-        icon="plus"
+        icon="plusCircle"
         size="mini"
         @click="toggleHorario"
       />
@@ -37,7 +37,7 @@
         <ui-icon
           v-else
           class="clickable"
-          icon="plus"
+          icon="plusCircle"
           size="small"
           @click="toggleFrecuencia(horario.frecuencia)"
         />

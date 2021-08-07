@@ -2,7 +2,7 @@
   <h1>
     Líneas favoritas
     <ui-icon
-      icon="plus"
+      icon="plusCircle"
       size="mini"
       color="primary"
       class="clickable"
@@ -79,7 +79,7 @@ import UiLoading from '@/components/ui/UiLoading.vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
-  name: 'Tarjetas',
+  name: 'LineasFavoritas',
   components: {
     LineasItem,
     UiAlert,
