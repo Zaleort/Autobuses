@@ -16,7 +16,11 @@
       <ui-label class="login__input">
         Usuario
         <template #content>
-          <ui-input v-model:value="user" size="large" />
+          <ui-input
+            v-model:value="user"
+            size="large"
+            @keyup.enter="register"
+          />
         </template>
       </ui-label>
 
@@ -27,6 +31,7 @@
             v-model:value="pass"
             type="password"
             size="large"
+            @keyup.enter="register"
           />
         </template>
       </ui-label>
@@ -38,6 +43,7 @@
             v-model:value="rePass"
             type="password"
             size="large"
+            @keyup.enter="register"
           />
         </template>
       </ui-label>
