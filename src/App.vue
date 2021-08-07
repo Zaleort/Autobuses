@@ -17,6 +17,20 @@
         <router-link class="nav-link" to="/lineas">
           Líneas
         </router-link>
+        <router-link
+          v-if="usuario"
+          class="nav-link"
+          to="/"
+        >
+          {{ usuario.usuario }}
+        </router-link>
+        <router-link
+          v-else
+          class="nav-link"
+          to="/login"
+        >
+          Login
+        </router-link>
       </nav>
     </ui-topbar>
 
@@ -27,13 +41,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+import { computed, defineComponent, onMounted } from 'vue';
 import { useStore } from '@/store';
 
 export default defineComponent({
   name: 'App',
   setup() {
     const store = useStore();
+    const usuario = computed(() => store.state.usuario);
     console.log(store);
 
     onMounted(async () => {
@@ -47,6 +62,7 @@ export default defineComponent({
 
     return {
       store,
+      usuario,
     };
   },
 });
