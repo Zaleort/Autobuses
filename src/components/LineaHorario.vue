@@ -135,16 +135,18 @@ export default defineComponent({
         h.paradas = [];
 
         // Si la salida no está disponible ese día no continuar con el proceso
-        if (!p[salidaIndex]) return;
-        h.paradas.push(p[salidaIndex]);
+        const paradaSalida = p.find(parada => parada.id === salida);
+        if (!paradaSalida) return;
+        h.paradas.push(paradaSalida);
 
         // Destino existe
-        if (destinoIndex >= 0 && p[destinoIndex]) {
-          h.paradas.push(p[destinoIndex]);
+        const paradaDestino = p.find(parada => parada.id === destino);
+        if (destinoIndex >= 0 && paradaDestino) {
+          h.paradas.push(paradaDestino);
         }
 
         // Si existe destino pero no está disponible ese día, entonces no puede ser una opción
-        if (destinoIndex >= 0 && !p[destinoIndex]) {
+        if (destinoIndex >= 0 && !paradaDestino) {
           h.paradas = [];
         }
       });
